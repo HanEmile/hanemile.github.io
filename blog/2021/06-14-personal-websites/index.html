@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/blog">blog</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2021">2021</a>
+            <ul>
+                <li><a href="/blog/2020">2020/</a></li>
+                <li><a href="/blog/2022">2022/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2021/06-14-personal-websites">06-14-personal-websites</a>
+            <ul>
+                <li><a href="/blog/2021/02-04-menger-sponge">02-04-menger-sponge/</a></li>
+                <li><a href="/blog/2021/02-05-turing-bot">02-05-turing-bot/</a></li>
+                <li><a href="/blog/2021/07-12-monorepo">07-12-monorepo/</a></li>
+                <li><a href="/blog/2021/12-26-interpaleki">12-26-interpaleki/</a></li>
+                <li><a href="/blog/2021/12-26-relaunch">12-26-relaunch/</a></li>
+                <li><a href="/blog/2021/12-30-relaunch-thoughts">12-30-relaunch-thoughts/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="personal-websites"></span>
+            <h1><a href="#personal-websites">Personal websites</a></h1>
+            <pre>
+<a href="#personal-websites">Personal websites</a>
+    <a href="#the-actual-hosting">The actual hosting</a>
+    <a href="#insights">Insights</a>
+    <a href="#restructuring">Restructuring</a>
+    <a href="#goals">Goals</a>
+       <a href="#the-idea">The Idea</a>
+    <a href="#finding-out-the-current-state">Finding out the current state</a>
+    <a href="#building-the-new-system">Building the new system</a>
+    <a href="#layouts">Layouts</a>
+       <a href="#book-style">book style</a>
+       <a href="#man-style">MAN-style</a>
+    <a href="#architecture">Architecture</a>
+
+This page, the one you're probably reading this on, is my "personal website". But what does that even mean?
+
+Well, on a technical level, I'm hosting a web server you can make requests to receiving information. This information can be anything, but mostly some text. On another level, you are here for information stored in the pages related to a specific topic.
+
+In the end, this whole "personal website" thing is a short form of me transferring information to you without you needing to contact me. This allows me to share information I have in a more efficient way with the world, so that people can find it on their own or I or others can direct them to specific information.
+
+</pre>
+            <span id="the-actual-hosting"></span>
+            <h2><a href="#the-actual-hosting">The actual hosting</a></h2>
+            <pre>
+So now that we've got the "whay host stuff" out of the way, let's get to one of the topics I kind of hate: the how.
+
+The information can be presented in multiple ways. In the end, I've got a few files containing the raw information and want it to look kind of okay. There are infinite ways of presenting this, but I (at the time of writing this), just took the mdbook project, gave it all my markdown files, wrote a small script to build it and push it to a server that hosts the resulting build artifacts.
+
+Now this all works, but having Identified what I've done here, I'd like more insight.
+
+</pre>
+            <span id="insights"></span>
+            <h2><a href="#insights">Insights</a></h2>
+            <pre>
+Insight can mean a few things. The insight I'd like to have is for example page level metrics.
+
+Such metrics might be:
+
+- How long to people have the page open?
+- How many people have viewed a specific page?
+- Until what point do people read the blobs?
+
+</pre>
+            <span id="restructuring"></span>
+            <h2><a href="#restructuring">Restructuring</a></h2>
+            <pre>
+I'm not the person that likes to stand still on a working system. I love to optimize eveything and can't really stay on a point. That's why I've played around with so many systems in the past and have learn, or at least tried out, so many tools, frameworks or other kinds of software.
+
+Since december 2019 (18 months as of writing this post), I've been using NixOS as my primary system, and fully embrace the whole ecosystem. I just kind of like it and would like to build some kind of "personal website" in a similar way. For this to work, I'll need to restructure my current setup.
+
+</pre>
+            <span id="goals"></span>
+            <h2><a href="#goals">Goals</a></h2>
+            <pre>
+The end goal is to provide content for people, so that I don't have to explain everything again and a again getting bored. I'd also like a system that is fun to work with without to many headaches.
+
+</pre>
+            <span id="the-idea"></span>
+            <h3><a href="#the-idea">The Idea</a></h3>
+            <pre>
+As with the /nix/store, I'd like to build an immutable /emile.space/store directory, into which all the post I write get thrown into. The input articles could reside somewhre on the system, but when building the page, the articles get modified and inserted into the store for further usage.
+
+I'm thinking of a page that allows me to create profiles containing symlinks to the pages in the store such as the one defined in the /run/current-system/sw/bin on NixOS systems. Now you might ask yourself: Why? Well, with such profiles, I could expose the webserver and handle requests according to users, so If your a user accessing the instance of the webserver in my private wireguard network, you might reach the server as a different "incoming user" and thus get mapped to a specific "profile" and thus get different results (keep in mind: this is just an Idea, I've still gotta find out how good (and if at all) this works).
+
+</pre>
+            <span id="finding-out-the-current-state"></span>
+            <h2><a href="#finding-out-the-current-state">Finding out the current state</a></h2>
+            <pre>
+Now for backwards compatibility reasons, I'd still like to inject some kind of file informing the system, that if a user accesses an old path, they should be redirected to the new /emile.space/store/... path.
+
+For this, I'm probabbly simply going to spider the page using gospider.
+
+</pre>
+            <span id="building-the-new-system"></span>
+            <h2><a href="#building-the-new-system">Building the new system</a></h2>
+            <pre>
+So the idea is (fairly) simply imho, building it should be quite fun. As I've started doing stuff in Rust. All of this should be packaged in a nix-module and I'd love to play around with nix-channels a bit, as hosting one on my one sounds like fun (although I've read some stuff regarding flakes and I'm currently still unsure if that's the way to go. It still seems to be in the very early stages, so I'll wait a bit for that).
+
+</pre>
+            <span id="layouts"></span>
+            <h2><a href="#layouts">Layouts</a></h2>
+            <pre>
+I'd prefer building the whole system in a way that allows me to have multiple layouts or "themes".
+
+</pre>
+            <span id="book-style"></span>
+            <h3><a href="#book-style">book style</a></h3>
+            <pre>
++------------------------------------------------+
+| 1   |             | askjdh |             | 1   |
+| 2   |             | asd    |             | 2   |
+| 3   |             |        |             | 2.1 |
+| 4   |             | asda   |             | 2.2 |
+| 5   |             | asd    |             | 3   |
+| 6   |             |        |             | 4   |
+| 7   |             | Asdas  |             |     |
+|     |             | oius   |             |     |
+|     |             | oiaus  |             |     |
++------------------------------------------------+
+
+
+On the left: an mdbook like meta navigation bar containing defined links to resources in the current profile.
+
+In the middle: The actual content.
+
+On the right: the table of contents (in wide screen mode), built from the headings in the file.
+
+</pre>
+            <span id="man-style"></span>
+            <h3><a href="#man-style">MAN-style</a></h3>
+            <pre>
+
++------------------------------------------------+
+| title              <path>                 date |
+|                                                |
+| SECTION                                        |
+|         8 spaces free, then the content        |
+|                                                |
+| SECTION                                        |
+|         8 spaces free, then the content        |
+|                                                |
+| title              <path>                 date |
++------------------------------------------------+
+
+
+</pre>
+            <span id="architecture"></span>
+            <h2><a href="#architecture">Architecture</a></h2>
+            <pre>
+As mentioned before I'd like a setup similar to the profiles in the nix-store.
+
+In my case, this would look like this:
+
+Resources
+
+</pre><pre class="code">/emile.space/d3642bae...-blogpost-nixctf/</pre><pre>
+</pre><pre class="code">/emile.space/1a2f0f7a...-talk-2021-betreutes-hacken/</pre><pre>
+</pre><pre class="code">/emile.space/6a50e9a7...-writeup-2020-nahamconctf-full-leak/</pre><pre>
+
+
+My idea here is to treat the resources like binaries. Like in the nix store, executing a binary by providing the whole path isn't really nice and adding every single resouce to the "PATH" also isn't really nice, so there needs to be a better way. The nix store manages this in profiles. The profiles contain symlinks to "activated" packages, the analogy can be transferred here in a way that published resources can be seen as "activated". This would mean that if I've got a resource that I'm currenly writing, I can add it the the "draft" profile, allowing me to see it, but not others (I'll have to figure out how to handle authorization and how to filter what entities can access that profile, but that's a problem for later).
+
+
+Profiles
+
+</pre><pre class="code">.</pre><pre>
+</pre><pre class="code">├── 1ea51c06...-writeup-2020-nahamconctf-full-leak</pre><pre>
+</pre><pre class="code">├── 3435e849...-blogpost-nixctf</pre><pre>
+</pre><pre class="code">├── 9ef931a0...-talk-2021-betreutes-hacken</pre><pre>
+</pre><pre class="code">└── profiles</pre><pre>
+</pre><pre class="code">    ├── draft</pre><pre>
+</pre><pre class="code">	│   └── writeup-2020-nahamcon-full-leak -></pre><pre>
+</pre><pre class="code">/emile.space/1ea51c06...-writeup-2020-nahamconctf-full-leak/</pre><pre>
+</pre><pre class="code">    └── published</pre><pre>
+</pre><pre class="code">		├── blogpost-nixctf -> /emile.space/3435e849...-blogpost-nixctf/</pre><pre>
+</pre><pre class="code">		└── talk-2021-betreutes-hacken -></pre><pre>
+</pre><pre class="code">/emile.space/9ef931a0...-talk-2021-betreutes-hacken/</pre><pre>
+
+
+Now can we drive this even further? Can we use nix itself for this, creating packages from our articles that can then be referenced? Well, ... yes.
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.147026s
+</body>
+</html>
+    <pre>

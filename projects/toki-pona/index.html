@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/projects">projects</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/projects/toki-pona">toki-pona</a>
+            <ul>
+                <li><a href="/projects/astrophotography">astrophotography/</a></li>
+                <li><a href="/projects/bodula">bodula/</a></li>
+                <li><a href="/projects/chaosdorf">chaosdorf/</a></li>
+                <li><a href="/projects/charon">charon/</a></li>
+                <li><a href="/projects/circus">circus/</a></li>
+                <li><a href="/projects/cocktails">cocktails/</a></li>
+                <li><a href="/projects/games">games/</a></li>
+                <li><a href="/projects/giff">giff/</a></li>
+                <li><a href="/projects/hackspace-events-by-weekday">hackspace-events-by-weekday/</a></li>
+                <li><a href="/projects/honeysuite">honeysuite/</a></li>
+                <li><a href="/projects/http-servers">http-servers/</a></li>
+                <li><a href="/projects/input-devices">input-devices/</a></li>
+                <li><a href="/projects/interesting-sites">interesting-sites/</a></li>
+                <li><a href="/projects/jufo">jufo/</a></li>
+                <li><a href="/projects/kosali">kosali/</a></li>
+                <li><a href="/projects/lapce">lapce/</a></li>
+                <li><a href="/projects/led-cube">led-cube/</a></li>
+                <li><a href="/projects/lumipa">lumipa/</a></li>
+                <li><a href="/projects/luno">luno/</a></li>
+                <li><a href="/projects/matrix">matrix/</a></li>
+                <li><a href="/projects/miboma">miboma/</a></li>
+                <li><a href="/projects/mobesi">mobesi/</a></li>
+                <li><a href="/projects/monorepo">monorepo/</a></li>
+                <li><a href="/projects/navoge">navoge/</a></li>
+                <li><a href="/projects/paged-out">paged-out/</a></li>
+                <li><a href="/projects/paleki">paleki/</a></li>
+                <li><a href="/projects/pixeltsunami">pixeltsunami/</a></li>
+                <li><a href="/projects/plan9">plan9/</a></li>
+                <li><a href="/projects/quad">quad/</a></li>
+                <li><a href="/projects/riscyemu">riscyemu/</a></li>
+                <li><a href="/projects/ruelps">ruelps/</a></li>
+                <li><a href="/projects/stdin-to-tcp">stdin-to-tcp/</a></li>
+                <li><a href="/projects/trike">trike/</a></li>
+                <li><a href="/projects/vokobe">vokobe/</a></li>
+                <li><a href="/projects/weather-scraper">weather-scraper/</a></li>
+                <li><a href="/projects/xika">xika/</a></li>
+                <li><a href="/projects/xilero">xilero/</a></li>
+                <li><a href="/projects/yonilu">yonilu/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="toki-pona"></span>
+            <h1><a href="#toki-pona">Toki Pona</a></h1>
+            <pre>
+So my plan is to learn <a href="https://tokipona.org">Toki Pona</a>.
+
+Toki pona isn't a hard language to learn, it only consists of 120 words, so this should be a fairly nice journey that isn't to frustrating. Other languages are quite cumbersome, as you need to learn many words in order to even do the most basic things.
+
+<a href="#toki-pona">Toki Pona</a>
+    <a href="#resources">resources</a>
+    <a href="#the-language-itself">the language itself</a>
+       <a href="#vowels">vowels</a>
+       <a href="#consonants">consonants</a>
+       <a href="#grammar">grammar</a>
+       <a href="#nouns">nouns</a>
+       <a href="#adjectives">adjectives</a>
+       <a href="#verbs">verbs</a>
+       <a href="#abstractions">abstractions</a>
+    <a href="#words">words</a>
+       <a href="#a-emphasis">a (emphasis)</a>
+       <a href="#akesi-lizard">akesi (lizard)</a>
+       <a href="#ala-no">ala (no)</a>
+       <a href="#alasa-hunt">alasa (hunt)</a>
+       <a href="#ale-all">ale (all)</a>
+       <a href="#anpa-low">anpa (low)</a>
+       <a href="#ante-different">ante (different)</a>
+       <a href="#anu-or">anu (or)</a>
+       <a href="#awen-keep">awen (keep)</a>
+       <a href="#e-object">e (object)</a>
+       <a href="#en-and">en (and)</a>
+       <a href="#esun-shop">esun (shop)</a>
+       <a href="#ijo-thing">ijo (thing)</a>
+       <a href="#ike-bad">ike (bad)</a>
+       <a href="#ilo-tool">ilo (tool)</a>
+       <a href="#insa-inside">insa (inside)</a>
+       <a href="#jaki-dirty">jaki (dirty)</a>
+       <a href="#jan-person">jan (person)</a>
+       <a href="#jelo-yellow">jelo (yellow)</a>
+       <a href="#jo-have">jo (have)</a>
+       <a href="#kala-fish">kala (fish)</a>
+       <a href="#kalama-sound">kalama (sound)</a>
+       <a href="#kama-come">kama (come)</a>
+       <a href="#kasi-plant">kasi (plant)</a>
+       <a href="#ken-can">ken (can)</a>
+       <a href="#kepeken-use">kepeken (use)</a>
+       <a href="#kili-fruit">kili (fruit)</a>
+       <a href="#kiwen-rock">kiwen (rock)</a>
+       <a href="#ko-paste">ko (paste)</a>
+       <a href="#kon-air">kon (air)</a>
+       <a href="#kule-color">kule (color)</a>
+       <a href="#kulupu-group">kulupu (group)</a>
+       <a href="#kute-hear">kute (hear)</a>
+       <a href="#la-context">la (context)</a>
+       <a href="#lape-sleep">lape (sleep)</a>
+       <a href="#laso-green">laso (green)</a>
+       <a href="#lawa-head">lawa (head)</a>
+       <a href="#len-cloth">len (cloth)</a>
+       <a href="#lete-cold">lete (cold)</a>
+       <a href="#li-predicate">li (predicate)</a>
+       <a href="#lili-small">lili (small)</a>
+       <a href="#linja-line">linja (line)</a>
+       <a href="#lipu-paper">lipu (paper)</a>
+       <a href="#loje-red">loje (red)</a>
+       <a href="#lon-at">lon (at)</a>
+       <a href="#luka-hand">luka (hand)</a>
+       <a href="#lukin-see">lukin (see)</a>
+       <a href="#lupa-hole">lupa (hole)</a>
+       <a href="#ma-land">ma (land)</a>
+       <a href="#mama-parent">mama (parent)</a>
+       <a href="#mani-money">mani (money)</a>
+       <a href="#meli-woman">meli (woman)</a>
+       <a href="#mi-me">mi (me)</a>
+       <a href="#mije-man">mije (man)</a>
+       <a href="#moku-eat">moku (eat)</a>
+       <a href="#moli-dead">moli (dead)</a>
+       <a href="#monsi-back">monsi (back)</a>
+       <a href="#mu-meow">mu (meow)</a>
+       <a href="#mun-moon">mun (moon)</a>
+       <a href="#musi-play">musi (play)</a>
+       <a href="#mute-many">mute (many)</a>
+       <a href="#nanpa-number">nanpa (number)</a>
+       <a href="#nasa-strange">nasa (strange)</a>
+       <a href="#nasin-way">nasin (way)</a>
+       <a href="#nena-mountain">nena (mountain)</a>
+       <a href="#ni-this">ni (this)</a>
+       <a href="#nimi-name">nimi (name)</a>
+       <a href="#noka-foot">noka (foot)</a>
+       <a href="#o-command">o (command)</a>
+       <a href="#olin-love">olin (love)</a>
+       <a href="#ona-it">ona (it)</a>
+       <a href="#open-open">open (open)</a>
+       <a href="#pakala-break">pakala (break)</a>
+       <a href="#pali-do">pali (do)</a>
+       <a href="#palisa-stick">palisa (stick)</a>
+       <a href="#pan-food">pan (food)</a>
+       <a href="#pana-give">pana (give)</a>
+       <a href="#pi-of">pi (of)</a>
+       <a href="#pilin-feel">pilin (feel)</a>
+       <a href="#pimeja-black">pimeja (black)</a>
+       <a href="#pini-end">pini (end)</a>
+       <a href="#pipi-bug">pipi (bug)</a>
+       <a href="#poka-near">poka (near)</a>
+       <a href="#poki-container">poki (container)</a>
+       <a href="#pona-good">pona (good)</a>
+       <a href="#pu-the-book">pu (the book)</a>
+       <a href="#sama-same">sama (same)</a>
+       <a href="#seli-fire">seli (fire)</a>
+       <a href="#senlo-skin">senlo (skin)</a>
+       <a href="#seme-what">seme (what)</a>
+       <a href="#sewi-high">sewi (high)</a>
+       <a href="#sijelo-form">sijelo (form)</a>
+       <a href="#sike-circle">sike (circle)</a>
+       <a href="#sin-new">sin (new)</a>
+       <a href="#sina-you">sina (you)</a>
+       <a href="#sinpin-face">sinpin (face)</a>
+       <a href="#sitelen-picture">sitelen (picture)</a>
+       <a href="#sona-know">sona (know)</a>
+       <a href="#soweli-animal">soweli (animal)</a>
+       <a href="#suli-big">suli (big)</a>
+       <a href="#suno-sun">suno (sun)</a>
+       <a href="#supa-table">supa (table)</a>
+       <a href="#suwi-sweet">suwi (sweet)</a>
+       <a href="#tan-from">tan (from)</a>
+       <a href="#taso-butt">taso (butt)</a>
+       <a href="#tawa-to">tawa (to)</a>
+       <a href="#telo-water">telo (water)</a>
+       <a href="#tempo-time">tempo (time)</a>
+       <a href="#toki-talk">toki (talk)</a>
+       <a href="#tomo-house">tomo (house)</a>
+       <a href="#tu-two">tu (two)</a>
+       <a href="#unpa-sex">unpa (sex)</a>
+       <a href="#uta-mouth">uta (mouth)</a>
+       <a href="#utala-fight">utala (fight)</a>
+       <a href="#whalo-white">whalo (white)</a>
+       <a href="#wan-one">wan (one)</a>
+       <a href="#waso-bird">waso (bird)</a>
+       <a href="#wawa-strong">wawa (strong)</a>
+       <a href="#weka-away">weka (away)</a>
+       <a href="#wile-want">wile (want)</a>
+
+</pre>
+            <span id="resources"></span>
+            <h2><a href="#resources">resources</a></h2>
+            <pre>
+- <a href="https://toki.social/public">https://toki.social/public</a>
+- <a href="https://www.youtube.com/playlist?list=PLjOmpMyMxd8T9lZjF36c4mn4YgwZ4ToT6">12 part video playlist (about 3 min. / episode)</a>
+- <a href="https://blinry.org/toki-pona-cheat-sheet/toki-pona-cheat-sheet.pdf">cheatsheet</a> made by <a href="https://morr.cc">blinry</a>.
+- <a href="./tp_words_ranked.txt">toki pona words ranked</a>
+
+</pre>
+            <span id="the-language-itself"></span>
+            <h2><a href="#the-language-itself">the language itself</a></h2>
+            <pre>
+</pre>
+            <span id="vowels"></span>
+            <h3><a href="#vowels">vowels</a></h3>
+            <pre>
+a e i o u
+
+</pre>
+            <span id="consonants"></span>
+            <h3><a href="#consonants">consonants</a></h3>
+            <pre>
+p t k
+m n s
+l w j
+
+</pre>
+            <span id="grammar"></span>
+            <h3><a href="#grammar">grammar</a></h3>
+            <pre>
+NOUN + li + NOUN
+NOUN + li + ADJECTIVE
+NOUN + ADJECTIVE
+NOUN + NOUN
+NOUN + li + VERB + e + NOUN
+
+</pre>
+            <span id="nouns"></span>
+            <h3><a href="#nouns">nouns</a></h3>
+            <pre>
+ijo     thing, something, being
+jan     person, human
+kili    fruit vegetable
+lipu    document
+meli    woman, female
+ni      this, that
+soweli  animal, land mammal
+lipu    book
+
+telo    water, liquid
+tomo    house, building, room
+
+mi      i, me, we
+mije    man, male
+sina    you
+kulupu  community
+
+</pre>
+            <span id="adjectives"></span>
+            <h3><a href="#adjectives">adjectives</a></h3>
+            <pre>
+lili    little
+pona    good, simple, friendly
+suli    big
+
+sin     another, new, fresh
+wawa    strong, confident, dependable
+
+</pre>
+            <span id="verbs"></span>
+            <h3><a href="#verbs">verbs</a></h3>
+            <pre>
+(can all be nouns as well, displayed in () behind the description)
+
+(can all be adjectives as well, displayed in () behind the description)
+
+jo      to have, contain, carry
+kute    to listen, obey
+moku    to eat, drink (something to eat)
+pali    to make, do, work on
+sona    to know
+toki    to talk, speak, communicate (language)
+
+</pre>
+            <span id="abstractions"></span>
+            <h3><a href="#abstractions">abstractions</a></h3>
+            <pre>
+ocean   "telo suli"    "big water"
+
+</pre>
+            <span id="words"></span>
+            <h2><a href="#words">words</a></h2>
+            <pre>
+I'm going to list all words here, so I can write down some common combination.
+
+The words are extracted from <a href="https://raw.githubusercontent.com/baisong/tokitoki-js/gh-pages/nimi_ale.png">this</a> image.
+
+
+            <hr>
+</pre>
+            <span id="a-emphasis"></span>
+            <h3><a href="#a-emphasis">a (emphasis)</a></h3>
+            <pre>
+</pre>
+            <span id="akesi-lizard"></span>
+            <h3><a href="#akesi-lizard">akesi (lizard)</a></h3>
+            <pre>
+"akesi suli": "big lizard"
+
+</pre>
+            <span id="ala-no"></span>
+            <h3><a href="#ala-no">ala (no)</a></h3>
+            <pre>
+</pre>
+            <span id="alasa-hunt"></span>
+            <h3><a href="#alasa-hunt">alasa (hunt)</a></h3>
+            <pre>
+"alasa akesi": "hunt lizard"
+
+</pre>
+            <span id="ale-all"></span>
+            <h3><a href="#ale-all">ale (all)</a></h3>
+            <pre></pre>
+            <span id="anpa-low"></span>
+            <h3><a href="#anpa-low">anpa (low)</a></h3>
+            <pre></pre>
+            <span id="ante-different"></span>
+            <h3><a href="#ante-different">ante (different)</a></h3>
+            <pre></pre>
+            <span id="anu-or"></span>
+            <h3><a href="#anu-or">anu (or)</a></h3>
+            <pre></pre>
+            <span id="awen-keep"></span>
+            <h3><a href="#awen-keep">awen (keep)</a></h3>
+            <pre></pre>
+            <span id="e-object"></span>
+            <h3><a href="#e-object">e (object)</a></h3>
+            <pre></pre>
+            <span id="en-and"></span>
+            <h3><a href="#en-and">en (and)</a></h3>
+            <pre></pre>
+            <span id="esun-shop"></span>
+            <h3><a href="#esun-shop">esun (shop)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="ijo-thing"></span>
+            <h3><a href="#ijo-thing">ijo (thing)</a></h3>
+            <pre></pre>
+            <span id="ike-bad"></span>
+            <h3><a href="#ike-bad">ike (bad)</a></h3>
+            <pre></pre>
+            <span id="ilo-tool"></span>
+            <h3><a href="#ilo-tool">ilo (tool)</a></h3>
+            <pre></pre>
+            <span id="insa-inside"></span>
+            <h3><a href="#insa-inside">insa (inside)</a></h3>
+            <pre></pre>
+            <span id="jaki-dirty"></span>
+            <h3><a href="#jaki-dirty">jaki (dirty)</a></h3>
+            <pre></pre>
+            <span id="jan-person"></span>
+            <h3><a href="#jan-person">jan (person)</a></h3>
+            <pre></pre>
+            <span id="jelo-yellow"></span>
+            <h3><a href="#jelo-yellow">jelo (yellow)</a></h3>
+            <pre></pre>
+            <span id="jo-have"></span>
+            <h3><a href="#jo-have">jo (have)</a></h3>
+            <pre></pre>
+            <span id="kala-fish"></span>
+            <h3><a href="#kala-fish">kala (fish)</a></h3>
+            <pre></pre>
+            <span id="kalama-sound"></span>
+            <h3><a href="#kalama-sound">kalama (sound)</a></h3>
+            <pre></pre>
+            <span id="kama-come"></span>
+            <h3><a href="#kama-come">kama (come)</a></h3>
+            <pre></pre>
+            <span id="kasi-plant"></span>
+            <h3><a href="#kasi-plant">kasi (plant)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="ken-can"></span>
+            <h3><a href="#ken-can">ken (can)</a></h3>
+            <pre></pre>
+            <span id="kepeken-use"></span>
+            <h3><a href="#kepeken-use">kepeken (use)</a></h3>
+            <pre></pre>
+            <span id="kili-fruit"></span>
+            <h3><a href="#kili-fruit">kili (fruit)</a></h3>
+            <pre></pre>
+            <span id="kiwen-rock"></span>
+            <h3><a href="#kiwen-rock">kiwen (rock)</a></h3>
+            <pre></pre>
+            <span id="ko-paste"></span>
+            <h3><a href="#ko-paste">ko (paste)</a></h3>
+            <pre></pre>
+            <span id="kon-air"></span>
+            <h3><a href="#kon-air">kon (air)</a></h3>
+            <pre></pre>
+            <span id="kule-color"></span>
+            <h3><a href="#kule-color">kule (color)</a></h3>
+            <pre></pre>
+            <span id="kulupu-group"></span>
+            <h3><a href="#kulupu-group">kulupu (group)</a></h3>
+            <pre></pre>
+            <span id="kute-hear"></span>
+            <h3><a href="#kute-hear">kute (hear)</a></h3>
+            <pre></pre>
+            <span id="la-context"></span>
+            <h3><a href="#la-context">la (context)</a></h3>
+            <pre></pre>
+            <span id="lape-sleep"></span>
+            <h3><a href="#lape-sleep">lape (sleep)</a></h3>
+            <pre></pre>
+            <span id="laso-green"></span>
+            <h3><a href="#laso-green">laso (green)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="lawa-head"></span>
+            <h3><a href="#lawa-head">lawa (head)</a></h3>
+            <pre></pre>
+            <span id="len-cloth"></span>
+            <h3><a href="#len-cloth">len (cloth)</a></h3>
+            <pre></pre>
+            <span id="lete-cold"></span>
+            <h3><a href="#lete-cold">lete (cold)</a></h3>
+            <pre></pre>
+            <span id="li-predicate"></span>
+            <h3><a href="#li-predicate">li (predicate)</a></h3>
+            <pre></pre>
+            <span id="lili-small"></span>
+            <h3><a href="#lili-small">lili (small)</a></h3>
+            <pre></pre>
+            <span id="linja-line"></span>
+            <h3><a href="#linja-line">linja (line)</a></h3>
+            <pre></pre>
+            <span id="lipu-paper"></span>
+            <h3><a href="#lipu-paper">lipu (paper)</a></h3>
+            <pre></pre>
+            <span id="loje-red"></span>
+            <h3><a href="#loje-red">loje (red)</a></h3>
+            <pre></pre>
+            <span id="lon-at"></span>
+            <h3><a href="#lon-at">lon (at)</a></h3>
+            <pre></pre>
+            <span id="luka-hand"></span>
+            <h3><a href="#luka-hand">luka (hand)</a></h3>
+            <pre></pre>
+            <span id="lukin-see"></span>
+            <h3><a href="#lukin-see">lukin (see)</a></h3>
+            <pre></pre>
+            <span id="lupa-hole"></span>
+            <h3><a href="#lupa-hole">lupa (hole)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="ma-land"></span>
+            <h3><a href="#ma-land">ma (land)</a></h3>
+            <pre></pre>
+            <span id="mama-parent"></span>
+            <h3><a href="#mama-parent">mama (parent)</a></h3>
+            <pre></pre>
+            <span id="mani-money"></span>
+            <h3><a href="#mani-money">mani (money)</a></h3>
+            <pre></pre>
+            <span id="meli-woman"></span>
+            <h3><a href="#meli-woman">meli (woman)</a></h3>
+            <pre></pre>
+            <span id="mi-me"></span>
+            <h3><a href="#mi-me">mi (me)</a></h3>
+            <pre></pre>
+            <span id="mije-man"></span>
+            <h3><a href="#mije-man">mije (man)</a></h3>
+            <pre></pre>
+            <span id="moku-eat"></span>
+            <h3><a href="#moku-eat">moku (eat)</a></h3>
+            <pre></pre>
+            <span id="moli-dead"></span>
+            <h3><a href="#moli-dead">moli (dead)</a></h3>
+            <pre></pre>
+            <span id="monsi-back"></span>
+            <h3><a href="#monsi-back">monsi (back)</a></h3>
+            <pre></pre>
+            <span id="mu-meow"></span>
+            <h3><a href="#mu-meow">mu (meow)</a></h3>
+            <pre></pre>
+            <span id="mun-moon"></span>
+            <h3><a href="#mun-moon">mun (moon)</a></h3>
+            <pre></pre>
+            <span id="musi-play"></span>
+            <h3><a href="#musi-play">musi (play)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="mute-many"></span>
+            <h3><a href="#mute-many">mute (many)</a></h3>
+            <pre></pre>
+            <span id="nanpa-number"></span>
+            <h3><a href="#nanpa-number">nanpa (number)</a></h3>
+            <pre></pre>
+            <span id="nasa-strange"></span>
+            <h3><a href="#nasa-strange">nasa (strange)</a></h3>
+            <pre></pre>
+            <span id="nasin-way"></span>
+            <h3><a href="#nasin-way">nasin (way)</a></h3>
+            <pre></pre>
+            <span id="nena-mountain"></span>
+            <h3><a href="#nena-mountain">nena (mountain)</a></h3>
+            <pre></pre>
+            <span id="ni-this"></span>
+            <h3><a href="#ni-this">ni (this)</a></h3>
+            <pre></pre>
+            <span id="nimi-name"></span>
+            <h3><a href="#nimi-name">nimi (name)</a></h3>
+            <pre></pre>
+            <span id="noka-foot"></span>
+            <h3><a href="#noka-foot">noka (foot)</a></h3>
+            <pre></pre>
+            <span id="o-command"></span>
+            <h3><a href="#o-command">o (command)</a></h3>
+            <pre></pre>
+            <span id="olin-love"></span>
+            <h3><a href="#olin-love">olin (love)</a></h3>
+            <pre></pre>
+            <span id="ona-it"></span>
+            <h3><a href="#ona-it">ona (it)</a></h3>
+            <pre></pre>
+            <span id="open-open"></span>
+            <h3><a href="#open-open">open (open)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="pakala-break"></span>
+            <h3><a href="#pakala-break">pakala (break)</a></h3>
+            <pre></pre>
+            <span id="pali-do"></span>
+            <h3><a href="#pali-do">pali (do)</a></h3>
+            <pre></pre>
+            <span id="palisa-stick"></span>
+            <h3><a href="#palisa-stick">palisa (stick)</a></h3>
+            <pre></pre>
+            <span id="pan-food"></span>
+            <h3><a href="#pan-food">pan (food)</a></h3>
+            <pre></pre>
+            <span id="pana-give"></span>
+            <h3><a href="#pana-give">pana (give)</a></h3>
+            <pre></pre>
+            <span id="pi-of"></span>
+            <h3><a href="#pi-of">pi (of)</a></h3>
+            <pre></pre>
+            <span id="pilin-feel"></span>
+            <h3><a href="#pilin-feel">pilin (feel)</a></h3>
+            <pre></pre>
+            <span id="pimeja-black"></span>
+            <h3><a href="#pimeja-black">pimeja (black)</a></h3>
+            <pre></pre>
+            <span id="pini-end"></span>
+            <h3><a href="#pini-end">pini (end)</a></h3>
+            <pre></pre>
+            <span id="pipi-bug"></span>
+            <h3><a href="#pipi-bug">pipi (bug)</a></h3>
+            <pre></pre>
+            <span id="poka-near"></span>
+            <h3><a href="#poka-near">poka (near)</a></h3>
+            <pre></pre>
+            <span id="poki-container"></span>
+            <h3><a href="#poki-container">poki (container)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="pona-good"></span>
+            <h3><a href="#pona-good">pona (good)</a></h3>
+            <pre></pre>
+            <span id="pu-the-book"></span>
+            <h3><a href="#pu-the-book">pu (the book)</a></h3>
+            <pre></pre>
+            <span id="sama-same"></span>
+            <h3><a href="#sama-same">sama (same)</a></h3>
+            <pre></pre>
+            <span id="seli-fire"></span>
+            <h3><a href="#seli-fire">seli (fire)</a></h3>
+            <pre></pre>
+            <span id="senlo-skin"></span>
+            <h3><a href="#senlo-skin">senlo (skin)</a></h3>
+            <pre></pre>
+            <span id="seme-what"></span>
+            <h3><a href="#seme-what">seme (what)</a></h3>
+            <pre></pre>
+            <span id="sewi-high"></span>
+            <h3><a href="#sewi-high">sewi (high)</a></h3>
+            <pre></pre>
+            <span id="sijelo-form"></span>
+            <h3><a href="#sijelo-form">sijelo (form)</a></h3>
+            <pre></pre>
+            <span id="sike-circle"></span>
+            <h3><a href="#sike-circle">sike (circle)</a></h3>
+            <pre></pre>
+            <span id="sin-new"></span>
+            <h3><a href="#sin-new">sin (new)</a></h3>
+            <pre></pre>
+            <span id="sina-you"></span>
+            <h3><a href="#sina-you">sina (you)</a></h3>
+            <pre></pre>
+            <span id="sinpin-face"></span>
+            <h3><a href="#sinpin-face">sinpin (face)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="sitelen-picture"></span>
+            <h3><a href="#sitelen-picture">sitelen (picture)</a></h3>
+            <pre></pre>
+            <span id="sona-know"></span>
+            <h3><a href="#sona-know">sona (know)</a></h3>
+            <pre></pre>
+            <span id="soweli-animal"></span>
+            <h3><a href="#soweli-animal">soweli (animal)</a></h3>
+            <pre></pre>
+            <span id="suli-big"></span>
+            <h3><a href="#suli-big">suli (big)</a></h3>
+            <pre></pre>
+            <span id="suno-sun"></span>
+            <h3><a href="#suno-sun">suno (sun)</a></h3>
+            <pre></pre>
+            <span id="supa-table"></span>
+            <h3><a href="#supa-table">supa (table)</a></h3>
+            <pre></pre>
+            <span id="suwi-sweet"></span>
+            <h3><a href="#suwi-sweet">suwi (sweet)</a></h3>
+            <pre></pre>
+            <span id="tan-from"></span>
+            <h3><a href="#tan-from">tan (from)</a></h3>
+            <pre></pre>
+            <span id="taso-butt"></span>
+            <h3><a href="#taso-butt">taso (butt)</a></h3>
+            <pre></pre>
+            <span id="tawa-to"></span>
+            <h3><a href="#tawa-to">tawa (to)</a></h3>
+            <pre></pre>
+            <span id="telo-water"></span>
+            <h3><a href="#telo-water">telo (water)</a></h3>
+            <pre></pre>
+            <span id="tempo-time"></span>
+            <h3><a href="#tempo-time">tempo (time)</a></h3>
+            <pre>
+
+            <hr>
+</pre>
+            <span id="toki-talk"></span>
+            <h3><a href="#toki-talk">toki (talk)</a></h3>
+            <pre></pre>
+            <span id="tomo-house"></span>
+            <h3><a href="#tomo-house">tomo (house)</a></h3>
+            <pre></pre>
+            <span id="tu-two"></span>
+            <h3><a href="#tu-two">tu (two)</a></h3>
+            <pre></pre>
+            <span id="unpa-sex"></span>
+            <h3><a href="#unpa-sex">unpa (sex)</a></h3>
+            <pre></pre>
+            <span id="uta-mouth"></span>
+            <h3><a href="#uta-mouth">uta (mouth)</a></h3>
+            <pre></pre>
+            <span id="utala-fight"></span>
+            <h3><a href="#utala-fight">utala (fight)</a></h3>
+            <pre></pre>
+            <span id="whalo-white"></span>
+            <h3><a href="#whalo-white">whalo (white)</a></h3>
+            <pre></pre>
+            <span id="wan-one"></span>
+            <h3><a href="#wan-one">wan (one)</a></h3>
+            <pre></pre>
+            <span id="waso-bird"></span>
+            <h3><a href="#waso-bird">waso (bird)</a></h3>
+            <pre></pre>
+            <span id="wawa-strong"></span>
+            <h3><a href="#wawa-strong">wawa (strong)</a></h3>
+            <pre></pre>
+            <span id="weka-away"></span>
+            <h3><a href="#weka-away">weka (away)</a></h3>
+            <pre></pre>
+            <span id="wile-want"></span>
+            <h3><a href="#wile-want">wile (want)</a></h3>
+            <pre>
+
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.764062s
+</body>
+</html>
+    <pre>

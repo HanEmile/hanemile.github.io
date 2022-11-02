@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/ctf">ctf</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups">writeups</a>
+            <ul>
+                <li><a href="/ctf/hosted-events">hosted-events/</a></li>
+                <li><a href="/ctf/resources">resources/</a></li>
+                <li><a href="/ctf/teams">teams/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/pwnable.kr">pwnable.kr</a>
+            <ul>
+                <li><a href="/ctf/writeups/2019">2019/</a></li>
+                <li><a href="/ctf/writeups/2020">2020/</a></li>
+                <li><a href="/ctf/writeups/2021">2021/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/pwnable.kr/fd">fd</a>
+            <ul>
+                <li><a href="/ctf/writeups/pwnable.kr/bof">bof/</a></li>
+                <li><a href="/ctf/writeups/pwnable.kr/collision">collision/</a></li>
+                <li><a href="/ctf/writeups/pwnable.kr/flag">flag/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="fd"></span>
+            <h1><a href="#fd">fd</a></h1>
+            <pre>
+</pre><pre class="code">Mommy! what is a file descriptor in Linux?</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">* try to play the wargame your self but if you are ABSOLUTE beginner, follow this tutorial link:</pre><pre>
+</pre><pre class="code">https://youtu.be/971eZhMHQQw</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">ssh fd@pwnable.kr -p2222 (pw:guest)</pre><pre>
+
+</pre>
+            <span id="what-is-given"></span>
+            <h2><a href="#what-is-given">What is given?</a></h2>
+            <pre>
+We get a file called fd.c, the corresponding binary fd and a flag flag.
+
+As we get the sourcecode, let's inspect it:
+
+
+</pre><pre class="code">fd@pwnable:~$ cat fd.c</pre><pre>
+</pre><pre class="code">#include &ltstdio.h></pre><pre>
+</pre><pre class="code">#include &ltstdlib.h></pre><pre>
+</pre><pre class="code">#include &ltstring.h></pre><pre>
+</pre><pre class="code">char buf[32];</pre><pre>
+</pre><pre class="code">int main(int argc, char* argv[], char* envp[]){</pre><pre>
+</pre><pre class="code">    if(argc&lt2){</pre><pre>
+</pre><pre class="code">        printf("pass argv[1] a number\n");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">    int fd = atoi( argv[1] ) - 0x1234;</pre><pre>
+</pre><pre class="code">    int len = 0;</pre><pre>
+</pre><pre class="code">    len = read(fd, buf, 32);</pre><pre>
+</pre><pre class="code">    if(!strcmp("LETMEWIN\n", buf)){</pre><pre>
+</pre><pre class="code">        printf("good job :)\n");</pre><pre>
+</pre><pre class="code">        system("/bin/cat flag");</pre><pre>
+</pre><pre class="code">        exit(0);</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">    printf("learn about Linux file IO\n");</pre><pre>
+</pre><pre class="code">    return 0;</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+
+</pre>
+            <span id="understanding-the-source"></span>
+            <h2><a href="#understanding-the-source">Understanding the source</a></h2>
+            <pre>
+Let's look at the file line by line:
+
+
+</pre><pre class="code">#include &ltstdio.h></pre><pre>
+</pre><pre class="code">#include &ltstdlib.h></pre><pre>
+</pre><pre class="code">#include &ltstring.h></pre><pre>
+
+
+Just some imports, nothing really interesting.
+
+
+</pre><pre class="code">char buf[32];</pre><pre>
+
+
+A chat buffer get's defined, we will probably write stuff into here...
+
+
+</pre><pre class="code">int main(int argc, char* argv[], char* envp[]){</pre><pre>
+</pre><pre class="code">    if(argc&lt2){</pre><pre>
+</pre><pre class="code">        printf("pass argv[1] a number\n");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+
+
+This is the definition of the main function with some code checking if the right amount of arguments was supplied... still not really interesting.
+
+
+</pre><pre class="code">    int fd = atoi( argv[1] ) - 0x1234;</pre><pre>
+
+
+Now this get's interesting: The first command line argument (argv[1]) is passed to atoi (execute man atoi for more information on atoi). In a nutshell, atoi converts out input to an integer (Ascii TO Integer) and then subtracts 0x1234 from it. This means that we can controll the content of the fd variable: If we want to insert a value n into the var, we insert n + 0x1234.
+
+
+</pre><pre class="code">    int len = 0;</pre><pre>
+
+
+Some var len is initialized as 0, nothing we can do here.
+
+
+</pre><pre class="code">    len = read(fd, buf, 32);</pre><pre>
+
+
+Now here, the read function is used to "read from a file descriptor" (read the manpage `man 2 read` for more info on the read function).
+
+Looking into the manpage, the read functions signature is the following:
+
+
+</pre><pre class="code">ssize_t read(int fd, void *buf, size_t count);</pre><pre>
+
+
+From the manpage:
+
+"[...] read() attempts to read up to count bytes from file descriptor fd into the buffer starting at buf."
+
+This means that the the address of the buffer defined in the beginning ist passed in, some file descriptor that should be read from (remember, we controll the number of that file descriptor) and the amount of bytes to read in (in this case 32).
+
+As we control the file descriptor, we can read 32 bytes of data from an arbitrary file descriptor into the buffer.
+
+
+</pre><pre class="code">    if(!strcmp("LETMEWIN\n", buf)){</pre><pre>
+</pre><pre class="code">        printf("good job :)\n");</pre><pre>
+</pre><pre class="code">        system("/bin/cat flag");</pre><pre>
+</pre><pre class="code">        exit(0);</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+
+
+This checks if the content of the buffer is LETMEWIN. If so, it prints the content of the flag file and exists...
+
+
+</pre><pre class="code">    printf("learn about Linux file IO\n");</pre><pre>
+</pre><pre class="code">    return 0;</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+
+...but if not, It tells us to learn about Linux file IO.
+
+
+</pre>
+            <span id="solving-the-challenge"></span>
+            <h2><a href="#solving-the-challenge">Solving the challenge</a></h2>
+            <pre>
+Now that you've got a basic understanding of the binary, it shouldn't be to hard to find out how to solve this. In the end, we need to get the String LETMEWIN into the buffer and the only thing we can controll is the input and the file descriptor from where the content is copied into the buffer.
+
+The "most common" file descriptors are 0, 1 and 2. You might want to read the <a href="https://en.wikipedia.org/wiki/File_descriptor">wikipedia page on file descriptors</a> in order to get a basic understanding of what this actually all means.
+
+On a very basic level, 0 is the Standard Input. If we read from here, we get the content the user inserts into their commandline. 1 is the Standard output. If we write data here, we can print stuff to the commandline. And at last, 2 is the standard error, works the same as the standard output, but offers an alternative stream allowing to separate the actual content for error content, allowing the user to, for example, filter out the errors and watch only the actual content.
+
+Now that we can control the file pointer, we probably want to use the file descriptor 0 as the input, as this allows us to write content to the command line that is then passed into the buffer.
+
+In order to get the fd value to 0, we need to insert 0 + 0x1234 which is:
+
+
+</pre><pre class="code">>>> 0 + 0x1234</pre><pre>
+</pre><pre class="code">4660</pre><pre>
+
+
+With this information we can get the flag like this:
+
+
+</pre><pre class="code">fd@pwnable:~$ ./fd 4660</pre><pre>
+</pre><pre class="code">LETMEWIN</pre><pre>
+</pre><pre class="code">good job :)</pre><pre>
+</pre><pre class="code">mommy! I think I know what a file descriptor is!!</pre><pre>
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.862799s
+</body>
+</html>
+    <pre>

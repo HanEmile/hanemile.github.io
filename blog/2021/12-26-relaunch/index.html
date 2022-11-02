@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/blog">blog</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2021">2021</a>
+            <ul>
+                <li><a href="/blog/2020">2020/</a></li>
+                <li><a href="/blog/2022">2022/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2021/12-26-relaunch">12-26-relaunch</a>
+            <ul>
+                <li><a href="/blog/2021/02-04-menger-sponge">02-04-menger-sponge/</a></li>
+                <li><a href="/blog/2021/02-05-turing-bot">02-05-turing-bot/</a></li>
+                <li><a href="/blog/2021/06-14-personal-websites">06-14-personal-websites/</a></li>
+                <li><a href="/blog/2021/07-12-monorepo">07-12-monorepo/</a></li>
+                <li><a href="/blog/2021/12-26-interpaleki">12-26-interpaleki/</a></li>
+                <li><a href="/blog/2021/12-30-relaunch-thoughts">12-30-relaunch-thoughts/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="relaunch"></span>
+            <h1><a href="#relaunch">relaunch</a></h1>
+            <pre>
+<a href="#relaunch">relaunch</a>
+    <a href="#building">building</a>
+    <a href="#synchronizing">synchronizing</a>
+    <a href="#navigation">navigation</a>
+
+As with every blog, website or project I do, stuff launches, goes up pretty fast and then falls a long time without control.
+
+This has happened with this site and I've taken it upon myself to make it a little bit more stable.
+
+For this, I've simplified it as much as possible, making it as fast as possible (this is one of my most important requirements at the time of writing). In addition to the end result loading fast, I decided that the build process should be fairly fast as well.
+
+For this, I've created a small system in which I've got markdown files which are converted to html. There isn't any kind of sophisticated markdown parser or so contained within this system, everything is just kept as simple as possible (without going overboard with the simplicity, as in: I've still got titles and subtitles, but no fancy stuff which would require me to parse the markdown further such as bold or italic text, markdown links or so).
+
+</pre>
+            <span id="building"></span>
+            <h2><a href="#building">building</a></h2>
+            <pre>
+In order to build the site, I execute the build script which does the following:
+
+; rm -rf out && python3 src/gen.py ./in | tee out.log
+
+- Removes existing build data, essentially creating a new page fromd the ground up every single time (we can do this, as the page is so small that this isn't really a problem. It might become one in the future, but I'm not seeing that now and by the time it may become a problem, I'm probably be using another system, but who knows)
+- Executes the gen.py script which generates the html files from the markdown files contained in the input directory ./in
+- Stores a log of the gen.py output in out.log for at least having logs when things get weird
+
+</pre>
+            <span id="synchronizing"></span>
+            <h2><a href="#synchronizing">synchronizing</a></h2>
+            <pre>
+Having a local copy of the page on my computer, I can synchronize it with the remote server. Doing this can be really fancy, bit I'm just using rsync to synchronize the files to the remote server which services the files in the directory statically:
+
+; rsync -avz --delete out/* root@nix1:/var/www/emile.space/
+
+</pre>
+            <span id="navigation"></span>
+            <h2><a href="#navigation">navigation</a></h2>
+            <pre>
+Navigating a page is quite essential for the usability of the page. A page without links to other pages is not enjoyable, as although the content might be interesting, exploring what the page has to offer isn't that fun.
+
+For this, I've just reused an existing concept: folders. The navigation is kind of based on how a graphical file explorer on most popular operating systems works. You select a folder you want to enter and then enter the folder.
+
+The special part is the rest of the navigation or the "exploration" part: you can hover over the parent folders of the current folder allowing you to explore what's in them. This allows you to quickly access "close" objects as well as "far" objects.
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.154193s
+</body>
+</html>
+    <pre>

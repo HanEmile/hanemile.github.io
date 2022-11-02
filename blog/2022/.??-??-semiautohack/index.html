@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/blog">blog</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2022">2022</a>
+            <ul>
+                <li><a href="/blog/2020">2020/</a></li>
+                <li><a href="/blog/2021">2021/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2022/.??-??-semiautohack">.??-??-semiautohack</a>
+            <ul>
+                <li><a href="/blog/2022/01-03-offline-rust-stdlib-docs">01-03-offline-rust-stdlib-docs/</a></li>
+                <li><a href="/blog/2022/01-29-incremental-builds">01-29-incremental-builds/</a></li>
+                <li><a href="/blog/2022/06-09-nix-like-structures-elsewhere">06-09-nix-like-structures-elsewhere/</a></li>
+                <li><a href="/blog/2022/10-03-plan9-cluster-init">10-03-plan9-cluster-init/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="semiautohack"></span>
+            <h1><a href="#semiautohack">semiautohack</a></h1>
+            <pre>
+Now i just thought about the concept of auto hacking again and had some Idea I thought would be great written down, so here it is
+
+<a href="#semiautohack">semiautohack</a>
+    <a href="#intro">intro</a>
+    <a href="#the-idea-itself">the idea itself</a>
+       <a href="#information-passing">information passing</a>
+    <a href="#bots">bots</a>
+       <a href="#inbox">inbox</a>
+       <a href="#outbox">outbox</a>
+       <a href="#project-specific-bots">project specific bots</a>
+       <a href="#interface">interface</a>
+       <a href="#fun">fun</a>
+    <a href="#negative">negative</a>
+    <a href="#positive">positive</a>
+
+</pre>
+            <span id="intro"></span>
+            <h2><a href="#intro">intro</a></h2>
+            <pre>
+Normally, when thinking of "auto hacking", the main focus lies on automatically hacking (hence the name), without any further user input. Throw a url in, get some juicy findings out.
+
+Now this is quite nice, but not perfect, as you also might have realized that auto hacking is hard. Very hard. Now we've still got the opposite with "manual hacking". Manual hacking consists of making requests yourself, looking into binaries yourself, although most of these tasks are supported by tools which can be seen as a way to automatically do stuff (for example format some kind of HTTP request or disassemble a binary into something you can read).
+
+Now in the case of manual hacking, you tell the computer what you want to do and what to look into. The programs you use can give you some hints on what might be interesting or so, but the program (at least most of them) won't tell you to look into something more specific.
+
+</pre>
+            <span id="the-idea-itself"></span>
+            <h2><a href="#the-idea-itself">the idea itself</a></h2>
+            <pre>
+Now the idea is to give computers more power. This is done by letting them work together, passing "jobs", "requests" and information between them.
+
+I've got some idea on how the end result might look like, I'll describe it here. There isn't anything related to the internals figured out at this point, this might change in the future.
+
+So in the end, I'm imagining a system in which we can pass some kind of worker A for example a url and the worker A will start to take it apart. The worker A might "know" (concept introduced later) some other worker B that might "know" how to handle it, so worker A passes the information to worker B. Worker B could for example start spidering the url and handle the results by passing them to some kind of "auditor" (which itself is another worker). The auditor then audits the results and passes them on.
+
+</pre>
+            <span id="information-passing"></span>
+            <h3><a href="#information-passing">information passing</a></h3>
+            <pre>
+Now I've often mentioned "passes the information on" or so. The whole implementation might just work using the ActivityPub protocol (inboxes/outboxes/...). Now don't panic, I'm not sure myself if this might even work, but I'm going to give it a try. If this does turn out to work out, the whole system might get quite intersting, as we could use bots and people interchangeablt. Say some bot finds something interesting, it could pass it to another bot or to some other human which then looks into it further.
+
+I'm quite intrigued building such a system, as this is something I haven't seen before (and I do understand that it isn't as simple as it might seem at first glance).
+
+</pre>
+            <span id="bots"></span>
+            <h2><a href="#bots">bots</a></h2>
+            <pre>
+Now the bot's might be one of the interesting concepts in this whole creation.
+
+</pre>
+            <span id="inbox"></span>
+            <h3><a href="#inbox">inbox</a></h3>
+            <pre>
+The inbox is some kind of storage others can deposit information for the bot in. The data should contain some meta foo, such as information on who send the information to the bot as well as when (this would allow the bot to contact the sender in case some error happens or so).
+
+</pre>
+            <span id="outbox"></span>
+            <h3><a href="#outbox">outbox</a></h3>
+            <pre>
+The outbox can be seen as some kind of public server. The bot can host arbitrary data there for others to download (for example results or so).
+
+</pre>
+            <span id="project-specific-bots"></span>
+            <h3><a href="#project-specific-bots">project specific bots</a></h3>
+            <pre>
+Now a bot could do something like scanning a site for a specific vulnerability or so, but in the end, there could also be some kind of bot we could send information we want to distribute to others.
+
+For example: say we're working on a project and find some interesting endpoint. There are a few options that can be taken from here on:
+
+- Ping other users by directly sending them the information.
+- Publish the information in the outbox for others to "scrape".
+
+This would allow a bot that often receives information from another bot to "subscribe" to the initial bot and just extract the information from there
+
+</pre>
+            <span id="interface"></span>
+            <h3><a href="#interface">interface</a></h3>
+            <pre>
+Interacting with the bots or the overall network should be possible using some kind of website, or even cooler, some tui.
+
+What I imagine would be some kind of interface showing me the tasks of the bots, how many tasks are in queue, how much the've posted for others to view.
+
+In the end, there should be a few bot's I actually "follow" which for example present me a new POC or some kind of error messages (the bot-council-bot which periodically tells me that some bot needs time off or so).
+
+</pre>
+            <span id="fun"></span>
+            <h3><a href="#fun">fun</a></h3>
+            <pre>
+Another nice thing would be to make this completely public and some kind of mastodon instance, so that people could look at this "artwork" in which some bots are hacking stuff together with people. Some bot's might periodically post some random SQLi payloads or so which you could follow.
+
+I'm still unsure if this is really a good idea, so I'm going to start off by keeping this totally private.
+
+</pre>
+            <span id="negative"></span>
+            <h2><a href="#negative">negative</a></h2>
+            <pre>
+Now this could be quite fancy, but there are of course problems that might arise: It is super slow, the bot's will take some time to "communicate" and a lot of stuff might break.
+
+</pre>
+            <span id="positive"></span>
+            <h2><a href="#positive">positive</a></h2>
+            <pre>
+The concept of introducing humans to the loop might really be something I'd like to see.
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.111125s
+</body>
+</html>
+    <pre>

@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/ctf">ctf</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups">writeups</a>
+            <ul>
+                <li><a href="/ctf/hosted-events">hosted-events/</a></li>
+                <li><a href="/ctf/resources">resources/</a></li>
+                <li><a href="/ctf/teams">teams/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2019">2019</a>
+            <ul>
+                <li><a href="/ctf/writeups/2020">2020/</a></li>
+                <li><a href="/ctf/writeups/2021">2021/</a></li>
+                <li><a href="/ctf/writeups/pwnable.kr">pwnable.kr/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2019/dc2019q">dc2019q</a>
+            <ul>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2019/dc2019q/know_your_mem">know_your_mem</a>
+            <ul>
+                <li><a href="/ctf/writeups/2019/dc2019q/cant_even_unplug_it">cant_even_unplug_it/</a></li>
+                <li><a href="/ctf/writeups/2019/dc2019q/welcome-to-the-game">welcome-to-the-game/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="knowyourmem"></span>
+            <h1><a href="#knowyourmem">know_your_mem</a></h1>
+            <pre>
+<a href="#knowyourmem">know_your_mem</a>
+    <a href="#given-files">Given files</a>
+       <a href="#makefile">Makefile</a>
+       <a href="#readmemd">README.md</a>
+       <a href="#knowyourmemc">know_your_mem.c</a>
+       <a href="#shellcodec">shellcode.c</a>
+       <a href="#simplifiedc">simplified.c</a>
+       <a href="#simplifiedshellcodesoc">simplified_shellcode.so.c</a>
+       <a href="#topktpy">topkt.py</a>
+
+<a href="https://archive.ooo/c/know_your_mem/359/">https://archive.ooo/c/know_your_mem/359/</a>
+
+
+</pre>
+            <span id="given-files"></span>
+            <h2><a href="#given-files">Given files</a></h2>
+            <pre>
+- <a href="#makefile">Makefile</a>
+- <a href="#readmemd">README.md</a>
+- <a href="#knowyourmemc">know_your_mem.c</a>
+- <a href="#shellcodec">shellcode.c</a>
+- <a href="#simplifiedc">simplified.c</a>
+- <a href="#simplifiedshellcodesoc">simplified_shellcode.so.c</a>
+- <a href="#topktpy">topkt.py</a>
+
+Let's go through the file and see what we've got
+
+</pre>
+            <span id="makefile"></span>
+            <h3><a href="#makefile">Makefile</a></h3>
+            <pre>
+</pre><pre class="code"># sudo apt-get install libseccomp-dev libseccomp2</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">CFLAGS ?= -Wall</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"># 64 bit!</pre><pre>
+</pre><pre class="code">CFLAGS += -m64 -std=gnu99</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"># Just making sure</pre><pre>
+</pre><pre class="code">HARDENING_FLAGS += -pie -fPIE -Wl,-z,relro -Wl,-z,now -fstack-protector-all -D_FORTIFY_SOURCE=2 -Wformat=2 -Werror=format-security</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">all: know_your_mem simplified</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">know_your_mem: LDLIBS += -lseccomp</pre><pre>
+</pre><pre class="code">know_your_mem: CFLAGS += -O3 -march=native -s $(HARDENING_FLAGS)</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">simplified: LDLIBS += -lseccomp -ldl</pre><pre>
+</pre><pre class="code">simplified: CFLAGS += -DSIMPLIFIED -g3 -ggdb $(HARDENING_FLAGS)</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">%.so: CFLAGS += -shared -fPIC</pre><pre>
+</pre><pre class="code">%.so: LDFLAGS += -shared -fPIC</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">check: all flag simplified_shellcode.so shellcode.bin.pkt</pre><pre>
+</pre><pre class="code">        ./simplified</pre><pre>
+</pre><pre class="code">        @echo "Good, the simplified version worked! Let's now try raw shellcode..."</pre><pre>
+</pre><pre class="code">        ./know_your_mem &lt shellcode.bin.pkt | tee | fgrep --text 'OOO{theflagwillbehere}'</pre><pre>
+</pre><pre class="code">        @echo "Perfect! Now go get that flag :)"</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">mycheck: all flag solution.so solution.bin.pkt</pre><pre>
+</pre><pre class="code">        ./simplified ./solution.so</pre><pre>
+</pre><pre class="code">        ./know_your_mem &lt solution.bin.pkt | tee | fgrep --text 'OOO{theflagwillbehere}'</pre><pre>
+</pre><pre class="code">        @echo "Good, my solution worked :)"</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">%.bin: %.c</pre><pre>
+</pre><pre class="code">        gcc -nostdlib -static -fPIC -Os -Wall -DNDEBUG -fno-exceptions -fno-asynchronous-unwind-tables -fno-unwind-tables -s -o $*.elf $&lt</pre><pre>
+</pre><pre class="code">        !(readelf -W --sections $*.elf | egrep '\.(ro)?data') || echo -e "\n\nWARNING: you have .(ro)data, you'll have to adjust this build.\n\n" >/dev/stderr</pre><pre>
+</pre><pre class="code">        objcopy $*.elf --dump-section .text=$@</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">%.bin.pkt: %.bin</pre><pre>
+</pre><pre class="code">        ./topkt.py $&lt</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">flag:</pre><pre>
+</pre><pre class="code">        @echo 'Creating a fake flag for testing convenience'</pre><pre>
+</pre><pre class="code">        @echo 'OOO{theflagwillbehere} Make sure you print it to stdout, stderr may go to /dev/null in the hosted version.' > flag</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">.PHONY: clean all check mycheck</pre><pre>
+</pre><pre class="code">clean:</pre><pre>
+</pre><pre class="code">        rm -f simplified know_your_mem shellcode.bin shellcode.bin.pkt solution.bin solution.bin.pkt checks/*.pkt checks/*.elf *.elf *.so</pre><pre>
+
+</pre>
+            <span id="readmemd"></span>
+            <h3><a href="#readmemd">README.md</a></h3>
+            <pre>
+</pre><pre class="code">In this challenge, `know_your_mem.c` is the meat.</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">However, remember that timeouts are strict -- it's suggested to first try locally in C.</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">Basically:</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">  # First solve it in 'standard' C without triggering alarm()</pre><pre>
+</pre><pre class="code">  sudo apt install libseccomp-dev libseccomp2</pre><pre>
+</pre><pre class="code">  edit simplified_shellcode.so.c</pre><pre>
+</pre><pre class="code">  make check</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">  # Switch syscalls to Google's linux_syscall_support</pre><pre>
+</pre><pre class="code">  edit shellcode.c</pre><pre>
+</pre><pre class="code">  make check</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">  # If all goes well, shellcode.bin.pkt will be ready to submit as-is!</pre><pre>
+
+</pre>
+            <span id="knowyourmemc"></span>
+            <h3><a href="#knowyourmemc">know_your_mem.c</a></h3>
+            <pre>
+</pre><pre class="code">#define _GNU_SOURCE</pre><pre>
+</pre><pre class="code">#include &ltsys/mman.h></pre><pre>
+</pre><pre class="code">#include &ltsys/stat.h></pre><pre>
+</pre><pre class="code">#include &ltsys/random.h></pre><pre>
+</pre><pre class="code">#include &ltsys/resource.h></pre><pre>
+</pre><pre class="code">#include &ltsys/time.h></pre><pre>
+</pre><pre class="code">#include &ltsys/types.h></pre><pre>
+</pre><pre class="code">#include &ltsys/utsname.h></pre><pre>
+</pre><pre class="code">#include &ltdlfcn.h></pre><pre>
+</pre><pre class="code">#include &lterr.h></pre><pre>
+</pre><pre class="code">#include &lterrno.h></pre><pre>
+</pre><pre class="code">#include &lterror.h></pre><pre>
+</pre><pre class="code">#include &ltinttypes.h></pre><pre>
+</pre><pre class="code">#include &ltfcntl.h></pre><pre>
+</pre><pre class="code">#include &ltsignal.h></pre><pre>
+</pre><pre class="code">#include &ltstdio.h></pre><pre>
+</pre><pre class="code">#include &ltstdlib.h></pre><pre>
+</pre><pre class="code">#include &ltstring.h></pre><pre>
+</pre><pre class="code">#include &ltseccomp.h></pre><pre>
+</pre><pre class="code">#include &lttime.h></pre><pre>
+</pre><pre class="code">#include &ltunistd.h></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">typedef void* (*shellcodefn)();</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code"># define hint(x, ...) fprintf(stderr, "[H] " x, __VA_ARGS__)</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code"># define hint(x, ...)</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#define ADDR_MIN   0x0000100000000000UL  // Low-ish</pre><pre>
+</pre><pre class="code">#define ADDR_MASK  0x00000ffffffff000UL  // Page-aligns</pre><pre>
+</pre><pre class="code">#define N_FAKES   30</pre><pre>
+</pre><pre class="code">#define HEADER    "OOO: You found it, congrats! The flag is: "</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void *random_addr()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    uintptr_t ret;</pre><pre>
+</pre><pre class="code">    //int fd = open("/dev/urandom", O_RDONLY); if (read(fd, &ret, sizeof(ret)) != sizeof(ret)) { err(47, "urandom"); } close(fd);</pre><pre>
+</pre><pre class="code">    if (getrandom(&ret, sizeof(ret), GRND_NONBLOCK) != sizeof(ret)) err(47, "getrandom");</pre><pre>
+</pre><pre class="code">    return (void*)((ret & ADDR_MASK) + ADDR_MIN);</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void *map_page(void *addr)</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    void *ret = mmap(addr, 4096,</pre><pre>
+</pre><pre class="code">            PROT_READ|PROT_WRITE,</pre><pre>
+</pre><pre class="code">            MAP_ANONYMOUS|MAP_PRIVATE | (addr != NULL ? MAP_FIXED : 0),</pre><pre>
+</pre><pre class="code">            -1, 0);</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    if (ret == MAP_FAILED)</pre><pre>
+</pre><pre class="code">        err(8, "Could not mmap() at %p -- maybe I was not lucky with random picking?", addr);</pre><pre>
+</pre><pre class="code">    if (addr != NULL && ret != addr)</pre><pre>
+</pre><pre class="code">        err(99, "Wrong flags to mmap? ret = %p != %p = wanted", ret, addr);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">    return ret;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void* put_secret_somewhere_in_memory()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[ ] Putting the flag somewhere in memory...\n");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    char *pg = map_page(random_addr());</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    strcpy(pg, HEADER);</pre><pre>
+</pre><pre class="code">    int fd = TEMP_FAILURE_RETRY(open("flag", O_RDONLY));</pre><pre>
+</pre><pre class="code">    if (fd == -1)</pre><pre>
+</pre><pre class="code">        err(37, "open ./flag");</pre><pre>
+</pre><pre class="code">    struct stat st;</pre><pre>
+</pre><pre class="code">    if (fstat(fd, &st) != 0)</pre><pre>
+</pre><pre class="code">        err(38, "flag fstat");</pre><pre>
+</pre><pre class="code">    ssize_t flag_read = TEMP_FAILURE_RETRY(read(fd, pg + strlen(HEADER), st.st_size));</pre><pre>
+</pre><pre class="code">    if (flag_read != st.st_size)</pre><pre>
+</pre><pre class="code">        err(39, "flag read");</pre><pre>
+</pre><pre class="code">    printf("Secret loaded (header + %zd bytes)\n", flag_read);</pre><pre>
+</pre><pre class="code">    close(fd);</pre><pre>
+</pre><pre class="code">    if (mprotect(pg, 4096, PROT_READ) != 0)</pre><pre>
+</pre><pre class="code">        err(40, "mprotect");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    hint("The flag is at %p\n", pg);</pre><pre>
+</pre><pre class="code">    return pg;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void put_fakes_in_memory()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[ ] Putting red herrings in memory...\n");</pre><pre>
+</pre><pre class="code">    for (int i = 0; i &lt N_FAKES; i++) {</pre><pre>
+</pre><pre class="code">        char *pg = map_page(random_addr());</pre><pre>
+</pre><pre class="code">        strcpy(pg, "Sorry, this is just a red herring page. Keep looking!");</pre><pre>
+</pre><pre class="code">        hint("Red herring at %p\n", pg);</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void filter_syscalls()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    int ret;</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    scmp_filter_ctx ctx = seccomp_init(SCMP_ACT_TRAP);</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code">    scmp_filter_ctx ctx = seccomp_init(SCMP_ACT_KILL);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">    if (ctx == NULL)</pre><pre>
+</pre><pre class="code">        err(5, "seccomp_init");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    ret  = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit_group), 0);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(read), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);</pre><pre>
+</pre><pre class="code">    </pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mmap), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(munmap), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mprotect), 0);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(brk), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(set_thread_area), 0);</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sigreturn), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(rt_sigreturn), 0);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    if (ret &lt 0)</pre><pre>
+</pre><pre class="code">        error(6, -ret, "allow rules");</pre><pre>
+</pre><pre class="code">    ret = seccomp_load(ctx);</pre><pre>
+</pre><pre class="code">    if (ret &lt 0)</pre><pre>
+</pre><pre class="code">        error(6, -ret, "seccomp_load");</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[*] seccomp filter now active!\n");</pre><pre>
+</pre><pre class="code">    seccomp_release(ctx);</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">static int got_alarm = 0;</pre><pre>
+</pre><pre class="code">static void time_warning(int sig)</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    got_alarm = 1;</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[!] You're taking too long! I'll let you continue for now.\n");</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code">static shellcodefn load_shellcode(const char *filename)</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    printf("Loading your simplified solution from %s\n", filename);</pre><pre>
+</pre><pre class="code">    void *d = dlopen(filename, RTLD_NOW);</pre><pre>
+</pre><pre class="code">    if (d == NULL)</pre><pre>
+</pre><pre class="code">        errx(7, "Couldn't load the .so, did you build it? Try 'make check'.\n\tdlopen error: %s", dlerror());</pre><pre>
+</pre><pre class="code">    void *ret = dlsym(d, "shellcode");</pre><pre>
+</pre><pre class="code">    if (ret == NULL)</pre><pre>
+</pre><pre class="code">        errx(7, "Couldn't find the 'shellcode' symbol. Should be a global function: %s", dlerror());</pre><pre>
+</pre><pre class="code">    return ret;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code">static shellcodefn load_shellcode()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    printf("Send the length (uint16), then the shellcode.\n");</pre><pre>
+</pre><pre class="code">    uint16_t len;</pre><pre>
+</pre><pre class="code">    if (fread(&len, 1, 2, stdin) != 2)</pre><pre>
+</pre><pre class="code">        err(30, "len?");</pre><pre>
+</pre><pre class="code">    if (len > 10*4096)</pre><pre>
+</pre><pre class="code">        errx(31, "Too long! Max shellcode size is 10K");</pre><pre>
+</pre><pre class="code">    unsigned char *shellcode = mmap((void*) 0x40000000, 10*4096, PROT_READ|PROT_WRITE, MAP_ANONYMOUS|MAP_PRIVATE, -1, 0);</pre><pre>
+</pre><pre class="code">    if (shellcode == MAP_FAILED)</pre><pre>
+</pre><pre class="code">        err(33, "failed to mmap pages for your shellcode");</pre><pre>
+</pre><pre class="code">    if (fread(shellcode, 1, len, stdin) != len)</pre><pre>
+</pre><pre class="code">        err(32, "fread error: shellcode len?");</pre><pre>
+</pre><pre class="code">    printf("[ ] All right, I read %" PRIu16 " bytes. I will call the first byte in a bit.\n", len);</pre><pre>
+</pre><pre class="code">    if (mprotect(shellcode, 4096, PROT_READ|PROT_EXEC) != 0)</pre><pre>
+</pre><pre class="code">        err(89, "mprotect shellcode");</pre><pre>
+</pre><pre class="code">    return (shellcodefn) shellcode;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">int main(int argc, char *argv[])</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    signal(SIGALRM, time_warning);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">    alarm(10);</pre><pre>
+</pre><pre class="code">    setbuf(stdin, NULL);</pre><pre>
+</pre><pre class="code">    setbuf(stdout, NULL);</pre><pre>
+</pre><pre class="code">    //srand(time(NULL));</pre><pre>
+</pre><pre class="code">    struct rlimit as_limit = {  // Yes, the live version also has CPU limits</pre><pre>
+</pre><pre class="code">        .rlim_cur = 100 * 1024 * 1024,</pre><pre>
+</pre><pre class="code">        .rlim_max = 110 * 1024 * 1024</pre><pre>
+</pre><pre class="code">    };</pre><pre>
+</pre><pre class="code">    if (setrlimit(RLIMIT_AS, &as_limit) != 0)</pre><pre>
+</pre><pre class="code">        warn("RLIMIT_AS");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    struct utsname un;</pre><pre>
+</pre><pre class="code">    uname(&un);</pre><pre>
+</pre><pre class="code">    printf("[ ] This challenge may be slightly easier in Linux 4.17+. "</pre><pre>
+</pre><pre class="code">            "Here, we're running on %s %s (%s)\n",</pre><pre>
+</pre><pre class="code">            un.sysname, un.release, un.machine);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    shellcodefn shellcode = load_shellcode((argc >= 2) ? argv[1] : "./simplified_shellcode.so");</pre><pre>
+</pre><pre class="code">    //system("cat /proc/$PPID/maps");</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code">    shellcodefn shellcode = load_shellcode();</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    void *secret_addr =</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">        put_secret_somewhere_in_memory();</pre><pre>
+</pre><pre class="code">    put_fakes_in_memory();</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    fflush(NULL);</pre><pre>
+</pre><pre class="code">    filter_syscalls();</pre><pre>
+</pre><pre class="code">    void *found = shellcode();</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[*] Your shellcode returned %p\n", found);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    if (got_alarm)</pre><pre>
+</pre><pre class="code">        fprintf(stderr, "[W] Your solution took too long! Try adjusting it a bit. It should comfortably fit in the time limit.\n");</pre><pre>
+</pre><pre class="code">    if (secret_addr == found) {</pre><pre>
+</pre><pre class="code">        fprintf(stderr, "[^] Success! Make sure you're also printing the flag, and that it's not taking too long. Next: convert your solution to raw shellcode -- you can start with C code, BTW! shellcode.c shows one way to do it.\n");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    } else {</pre><pre>
+</pre><pre class="code">        fprintf(stderr, "[!] Sorry, you didn't find the secret address.\n");</pre><pre>
+</pre><pre class="code">        return 1;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+</pre>
+            <span id="shellcodec"></span>
+            <h3><a href="#shellcodec">shellcode.c</a></h3>
+            <pre>
+</pre><pre class="code">// This is an example of turning simple C into raw shellcode.</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">// make shellcode.bin will compile to assembly</pre><pre>
+</pre><pre class="code">// make shellcode.bin.pkt will prepend the length so you can</pre><pre>
+</pre><pre class="code">//    ./know_your_mem &lt shellcode.bin.pkt</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">// Note: Right now the 'build' does not support .(ro)data</pre><pre>
+</pre><pre class="code">//       If you want them you'll have to adjust the Makefile.</pre><pre>
+</pre><pre class="code">//       They're not really necessary to solve this challenge though.</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">// From https://chromium.googlesource.com/linux-syscall-support/</pre><pre>
+</pre><pre class="code">static int my_errno = 0;</pre><pre>
+</pre><pre class="code">#define SYS_ERRNO my_errno</pre><pre>
+</pre><pre class="code">#include "linux-syscall-support/linux_syscall_support.h"</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#define ADDR_MIN   0x0000100000000000UL</pre><pre>
+</pre><pre class="code">#define ADDR_MASK  0x00000ffffffff000UL</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">void _start()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    sys_write(1, __builtin_frame_address(0), 5);  // Prints something (note: best avoid literals)</pre><pre>
+</pre><pre class="code">    sys_exit_group(2);                            // Exit</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+</pre>
+            <span id="simplifiedc"></span>
+            <h3><a href="#simplifiedc">simplified.c</a></h3>
+            <pre>
+</pre><pre class="code">#define _GNU_SOURCE</pre><pre>
+</pre><pre class="code">#include &ltsys/mman.h></pre><pre>
+</pre><pre class="code">#include &ltsys/stat.h></pre><pre>
+</pre><pre class="code">#include &ltsys/random.h></pre><pre>
+</pre><pre class="code">#include &ltsys/resource.h></pre><pre>
+</pre><pre class="code">#include &ltsys/time.h></pre><pre>
+</pre><pre class="code">#include &ltsys/types.h></pre><pre>
+</pre><pre class="code">#include &ltsys/utsname.h></pre><pre>
+</pre><pre class="code">#include &ltdlfcn.h></pre><pre>
+</pre><pre class="code">#include &lterr.h></pre><pre>
+</pre><pre class="code">#include &lterrno.h></pre><pre>
+</pre><pre class="code">#include &lterror.h></pre><pre>
+</pre><pre class="code">#include &ltinttypes.h></pre><pre>
+</pre><pre class="code">#include &ltfcntl.h></pre><pre>
+</pre><pre class="code">#include &ltsignal.h></pre><pre>
+</pre><pre class="code">#include &ltstdio.h></pre><pre>
+</pre><pre class="code">#include &ltstdlib.h></pre><pre>
+</pre><pre class="code">#include &ltstring.h></pre><pre>
+</pre><pre class="code">#include &ltseccomp.h></pre><pre>
+</pre><pre class="code">#include &lttime.h></pre><pre>
+</pre><pre class="code">#include &ltunistd.h></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">typedef void* (*shellcodefn)();</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code"># define hint(x, ...) fprintf(stderr, "[H] " x, __VA_ARGS__)</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code"># define hint(x, ...)</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#define ADDR_MIN   0x0000100000000000UL  // Low-ish</pre><pre>
+</pre><pre class="code">#define ADDR_MASK  0x00000ffffffff000UL  // Page-aligns</pre><pre>
+</pre><pre class="code">#define N_FAKES   30</pre><pre>
+</pre><pre class="code">#define HEADER    "OOO: You found it, congrats! The flag is: "</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void *random_addr()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    uintptr_t ret;</pre><pre>
+</pre><pre class="code">    //int fd = open("/dev/urandom", O_RDONLY); if (read(fd, &ret, sizeof(ret)) != sizeof(ret)) { err(47, "urandom"); } close(fd);</pre><pre>
+</pre><pre class="code">    if (getrandom(&ret, sizeof(ret), GRND_NONBLOCK) != sizeof(ret)) err(47, "getrandom");</pre><pre>
+</pre><pre class="code">    return (void*)((ret & ADDR_MASK) + ADDR_MIN);</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void *map_page(void *addr)</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    void *ret = mmap(addr, 4096,</pre><pre>
+</pre><pre class="code">            PROT_READ|PROT_WRITE,</pre><pre>
+</pre><pre class="code">            MAP_ANONYMOUS|MAP_PRIVATE | (addr != NULL ? MAP_FIXED : 0),</pre><pre>
+</pre><pre class="code">            -1, 0);</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    if (ret == MAP_FAILED)</pre><pre>
+</pre><pre class="code">        err(8, "Could not mmap() at %p -- maybe I was not lucky with random picking?", addr);</pre><pre>
+</pre><pre class="code">    if (addr != NULL && ret != addr)</pre><pre>
+</pre><pre class="code">        err(99, "Wrong flags to mmap? ret = %p != %p = wanted", ret, addr);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">    return ret;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void* put_secret_somewhere_in_memory()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[ ] Putting the flag somewhere in memory...\n");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    char *pg = map_page(random_addr());</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    strcpy(pg, HEADER);</pre><pre>
+</pre><pre class="code">    int fd = TEMP_FAILURE_RETRY(open("flag", O_RDONLY));</pre><pre>
+</pre><pre class="code">    if (fd == -1)</pre><pre>
+</pre><pre class="code">        err(37, "open ./flag");</pre><pre>
+</pre><pre class="code">    struct stat st;</pre><pre>
+</pre><pre class="code">    if (fstat(fd, &st) != 0)</pre><pre>
+</pre><pre class="code">        err(38, "flag fstat");</pre><pre>
+</pre><pre class="code">    ssize_t flag_read = TEMP_FAILURE_RETRY(read(fd, pg + strlen(HEADER), st.st_size));</pre><pre>
+</pre><pre class="code">    if (flag_read != st.st_size)</pre><pre>
+</pre><pre class="code">        err(39, "flag read");</pre><pre>
+</pre><pre class="code">    printf("Secret loaded (header + %zd bytes)\n", flag_read);</pre><pre>
+</pre><pre class="code">    close(fd);</pre><pre>
+</pre><pre class="code">    if (mprotect(pg, 4096, PROT_READ) != 0)</pre><pre>
+</pre><pre class="code">        err(40, "mprotect");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    hint("The flag is at %p\n", pg);</pre><pre>
+</pre><pre class="code">    return pg;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void put_fakes_in_memory()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[ ] Putting red herrings in memory...\n");</pre><pre>
+</pre><pre class="code">    for (int i = 0; i &lt N_FAKES; i++) {</pre><pre>
+</pre><pre class="code">        char *pg = map_page(random_addr());</pre><pre>
+</pre><pre class="code">        strcpy(pg, "Sorry, this is just a red herring page. Keep looking!");</pre><pre>
+</pre><pre class="code">        hint("Red herring at %p\n", pg);</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">static void filter_syscalls()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    int ret;</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    scmp_filter_ctx ctx = seccomp_init(SCMP_ACT_TRAP);</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code">    scmp_filter_ctx ctx = seccomp_init(SCMP_ACT_KILL);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">    if (ctx == NULL)</pre><pre>
+</pre><pre class="code">        err(5, "seccomp_init");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    ret  = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit_group), 0);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(read), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);</pre><pre>
+</pre><pre class="code">    </pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mmap), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(munmap), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mprotect), 0);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(brk), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(set_thread_area), 0);</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sigreturn), 0);</pre><pre>
+</pre><pre class="code">    ret |= seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(rt_sigreturn), 0);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    if (ret &lt 0)</pre><pre>
+</pre><pre class="code">        error(6, -ret, "allow rules");</pre><pre>
+</pre><pre class="code">    ret = seccomp_load(ctx);</pre><pre>
+</pre><pre class="code">    if (ret &lt 0)</pre><pre>
+</pre><pre class="code">        error(6, -ret, "seccomp_load");</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[*] seccomp filter now active!\n");</pre><pre>
+</pre><pre class="code">    seccomp_release(ctx);</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">static int got_alarm = 0;</pre><pre>
+</pre><pre class="code">static void time_warning(int sig)</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    got_alarm = 1;</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[!] You're taking too long! I'll let you continue for now.\n");</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code">static shellcodefn load_shellcode(const char *filename)</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    printf("Loading your simplified solution from %s\n", filename);</pre><pre>
+</pre><pre class="code">    void *d = dlopen(filename, RTLD_NOW);</pre><pre>
+</pre><pre class="code">    if (d == NULL)</pre><pre>
+</pre><pre class="code">        errx(7, "Couldn't load the .so, did you build it? Try 'make check'.\n\tdlopen error: %s", dlerror());</pre><pre>
+</pre><pre class="code">    void *ret = dlsym(d, "shellcode");</pre><pre>
+</pre><pre class="code">    if (ret == NULL)</pre><pre>
+</pre><pre class="code">        errx(7, "Couldn't find the 'shellcode' symbol. Should be a global function: %s", dlerror());</pre><pre>
+</pre><pre class="code">    return ret;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code">static shellcodefn load_shellcode()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    printf("Send the length (uint16), then the shellcode.\n");</pre><pre>
+</pre><pre class="code">    uint16_t len;</pre><pre>
+</pre><pre class="code">    if (fread(&len, 1, 2, stdin) != 2)</pre><pre>
+</pre><pre class="code">        err(30, "len?");</pre><pre>
+</pre><pre class="code">    if (len > 10*4096)</pre><pre>
+</pre><pre class="code">        errx(31, "Too long! Max shellcode size is 10K");</pre><pre>
+</pre><pre class="code">    unsigned char *shellcode = mmap((void*) 0x40000000, 10*4096, PROT_READ|PROT_WRITE, MAP_ANONYMOUS|MAP_PRIVATE, -1, 0);</pre><pre>
+</pre><pre class="code">    if (shellcode == MAP_FAILED)</pre><pre>
+</pre><pre class="code">        err(33, "failed to mmap pages for your shellcode");</pre><pre>
+</pre><pre class="code">    if (fread(shellcode, 1, len, stdin) != len)</pre><pre>
+</pre><pre class="code">        err(32, "fread error: shellcode len?");</pre><pre>
+</pre><pre class="code">    printf("[ ] All right, I read %" PRIu16 " bytes. I will call the first byte in a bit.\n", len);</pre><pre>
+</pre><pre class="code">    if (mprotect(shellcode, 4096, PROT_READ|PROT_EXEC) != 0)</pre><pre>
+</pre><pre class="code">        err(89, "mprotect shellcode");</pre><pre>
+</pre><pre class="code">    return (shellcodefn) shellcode;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">int main(int argc, char *argv[])</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    signal(SIGALRM, time_warning);</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">    alarm(10);</pre><pre>
+</pre><pre class="code">    setbuf(stdin, NULL);</pre><pre>
+</pre><pre class="code">    setbuf(stdout, NULL);</pre><pre>
+</pre><pre class="code">    //srand(time(NULL));</pre><pre>
+</pre><pre class="code">    struct rlimit as_limit = {  // Yes, the live version also has CPU limits</pre><pre>
+</pre><pre class="code">        .rlim_cur = 100 * 1024 * 1024,</pre><pre>
+</pre><pre class="code">        .rlim_max = 110 * 1024 * 1024</pre><pre>
+</pre><pre class="code">    };</pre><pre>
+</pre><pre class="code">    if (setrlimit(RLIMIT_AS, &as_limit) != 0)</pre><pre>
+</pre><pre class="code">        warn("RLIMIT_AS");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    struct utsname un;</pre><pre>
+</pre><pre class="code">    uname(&un);</pre><pre>
+</pre><pre class="code">    printf("[ ] This challenge may be slightly easier in Linux 4.17+. "</pre><pre>
+</pre><pre class="code">            "Here, we're running on %s %s (%s)\n",</pre><pre>
+</pre><pre class="code">            un.sysname, un.release, un.machine);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    shellcodefn shellcode = load_shellcode((argc >= 2) ? argv[1] : "./simplified_shellcode.so");</pre><pre>
+</pre><pre class="code">    //system("cat /proc/$PPID/maps");</pre><pre>
+</pre><pre class="code">#else</pre><pre>
+</pre><pre class="code">    shellcodefn shellcode = load_shellcode();</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    void *secret_addr =</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">        put_secret_somewhere_in_memory();</pre><pre>
+</pre><pre class="code">    put_fakes_in_memory();</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    fflush(NULL);</pre><pre>
+</pre><pre class="code">    filter_syscalls();</pre><pre>
+</pre><pre class="code">    void *found = shellcode();</pre><pre>
+</pre><pre class="code">    fprintf(stderr, "[*] Your shellcode returned %p\n", found);</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#ifdef SIMPLIFIED</pre><pre>
+</pre><pre class="code">    if (got_alarm)</pre><pre>
+</pre><pre class="code">        fprintf(stderr, "[W] Your solution took too long! Try adjusting it a bit. It should comfortably fit in the time limit.\n");</pre><pre>
+</pre><pre class="code">    if (secret_addr == found) {</pre><pre>
+</pre><pre class="code">        fprintf(stderr, "[^] Success! Make sure you're also printing the flag, and that it's not taking too long. Next: convert your solution to raw shellcode -- you can start with C code, BTW! shellcode.c shows one way to do it.\n");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    } else {</pre><pre>
+</pre><pre class="code">        fprintf(stderr, "[!] Sorry, you didn't find the secret address.\n");</pre><pre>
+</pre><pre class="code">        return 1;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">#endif</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+</pre>
+            <span id="simplifiedshellcodesoc"></span>
+            <h3><a href="#simplifiedshellcodesoc">simplified_shellcode.so.c</a></h3>
+            <pre>
+</pre><pre class="code">#include &ltstdio.h></pre><pre>
+</pre><pre class="code">#include &ltunistd.h></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">#define ADDR_MIN   0x0000100000000000UL</pre><pre>
+</pre><pre class="code">#define ADDR_MASK  0x00000ffffffff000UL</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">void *shellcode()</pre><pre>
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">    // 1. Find the secret in memory (starts with "OOO:")</pre><pre>
+</pre><pre class="code">    // 2. Print it</pre><pre>
+</pre><pre class="code">    // 3. ...</pre><pre>
+</pre><pre class="code">    // 4. PROFIT!</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    printf("Hi! Soon I'll be your shellcode!\n");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    return (void*) 0x123456; // For this simplified test it's also OK to return the address</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+</pre>
+            <span id="topktpy"></span>
+            <h3><a href="#topktpy">topkt.py</a></h3>
+            <pre>
+</pre><pre class="code">#!/usr/bin/env python3</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">"""Turn a raw shellcode binary into the format expected by know_your_mem."""</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">import os, sys, struct</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">with open(sys.argv[1], "rb") as inf, open(sys.argv[1]+".pkt", "wb") as outf:</pre><pre>
+</pre><pre class="code">    l = os.fstat(inf.fileno()).st_size</pre><pre>
+</pre><pre class="code">    outf.write(struct.pack("&ltH", l))        # uint16 length</pre><pre>
+</pre><pre class="code">    outf.write(inf.read(l))                 # payload</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">assert os.stat(sys.argv[1]+".pkt").st_size == 2+l</pre><pre>
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.846261s
+</body>
+</html>
+    <pre>

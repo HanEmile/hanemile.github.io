@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/workshops">workshops</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+    <li><a href="/workshops/2019">2019/</a></li>
+    <li><a href="/workshops/2020">2020/</a></li>
+    <li><a href="/workshops/2021">2021/</a></li>
+    <li><a href="/workshops/2022">2022/</a></li>
+    <li><a href="/workshops/2023">2023/</a></li>
+  </ul><pre></pre>
+            <span id="workshop"></span>
+            <h1><a href="#workshop">workshop</a></h1>
+            <pre>
+<a href="#workshop">workshop</a>
+    <a href="#series">series</a>
+       <a href="#ctf-foo">ctf-foo</a>
+       <a href="#heap-foo">heap-foo</a>
+       <a href="#web-foo">web-foo</a>
+       <a href="#crypto-foo">crypto-foo</a>
+    <a href="#tree">tree</a>
+    <a href="#cal">cal</a>
+       <a href="#2022">2022</a>
+
+workshops are kind of like talks, with the little but fundamental difference, that there is some kind of interaction between the speaker and the audience. This allowes the "audience" which are mostly called participants to actually try stuff hands on.
+
+I kind of like workshops, as just watching a talk can be rather boring, but a workshop can also become quite weird if there isn't any real plan.
+
+One thing that set's workshops apart from talks is the size: talks can be done at an arbitrary scale, while workshops are limited in the amount of participants: to many and the interaction between the speaker and the participants and between the participants themselves isn't ideal.
+
+I'd say workshops can be done to a scale of about 10 people, but this varies a lot depending of the size, the knowledge the participants already have, the kind of workshop and other factors.
+
+</pre>
+<div style="width: 100%" align=center>
+    <img src="hackcenter.jpg" style="width: 75%"></img>
+</div>
+</pre>
+<p style="clear: both"></p>
+
+</pre>
+            <span id="series"></span>
+            <h2><a href="#series">series</a></h2>
+            <pre>
+Here some descriptions for the individual series until I find the time to write
+stuff for the individual events:
+
+</pre>
+            <span id="ctf-foo"></span>
+            <h3><a href="#ctf-foo">ctf-foo</a></h3>
+            <pre>
+After hosting multiple ctf workshops teaching people the basics, the people kept coming, so I just starting doing it on a regular basis.
+
+</pre>
+            <span id="heap-foo"></span>
+            <h3><a href="#heap-foo">heap-foo</a></h3>
+            <pre>
+Heap exploitation is one of the topic you can spend an ethernity on, so we're starting slowly with a series of 15-20 workshops going from the very basics to diving deep into the depts of varios heap related topics.
+
+</pre>
+            <span id="web-foo"></span>
+            <h3><a href="#web-foo">web-foo</a></h3>
+            <pre>
+Web application security is a wide field with interesting topics. Let's go through them so everyone can have a change at understanding the issues and how to fix them.
+
+</pre>
+            <span id="crypto-foo"></span>
+            <h3><a href="#crypto-foo">crypto-foo</a></h3>
+            <pre>
+Cryptography can be fun, if you understand it. In this series of workshops, we'll teach the basics of the thing's that might be of interest in cryptography and break some stuff on the way.
+
+</pre>
+            <span id="tree"></span>
+            <h2><a href="#tree">tree</a></h2>
+            <pre> 
+<a href="/workshops/2019">2019</a>
+    <a href="/workshops/2019/02-23-pacman-lara-croft-hhu">02-23-pacman-lara-croft-hhu</a>
+    <a href="/workshops/2019/03-06-pacman-lara-croft-lessing-gymnasium">03-06-pacman-lara-croft-lessing-gymnasium</a>
+    <a href="/workshops/2019/05-07-pacman-lara-croft-cecilien-gymnasium">05-07-pacman-lara-croft-cecilien-gymnasium</a>
+    <a href="/workshops/2019/05-14-pacman-lara-croft-dieter-forte-gesamtschule">05-14-pacman-lara-croft-dieter-forte-gesamtschule</a>
+    <a href="/workshops/2019/07-05-pacman-lara-croft-benzenberg-realschule">07-05-pacman-lara-croft-benzenberg-realschule</a>
+    <a href="/workshops/2019/09-28-blender-2-8-chaosdorf">09-28-blender-2-8-chaosdorf</a>
+<a href="/workshops/2020">2020</a>
+<a href="/workshops/2021">2021</a>
+    <a href="/workshops/2021/12-14-ctf">12-14-ctf</a>
+    <a href="/workshops/2021/12-28-orca">12-28-orca</a>
+<a href="/workshops/2022">2022</a>
+    <a href="/workshops/2022/01">01</a>
+        <a href="/workshops/2022/01/15">15</a>
+            <a href="/workshops/2022/01/15/ctf-foo">ctf-foo</a>
+    <a href="/workshops/2022/02">02</a>
+    <a href="/workshops/2022/03">03</a>
+    <a href="/workshops/2022/04">04</a>
+    <a href="/workshops/2022/05">05</a>
+    <a href="/workshops/2022/06">06</a>
+    <a href="/workshops/2022/07">07</a>
+    <a href="/workshops/2022/08">08</a>
+    <a href="/workshops/2022/09">09</a>
+    <a href="/workshops/2022/10">10</a>
+    <a href="/workshops/2022/11">11</a>
+    <a href="/workshops/2022/12">12</a>
+    <a href="/workshops/2022/crypto-foo">crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/08-18-crypto-foo">08-18-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/08-25-crypto-foo">08-25-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/09-01-crypto-foo">09-01-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/09-08-crypto-foo">09-08-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/09-15-crypto-foo">09-15-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/09-22-crypto-foo">09-22-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/09-29-crypto-foo">09-29-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/10-06-crypto-foo">10-06-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/10-13-crypto-foo">10-13-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/10-20-crypto-foo">10-20-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/10-27-crypto-foo">10-27-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/11-03-crypto-foo">11-03-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/11-10-crypto-foo">11-10-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/11-17-crypto-foo">11-17-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/11-24-crypto-foo">11-24-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/12-01-crypto-foo">12-01-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/12-08-crypto-foo">12-08-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/12-15-crypto-foo">12-15-crypto-foo</a>
+        <a href="/workshops/2022/crypto-foo/12-22-crypto-foo">12-22-crypto-foo</a>
+    <a href="/workshops/2022/ctf-foo">ctf-foo</a>
+        <a href="/workshops/2022/ctf-foo/01-15-ctf">01-15-ctf</a>
+        <a href="/workshops/2022/ctf-foo/02-05-ctf">02-05-ctf</a>
+        <a href="/workshops/2022/ctf-foo/02-19-ctf">02-19-ctf</a>
+        <a href="/workshops/2022/ctf-foo/03-05-ctf-foo-assembly-basics">03-05-ctf-foo-assembly-basics</a>
+        <a href="/workshops/2022/ctf-foo/03-19-ctf-foo-linux">03-19-ctf-foo-linux</a>
+        <a href="/workshops/2022/ctf-foo/04-02-ctf-foo-buffer-overflow">04-02-ctf-foo-buffer-overflow</a>
+        <a href="/workshops/2022/ctf-foo/04-16-ctf-foo-shellcode">04-16-ctf-foo-shellcode</a>
+        <a href="/workshops/2022/ctf-foo/04-30-ctf-foo-rop">04-30-ctf-foo-rop</a>
+        <a href="/workshops/2022/ctf-foo/05-14-ctf-foo-infoleaks">05-14-ctf-foo-infoleaks</a>
+        <a href="/workshops/2022/ctf-foo/05-28-ctf-foo-mitigations">05-28-ctf-foo-mitigations</a>
+        <a href="/workshops/2022/ctf-foo/06-11-ctf-foo-reversing">06-11-ctf-foo-reversing</a>
+        <a href="/workshops/2022/ctf-foo/06-25-ctf-foo-heap-basics">06-25-ctf-foo-heap-basics</a>
+        <a href="/workshops/2022/ctf-foo/07-09-ctf-foo-heap-techniques">07-09-ctf-foo-heap-techniques</a>
+        <a href="/workshops/2022/ctf-foo/07-23-ctf-foo-race-conditions">07-23-ctf-foo-race-conditions</a>
+        <a href="/workshops/2022/ctf-foo/08-06-ctf-foo-fuzzing">08-06-ctf-foo-fuzzing</a>
+        <a href="/workshops/2022/ctf-foo/08-20-ctf-foo-kernel-security">08-20-ctf-foo-kernel-security</a>
+        <a href="/workshops/2022/ctf-foo/09-03-ctf-foo-symbolic-execution">09-03-ctf-foo-symbolic-execution</a>
+        <a href="/workshops/2022/ctf-foo/09-17-ctf-foo-automated-program-analysis">09-17-ctf-foo-automated-program-analysis</a>
+    <a href="/workshops/2022/heap-foo">heap-foo</a>
+        <a href="/workshops/2022/heap-foo/08-15-heap-foo">08-15-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/08-22-heap-foo">08-22-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/08-29-heap-foo">08-29-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/09-05-heap-foo">09-05-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/09-12-heap-foo">09-12-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/09-19-heap-foo">09-19-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/09-26-heap-foo">09-26-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/10-03-heap-foo">10-03-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/10-10-heap-foo">10-10-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/10-17-heap-foo">10-17-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/10-24-heap-foo">10-24-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/10-31-heap-foo">10-31-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/11-07-heap-foo">11-07-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/11-14-heap-foo">11-14-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/11-21-heap-foo">11-21-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/11-28-heap-foo">11-28-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/12-05-heap-foo">12-05-heap-foo</a>
+        <a href="/workshops/2022/heap-foo/12-12-heap-foo">12-12-heap-foo</a>
+    <a href="/workshops/2022/web-foo">web-foo</a>
+        <a href="/workshops/2022/web-foo/08-17-web-foo-basics">08-17-web-foo-basics</a>
+        <a href="/workshops/2022/web-foo/08-24-web-foo-sqli">08-24-web-foo-sqli</a>
+        <a href="/workshops/2022/web-foo/08-31-web-foo-xss">08-31-web-foo-xss</a>
+        <a href="/workshops/2022/web-foo/09-07-web-foo-csrf">09-07-web-foo-csrf</a>
+        <a href="/workshops/2022/web-foo/09-14-web-foo-dom-based-vulnerabilities">09-14-web-foo-dom-based-vulnerabilities</a>
+        <a href="/workshops/2022/web-foo/09-21-web-foo-cors">09-21-web-foo-cors</a>
+        <a href="/workshops/2022/web-foo/09-28-web-foo-xxe">09-28-web-foo-xxe</a>
+        <a href="/workshops/2022/web-foo/10-05-web-foo-ssrf">10-05-web-foo-ssrf</a>
+        <a href="/workshops/2022/web-foo/10-12-web-foo-http-request-smuggling">10-12-web-foo-http-request-smuggling</a>
+        <a href="/workshops/2022/web-foo/10-19-web-foo-os-injection">10-19-web-foo-os-injection</a>
+        <a href="/workshops/2022/web-foo/10-26-web-foo-server-side-template-injection">10-26-web-foo-server-side-template-injection</a>
+        <a href="/workshops/2022/web-foo/11-02-web-foo-directory-traversal">11-02-web-foo-directory-traversal</a>
+        <a href="/workshops/2022/web-foo/11-09-web-foo-access-control-vulnerabilities">11-09-web-foo-access-control-vulnerabilities</a>
+        <a href="/workshops/2022/web-foo/11-16-web-foo-authentication-vulnerabilities">11-16-web-foo-authentication-vulnerabilities</a>
+        <a href="/workshops/2022/web-foo/11-23-web-foo-websockets">11-23-web-foo-websockets</a>
+        <a href="/workshops/2022/web-foo/11-30-web-foo-web-cache-poisoning">11-30-web-foo-web-cache-poisoning</a>
+        <a href="/workshops/2022/web-foo/12-07-web-foo-insecure-deserialization">12-07-web-foo-insecure-deserialization</a>
+        <a href="/workshops/2022/web-foo/12-14-web-foo-information-disclosure">12-14-web-foo-information-disclosure</a>
+        <a href="/workshops/2022/web-foo/12-21-web-foo-business-logic-vulnerabilities">12-21-web-foo-business-logic-vulnerabilities</a>
+<a href="/workshops/2023">2023</a>
+    <a href="/workshops/2023/01-04-web-foo-http-host-header-attacks">01-04-web-foo-http-host-header-attacks</a>
+    <a href="/workshops/2023/01-11-web-foo-oauth-authentication">01-11-web-foo-oauth-authentication</a>
+    <a href="/workshops/2023/01-18-web-foo-file-upload-vulnerabilities">01-18-web-foo-file-upload-vulnerabilities</a>
+
+</pre>
+            <span id="cal"></span>
+            <h2><a href="#cal">cal</a></h2>
+            <pre>
+</pre>
+            <span id="2022"></span>
+            <h3><a href="#2022">2022</a></h3>
+            <pre>
+             January               |              February      
+ Su   Mo   Tu   We   Th   Fr   Sa  |  Su   Mo   Tu   We   Th   Fr   Sa
+                                1  |             1    2    3    4    5
+  2    3    4    5    6    7    8  |   6    7    8    9   10   11   12
+  9   10   11   12   13  <a href="">14</a> <a href="/2022/ctf-foo/01-15">15</a> |  13   14   15   16   17   18   19
+ 16   17   18   19   20   21   22  |  20   21   22   23   24   25   26
+ 23   24   25   26   27   28   29  |  27   28                         
+ 30   31                           |
+   
+             March                 |              April              
+ Su   Mo   Tu   We   Th   Fr   Sa  |  Su   Mo   Tu   We   Th   Fr   Sa
+            1    2    3    4    5  |                            1    2
+  6    7    8    9   10   11   12  |   3    4    5    6    7    8    9
+ 13   14   15   16   17   18   19  |  10   11   12   13   14   15   16
+ 20   21   22   23   24   25   26  |  17   18   19   20   21   22   23
+ 27   28   29   30   31            |  24   25   26   27   28   29   30
+ 
+             May                   |              June              
+ Su   Mo   Tu   We   Th   Fr   Sa  |  Su   Mo   Tu   We   Th   Fr   Sa
+  1    2    3    4    5    6    7  |                  1    2    3    4
+  8    9   10   11   12   13   14  |   5    6    7    8    9   10   11
+ 15   16   17   18   19   20   21  |  12   13   14   15   16   17   18
+ 22   23   24   25   26   27   28  |  19   20   21   22   23   24   25
+ 29   30   31                      |  26   27   28   29   30          
+ 
+             July                  |              August           
+ Su   Mo   Tu   We   Th   Fr   Sa  |  Su   Mo   Tu   We   Th   Fr   Sa
+                           1    2  |        1    2    3    4    5    6
+  3    4    5    6    7    8    9  |   7    8    9   10   11   12   13
+ 10   11   12   13   14   15   16  |  14   15   16   17   18   19   20
+ 17   18   19   20   21   22   23  |  21   22   23   24   25   26   27
+ 24   25   26   27   28   29   30  |  28   29   30   31               
+ 31                                |   
+ 
+             September             |              October           
+ Su   Mo   Tu   We   Th   Fr   Sa  |  Su   Mo   Tu   We   Th   Fr   Sa
+                      1    2    3  |                                 1
+  4    5    6    7    8    9   10  |   2    3    4    5    6    7    8
+ 11   12   13   14   15   16   17  |   9   10   11   12   13   14   15
+ 18   19   20   21   22   23   24  |  16   17   18   19   20   21   22
+ 25   26   27   28   29   30       |  23   24   25   26   27   28   29
+                                   |  30   31                         
+       
+             November              |              December         
+ Su   Mo   Tu   We   Th   Fr   Sa  |  Su   Mo   Tu   We   Th   Fr   Sa
+            1    2    3    4    5  |                       1    2    3
+  6    7    8    9   10   11   12  |   4    5    6    7    8    9   10
+ 13   14   15   16   17   18   19  |  11   12   13   14   15   16   17
+ 20   21   22   23   24   25   26  |  18   19   20   21   22   23   24
+ 27   28   29   30                 |  25   26   27   28   29   30   31
+
+
+
+
+
+
+
+
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.454767s
+</body>
+</html>
+    <pre>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/blog">blog</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2020">2020</a>
+            <ul>
+                <li><a href="/blog/2021">2021/</a></li>
+                <li><a href="/blog/2022">2022/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2020/09-26-nixops">09-26-nixops</a>
+            <ul>
+                <li><a href="/blog/2020/10-10-r2wars">10-10-r2wars/</a></li>
+                <li><a href="/blog/2020/11-15-nixctf">11-15-nixctf/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="nixops"></span>
+            <h1><a href="#nixops">nixops</a></h1>
+            <pre>
+<a href="#nixops">nixops</a>
+    <a href="#assumptions">Assumptions</a>
+    <a href="#goal">Goal</a>
+    <a href="#creating-the-deployment">Creating the deployment</a>
+    <a href="#deploying">Deploying</a>
+    <a href="#endword">Endword</a>
+
+I had to read more than I'd expect from a project that fundamental, so here's a post describing the process.
+
+</pre>
+            <span id="assumptions"></span>
+            <h2><a href="#assumptions">Assumptions</a></h2>
+            <pre>
+- You've got some server (called "Target" from here on) running NixOS with root-access.
+- You've got NixOps installed
+
+</pre>
+            <span id="goal"></span>
+            <h2><a href="#goal">Goal</a></h2>
+            <pre>
+So the goal we want to achieve is to deploy the config located on the target server from you machine. This means that on you're machine, you've got the config of the target machine (config.nix), as well as a config instructing NixOps where the machine is located (target.nix).
+
+Let's start with the target.nix file, as it is fairly simple:
+
+
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">  target = { config, pkgs, ... }: {</pre><pre>
+</pre><pre class="code">    deployment.targetHost = "123.122.111.110";</pre><pre>
+</pre><pre class="code">  };</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+
+All you do here, is define the target nixos should deploy to.
+
+The config.nix file contains the complete configuration (although a partial one should do) of the target system. A caveat here is that the configuration cannot be copied over, but has to be inserted into a predefined scheme:
+
+
+</pre><pre class="code">{</pre><pre>
+</pre><pre class="code">  network.description = "nixops example";</pre><pre>
+</pre><pre class="code">  target = {config, lib, pkgs, ...}: {</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">  # insert complete config here</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">  };</pre><pre>
+</pre><pre class="code">};</pre><pre>
+
+
+</pre>
+            <span id="creating-the-deployment"></span>
+            <h2><a href="#creating-the-deployment">Creating the deployment</a></h2>
+            <pre>
+The deployment can be created using the nixops create command:
+
+
+</pre><pre class="code">; nixops create ./target.nix ./config.nix -d target</pre><pre>
+
+</pre><pre class="code">created deployment ‘6883071e-df3c-11ea-bd95-0242dcf913a0’</pre><pre>
+</pre><pre class="code">6883071e-df3c-11ea-bd95-0242dcf913a0</pre><pre>
+
+
+In this command, we create a new deployment called target using the config files described above as input.
+
+We can now list all deployments using the nixops list command:
+
+</pre><pre class="code">; nixops list</pre><pre>
+</pre><pre class="code">+--------------------------------------+--------+------------------------+------------+------+</pre><pre>
+</pre><pre class="code">| UUID                                 | Name   | Description            | # Machines | Type |</pre><pre>
+</pre><pre class="code">+--------------------------------------+--------+------------------------+------------+------+</pre><pre>
+</pre><pre class="code">| 6883071e-df3c-11ea-bd95-0242dcf913a0 | target | Unnamed NixOps network |          0 |      |</pre><pre>
+</pre><pre class="code">+--------------------------------------+--------+------------------------+------------+------+</pre><pre>
+
+
+As you can see, the deployment was created, but no machine is assigned. Let's deploy something...
+
+</pre>
+            <span id="deploying"></span>
+            <h2><a href="#deploying">Deploying</a></h2>
+            <pre>
+Deploying can be done using the nixops deploy command. This will build the machine configuration and copy the paths from the nix-store to the remote nix-store.
+
+The output should look something like this:
+
+
+</pre><pre class="code">; nixops deploy -d target</pre><pre>
+</pre><pre class="code">target> generating new SSH keypair... done</pre><pre>
+</pre><pre class="code">target> setting state version to 20.03</pre><pre>
+</pre><pre class="code">target> waiting for SSH...</pre><pre>
+</pre><pre class="code">building all machine configurations...</pre><pre>
+</pre><pre class="code">these derivations will be built:</pre><pre>
+</pre><pre class="code">  /nix/store/75kfw9jq8si7wxvb4g4zq8zxnbixnci9-etc-hosts.drv</pre><pre>
+</pre><pre class="code">  /nix/store/y6jy6fdxnazal0z7n9bz9rjcdzh0dpdz-unit-nscd.service.drv</pre><pre>
+</pre><pre class="code">  /nix/store/78vjar6qvvvkvvyk01xdri3ajiafaq37-system-units.drv</pre><pre>
+</pre><pre class="code">  /nix/store/ycmvrqi6bvdgs0kkckd4fnk4v65g31rw-root-authorized_keys.drv</pre><pre>
+</pre><pre class="code">  /nix/store/1hg189d7r2h0gfzqdsdjd1dc44y9yi8l-etc.drv</pre><pre>
+</pre><pre class="code">  /nix/store/hx5bmim1n8d0whl28dpqcwh12d5cw1vb-nixos-system-nixos-20.03.2260.7bb2e7e0f69.drv</pre><pre>
+</pre><pre class="code">  /nix/store/cilysf8jk7kjvasabml97l17nbic8i5s-nixops-machines.drv</pre><pre>
+</pre><pre class="code">building '/nix/store/75kfw9jq8si7wxvb4g4zq8zxnbixnci9-etc-hosts.drv'...</pre><pre>
+</pre><pre class="code">building '/nix/store/ycmvrqi6bvdgs0kkckd4fnk4v65g31rw-root-authorized_keys.drv'...</pre><pre>
+</pre><pre class="code">building '/nix/store/y6jy6fdxnazal0z7n9bz9rjcdzh0dpdz-unit-nscd.service.drv'...</pre><pre>
+</pre><pre class="code">building '/nix/store/78vjar6qvvvkvvyk01xdri3ajiafaq37-system-units.drv'...</pre><pre>
+</pre><pre class="code">building '/nix/store/1hg189d7r2h0gfzqdsdjd1dc44y9yi8l-etc.drv'...</pre><pre>
+</pre><pre class="code">building '/nix/store/hx5bmim1n8d0whl28dpqcwh12d5cw1vb-nixos-system-nixos-20.03.2260.7bb2e7e0f69.drv'...</pre><pre>
+</pre><pre class="code">building '/nix/store/cilysf8jk7kjvasabml97l17nbic8i5s-nixops-machines.drv'...</pre><pre>
+</pre><pre class="code">target> copying closure...</pre><pre>
+</pre><pre class="code">target> copying 6 paths...</pre><pre>
+</pre><pre class="code">target> copying path '/nix/store/9dyfcyl838rx0ih8k7a7rpiabwi8y0lk-root-authorized_keys' to 'ssh://root@138.201.190.65'...</pre><pre>
+</pre><pre class="code">target> copying path '/nix/store/irqfi2l3431p8wa00arg0chdr20ysad6-etc-hosts' to 'ssh://root@138.201.190.65'...</pre><pre>
+</pre><pre class="code">target> copying path '/nix/store/7nbv0mw6jrrw68bn297kihwdmq0fn3y2-unit-nscd.service' to 'ssh://root@138.201.190.65'...</pre><pre>
+</pre><pre class="code">target> copying path '/nix/store/f0x5d9s31gxzkbsrnhpqvsqrhz6rryc9-system-units' to 'ssh://root@138.201.190.65'...</pre><pre>
+</pre><pre class="code">target> copying path '/nix/store/bmxqa2ppi0d43fvp3drx0hgbcq3j5jv2-etc' to 'ssh://root@138.201.190.65'...</pre><pre>
+</pre><pre class="code">target> copying path '/nix/store/9v8jqh5izq81nb60rzcindc6nr7cqwxx-nixos-system-nixos-20.03.2260.7bb2e7e0f69' to 'ssh://root@138.201.190.65'...</pre><pre>
+</pre><pre class="code">target> closures copied successfully</pre><pre>
+</pre><pre class="code">target> updating GRUB 2 menu...</pre><pre>
+</pre><pre class="code">target> stopping the following units: nscd.service</pre><pre>
+</pre><pre class="code">target> activating the configuration...</pre><pre>
+</pre><pre class="code">target> setting up /etc...</pre><pre>
+</pre><pre class="code">target> reloading user units for root...</pre><pre>
+</pre><pre class="code">target> setting up tmpfiles</pre><pre>
+</pre><pre class="code">target> starting the following units: nscd.service</pre><pre>
+</pre><pre class="code">target> activation finished successfully</pre><pre>
+</pre><pre class="code">target> deployment finished successfully</pre><pre>
+
+
+A few things happen here:
+
+- A new ssh keypair is created for access to the machine.
+- All needed derivations are build
+- The closures are copied to the target
+- The GRUB menu is updated for displaying the latest generation
+- Services are stopped
+- The config is activated
+- /etc is setup
+- The users units are reloaded
+- tmpfiles are setup
+- The previously stopped services are restarted
+- And in the end, the nice messages "activation finished successfully" and "deployment finished successfully" indicates that the deployment has worked successfully!
+
+</pre>
+            <span id="endword"></span>
+            <h2><a href="#endword">Endword</a></h2>
+            <pre>
+This should have given you a super basic introduction on how to use an existing NixOS setup in NixOps. The current documentation is far from perfect and doing this isn't really as straitfoward as I though it could be. In the end, it works, but the process of getting it to work included more rabbit-holes that I'd like to admit.
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.165302s
+</body>
+</html>
+    <pre>

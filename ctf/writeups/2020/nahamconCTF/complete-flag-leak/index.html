@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/ctf">ctf</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups">writeups</a>
+            <ul>
+                <li><a href="/ctf/hosted-events">hosted-events/</a></li>
+                <li><a href="/ctf/resources">resources/</a></li>
+                <li><a href="/ctf/teams">teams/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2020">2020</a>
+            <ul>
+                <li><a href="/ctf/writeups/2019">2019/</a></li>
+                <li><a href="/ctf/writeups/2021">2021/</a></li>
+                <li><a href="/ctf/writeups/pwnable.kr">pwnable.kr/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2020/nahamconCTF">nahamconCTF</a>
+            <ul>
+                <li><a href="/ctf/writeups/2020/hacklu">hacklu/</a></li>
+                <li><a href="/ctf/writeups/2020/redpwnCTF">redpwnCTF/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2020/nahamconCTF/complete-flag-leak">complete-flag-leak</a>
+            <ul>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="complete-flag-leak"></span>
+            <h1><a href="#complete-flag-leak">complete-flag-leak</a></h1>
+            <pre>
+So, let's get things strait: yes, it is possible to leak all flags in a CTF and yes, people have done bad stuff with the leaked flags in the past resulting in a kind of broken CTF. In contradiction to this, this post will address how this was done in the NahamCon CTF, how it was disclosed, and what I've learned from this.
+
+</pre>
+            <span id="timeline"></span>
+            <h2><a href="#timeline">Timeline</a></h2>
+            <pre>
+(time relative to the start of the CTF)
+
+TIME	  WHAT
++00:59h	  Leak of the first flags
++01:01h	  Question in the discord asking for an admin
++01:05h	  Information regarding the leak and the challenge given to admin
++01:09h	  Challenge removed from CTFd and also not accessible anymore
+
+</pre>
+            <span id="nahamcon-ctf"></span>
+            <h2><a href="#nahamcon-ctf">NahamCon CTF</a></h2>
+            <pre>
+So let's start, my leak of all flags in the NahamCon CTF. Leaking the flags could be done using the "Fake File" (Misc) challenge.
+
+</pre>
+            <span id="the-leak"></span>
+            <h3><a href="#the-leak">The leak</a></h3>
+            <pre>
+The leak is done by reading from the vda1 block device:
+
+<img src="./lsblk.png">
+
+lsblk output
+
+The leak is actually so simple that I'm always astonised that it actually works. Let me present:
+
+
+; nc jh2i.com 50026
+cat /dev/vda1 | grep -ao "flag{.*}"
+…
+
+
+So what we do, is we read from the blockdevice and grep for the flag format. It's literally as simple as that.
+
+Here's a screenshot displaying the raw result:
+
+<img src="./first_leak.png">
+
+So after taking this screenshot, I waited about a minute to see if there was more and there was.
+
+I extracted all flags from the dump like this:
+
+
+; cat flagleak.txt | grep -o "flag\{\w{1,50}\}" | sort | uniq > flagleak_clean.txt
+
+
+and proceeded to tweet the sha256sum of the flagleak_clean.txt file (functioning as a proof this happened about 1.5h after the CTF started):
+
+https://twitter.com/HanEmile/status/1271481929796333570?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1271481929796333570%7Ctwgr%5E%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Ftildeho.me%2Fleaking-all-flags-in-a-ctf%2F
+
+Here a screenshot of the flag leak for verification:
+
+<img src="./full_leak.png">
+
+(Sidenote: the CTF did contain flags starting with the flag format JCTF{.*}. These aren't included in the leak, as I simply grepped for the the other flag format flag{}. Also, flags not following a flag format are not in the leak. All of these could have been found, but dumping all of the data accessible (600GB+) wasn't my intention).
+
+
+</pre>
+            <span id="disclosure"></span>
+            <h2><a href="#disclosure">Disclosure</a></h2>
+            <pre>
+So as you might realize, leaking all flags isn't good, not even a bit. It is "sort of a game-critical thing".
+
+So the first thought was "I've somehow got to inform the people hosting the CTF". The first step was to join the plattform used to communicate with the admins, in this case discord. As I was pretty excited about the finding and wanted to reach one of the admins as quickly as possible, I simply mentioned that I'd leaked all flags and who I could this report this to in the main thread (This is one of the thing's I'd do different if something like this happens again, I'll get to this in the learnings section below).
+
+After about 10 seconds, an admin reached out to me regarding this. I disclosed leaking all flags, in which challenge it happened and the admins took care of taking the challenge down. This was done in about a minute.
+
+Overall, the response from the admins was great and I'd love to see such a response whenever something like this happens.
+
+
+</pre>
+            <span id="learnings"></span>
+            <h2><a href="#learnings">Learnings</a></h2>
+            <pre>
+As mentioned before, I started reaching out to the admins directly in the main thread even mentioning that I'd leaked all flags. The admin I then PMd told me to please delete this message, as it might discourage other players from playing the CTF when knowning that all flags had been leaked.
+I deleted the message as soon as I got the message, realizing that informing all players that all flags had been leaked might really not be the best thing to do, as it really might ruin the CTF for a lot of people.
+
+
+</pre>
+            <span id="what-to-do-if-you-leak-flags"></span>
+            <h3><a href="#what-to-do-if-you-leak-flags">What to do if you leak flags</a></h3>
+            <pre>
+So here some points on what you should do when finding out you've leaked all flags:
+
+- contact the admins ASAP
+- don't inform all players publicly, if you do, coordinate this with the admins
+
+
+</pre>
+            <span id="the-stream"></span>
+            <h3><a href="#the-stream">The stream</a></h3>
+            <pre>
+Later on, I saw that the admins were actually streaming them hosting the CTF, so If you'd like to see how the mood drops when getting informed that all flags are leaked, watch that here:
+
+https://youtu.be/JfJsstRt3r4?t=4230
+
+(starting at 1:10:30)
+
+Overall, the disclosure was great, the admins acted fast and in the end, I think that nobody was really affected by this, as the challenge went up again some time later (fixed).
+
+All in all, flag leaks such as the ones in TJCTF and PragyanCTF are really bad for a CTF and I really hope that such leaks don't happen or get reported to the admins resposibly so that the hundreds of teams and thousands of people playing such CTFs still can have some fun.
+
+PS: (I still don't have the flag for the Fake File challenge, as I don't know which of the 65 flags belongs to that challenge)
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.8912s
+</body>
+</html>
+    <pre>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/ctf">ctf</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups">writeups</a>
+            <ul>
+                <li><a href="/ctf/hosted-events">hosted-events/</a></li>
+                <li><a href="/ctf/resources">resources/</a></li>
+                <li><a href="/ctf/teams">teams/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2020">2020</a>
+            <ul>
+                <li><a href="/ctf/writeups/2019">2019/</a></li>
+                <li><a href="/ctf/writeups/2021">2021/</a></li>
+                <li><a href="/ctf/writeups/pwnable.kr">pwnable.kr/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2020/redpwnCTF">redpwnCTF</a>
+            <ul>
+                <li><a href="/ctf/writeups/2020/hacklu">hacklu/</a></li>
+                <li><a href="/ctf/writeups/2020/nahamconCTF">nahamconCTF/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/2020/redpwnCTF/pseudo-key">pseudo-key</a>
+            <ul>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="pseudo-key"></span>
+            <h1><a href="#pseudo-key">Pseudo Key</a></h1>
+            <pre>
+- <a href="#initial-view">Initial view</a>
+- <a href="#decrypting">Decrypting</a>
+- <a href="#the-key">The key</a>
+- <a href="#the-flag">The flag</a>
+
+So, this is a fairly long writeup for the pseudo-key challenge from the <a href="https://ctftime.org/event/995">redpwnctf</a>. It is ment to not only show the solution of the challenge, but also how to approach such a challenge. The challenge is based on the concept of <a href="https://en.wikipedia.org/wiki/Modular_arithmetic">Modular Arithmetics</a>.
+
+</pre>
+            <span id="initial-view"></span>
+            <h2><a href="#initial-view">Initial view</a></h2>
+            <pre>
+So, the first thing to do is to view the data given. In this case, we get two files: pseudo-key-output.txt and pseudo-key.py. This is fairly obvious, the pseudo-key-output.txt is the output generated by the pseudo-key.py file. One of the first things we should do, is to understand how this all works, so let's look into the code:
+
+
+</pre><pre class="code">#!/usr/bin/env python3</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">from string import ascii_lowercase</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">chr_to_num = {c: i for i, c in enumerate(ascii_lowercase)}</pre><pre>
+</pre><pre class="code">num_to_chr = {i: c for i, c in enumerate(ascii_lowercase)}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">def encrypt(ptxt, key):</pre><pre>
+</pre><pre class="code">    ptxt = ptxt.lower()</pre><pre>
+</pre><pre class="code">    key = ''.join(key[i % len(key)] for i in range(len(ptxt))).lower()</pre><pre>
+</pre><pre class="code">    ctxt = ''</pre><pre>
+</pre><pre class="code">    for i in range(len(ptxt)):</pre><pre>
+</pre><pre class="code">        if ptxt[i] == '_':</pre><pre>
+</pre><pre class="code">            ctxt += '_'</pre><pre>
+</pre><pre class="code">            continue</pre><pre>
+</pre><pre class="code">        x = chr_to_num[ptxt[i]]</pre><pre>
+</pre><pre class="code">        y = chr_to_num[key[i]]</pre><pre>
+</pre><pre class="code">        ctxt += num_to_chr[(x + y) % 26]</pre><pre>
+</pre><pre class="code">    return ctxt</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">with open('flag.txt') as f, open('key.txt') as k:</pre><pre>
+</pre><pre class="code">    flag = f.read()</pre><pre>
+</pre><pre class="code">    key = k.read()</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">ptxt = flag[5:-1]</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">ctxt = encrypt(ptxt,key)</pre><pre>
+</pre><pre class="code">pseudo_key = encrypt(key,key)</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">print('Ciphertext:',ctxt)</pre><pre>
+</pre><pre class="code">print('Pseudo-key:',pseudo_key)</pre><pre>
+
+
+In order to look at the code and understand this, let's go through it line for line:
+
+
+</pre><pre class="code">#!/usr/bin/env python3</pre><pre>
+
+
+The <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> indicating that this is ment to be executed using <a href="https://www.python.org/">python3</a>.
+
+
+</pre><pre class="code">from string import ascii_lowercase</pre><pre>
+
+
+import the asci_lowercase character set (abcdefghijklmnopqrstuvwxyz)
+
+ 
+</pre><pre class="code">chr_to_num = {c: i for i, c in enumerate(ascii_lowercase)}</pre><pre>
+</pre><pre class="code">num_to_chr = {i: c for i, c in enumerate(ascii_lowercase)}</pre><pre>
+
+
+maps for char to number (0 → a, 1 → b) and number to char (a → 0, b → 1), this is useful for the crypto function later on.
+ 
+ 
+</pre><pre class="code">def encrypt(ptxt, key):</pre><pre>
+</pre><pre class="code">    ptxt = ptxt.lower()</pre><pre>
+</pre><pre class="code">    key = ''.join(key[i % len(key)] for i in range(len(ptxt))).lower()</pre><pre>
+</pre><pre class="code">    ctxt = ''</pre><pre>
+</pre><pre class="code">    for i in range(len(ptxt)):</pre><pre>
+</pre><pre class="code">        if ptxt[i] == '_':</pre><pre>
+</pre><pre class="code">            ctxt += '_'</pre><pre>
+</pre><pre class="code">            continue</pre><pre>
+</pre><pre class="code">        x = chr_to_num[ptxt[i]]</pre><pre>
+</pre><pre class="code">        y = chr_to_num[key[i]]</pre><pre>
+</pre><pre class="code">        ctxt += num_to_chr[(x + y) % 26]</pre><pre>
+</pre><pre class="code">    return ctxt</pre><pre>
+
+
+This is the encryption function, this takes some plaintext (ptxt) and a key (key), returning some ciphertext. Let's look at this line by line:
+ 
+ 
+</pre><pre class="code">def encrypt(ptxt, key):</pre><pre>
+
+
+The function signature
+ 
+
+</pre><pre class="code">    ptxt = ptxt.lower()</pre><pre>
+
+
+Convert the given plaintext to lowercase
+ 
+ 
+</pre><pre class="code">    key = ''.join(key[i % len(key)] for i in range(len(ptxt))).lower()</pre><pre>
+
+
+Wrap the key, this means that if the plaintext is 8 bytes long (for example "12345678") and the key 3 bytes long ("key"), the key get's wrapped and gets repeated to be as long as the plaintext: ("keykeyke").
+ 
+
+</pre><pre class="code">    ctxt = ''</pre><pre>
+
+
+Define a ciphertext, this will be filled in the following loop
+
+ 
+</pre><pre class="code">    for i in range(len(ptxt)):</pre><pre>
+</pre><pre class="code">        if ptxt[i] == '_':</pre><pre>
+</pre><pre class="code">            ctxt += '_'</pre><pre>
+</pre><pre class="code">            continue</pre><pre>
+</pre><pre class="code">        x = chr_to_num[ptxt[i]]</pre><pre>
+</pre><pre class="code">        y = chr_to_num[key[i]]</pre><pre>
+</pre><pre class="code">        ctxt += num_to_chr[(x + y) % 26]</pre><pre>
+</pre><pre class="code">    return ctxt</pre><pre>
+
+
+Iterate over all the characters in the plaintext, this skips over underscores (_), converts the n'th char from the plaintext and from the key to a number, adds the numbers and adds the chr representation of the result modulo 26 to the ciphertext (Don't worry if this sound's weird, I'll get to this in detail further down).
+ 
+ 
+</pre><pre class="code">with open('flag.txt') as f, open('key.txt') as k:</pre><pre>
+</pre><pre class="code">    flag = f.read()</pre><pre>
+</pre><pre class="code">    key = k.read()</pre><pre>
+
+
+This imports data from two files: flag.txt and key.txt. These contain the values we want to get, they get encrypted further down.
+ 
+ 
+</pre><pre class="code">ptxt = flag[5:-1]</pre><pre>
+
+
+The plaintext get's defined as some chars in the flag, to be more precise, the 5th char until the second last char.
+ 
+ 
+</pre><pre class="code">ctxt = encrypt(ptxt,key)</pre><pre>
+
+
+This encrypts the plaintext using the key as a key
+
+ 
+</pre><pre class="code">pseudo_key = encrypt(key,key)</pre><pre>
+
+
+This encrypts the key using itself
+
+ 
+</pre><pre class="code">print('Ciphertext:',ctxt)</pre><pre>
+</pre><pre class="code">print('Pseudo-key:',pseudo_key)</pre><pre>
+
+
+this prints the result
+
+</pre>
+            <span id="decrypting"></span>
+            <h2><a href="#decrypting">Decrypting</a></h2>
+            <pre>
+Now that we've got a basic understanding of how the given code is built up, let's define a goal. The overall goal we'd like to reach, is to get the plaintext of flag and the key. In order to do this, let's start by extracting the key.
+
+</pre>
+            <span id="the-key"></span>
+            <h2><a href="#the-key">The key</a></h2>
+            <pre>
+First, let's decrypt the key. The encryption works like this: encryption(key, key), so we known that the n'th character in the key ist added to the n'th character in the key and then taken modulo 26. As we want to decrypt this, we want to reverse the process of the encryption.
+
+
+</pre><pre class="code">x = chr_to_num[ptxt[i]]</pre><pre>
+</pre><pre class="code">y = chr_to_num[key[i]]</pre><pre>
+</pre><pre class="code">ctxt += num_to_chr[(x + y) % 26]</pre><pre>
+
+
+So we start at the last step, num_to_chr. Let's convert the crypted key iigesssaemk into it's numerical representation:
+
+
+</pre><pre class="code">from string import ascii_lowercase</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">chr_to_num = {c: i for i, c in enumerate(ascii_lowercase)}</pre><pre>
+</pre><pre class="code">num_to_chr = {i: c for i, c in enumerate(ascii_lowercase)}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">cipher_key = "iigesssaemk"</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">for i in range(0, len(cipher_key)):</pre><pre>
+</pre><pre class="code">    print(chr_to_num[cipher_key[i]])</pre><pre>
+
+</pre><pre class="code">8</pre><pre>
+</pre><pre class="code">8</pre><pre>
+</pre><pre class="code">6</pre><pre>
+</pre><pre class="code">4</pre><pre>
+</pre><pre class="code">18</pre><pre>
+</pre><pre class="code">18</pre><pre>
+</pre><pre class="code">18</pre><pre>
+</pre><pre class="code">0</pre><pre>
+</pre><pre class="code">4</pre><pre>
+</pre><pre class="code">12</pre><pre>
+</pre><pre class="code">10</pre><pre>
+
+
+Next step, the actual crypto, the n'th numerical representation of the key get's added to the n'th numerical representation of the key and all of this is taken modulo 26, let's use an example to get a better understanding of this. Let's say we've got the character u in the key, the process of encryption works like this:
+
+u → 20 → 20 + 20 = 40 → 40 % 26 = 14 → 14
+
+in order to reverse this, we need to find a value, that when added to itself and taken modulo 26 equals 14. We can try to brute force this:
+
+
+</pre><pre class="code">a = 14</pre><pre>
+</pre><pre class="code">for j in range(0, 26):</pre><pre>
+</pre><pre class="code">    b = (j * 26) + a</pre><pre>
+</pre><pre class="code">    if ((b/2) &lt 26):</pre><pre>
+</pre><pre class="code">        print(b/2, end="")</pre><pre>
+</pre><pre class="code">    print("")</pre><pre>
+
+</pre><pre class="code">7.0</pre><pre>
+</pre><pre class="code">20.0</pre><pre>
+
+
+We search for a multiple of 26 that when added to 14 and divided by two is smaller than 26 (the target range (a-z)).
+
+As you can see above, we get two results, ((7+7) % 26) = 14 and ((20+20) % 26) = 14. This is one of the problems we encounter, and in this problem lies the "pseudo" security of this "encryption". With values that are big enough, this wouldn't be a problem, as the resulting values wouldn't be so many, but with the limited space we've got, we only get a few results.
+
+We can now proceed and brute-force all possible values for all values in our ciphertext:
+
+
+</pre><pre class="code">from string import ascii_lowercase</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">chr_to_num = {c: i for i, c in enumerate(ascii_lowercase)}</pre><pre>
+</pre><pre class="code">num_to_chr = {i: c for i, c in enumerate(ascii_lowercase)}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">pseukey = "iigesssaemk"</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">for i in range(0, len(pseukey)):</pre><pre>
+</pre><pre class="code">    print(pseukey[i], end=" → ")</pre><pre>
+</pre><pre class="code">    a = chr_to_num[pseukey[i]]</pre><pre>
+</pre><pre class="code">    for j in range(0, 10):</pre><pre>
+</pre><pre class="code">        b = (j * 26) + a</pre><pre>
+</pre><pre class="code">        if ((b/2) &lt 26):</pre><pre>
+</pre><pre class="code">            print(b, end=", ")</pre><pre>
+</pre><pre class="code">            print(num_to_chr[int(b/2)], end=", ")</pre><pre>
+</pre><pre class="code">    print("")</pre><pre>
+
+
+</pre><pre class="code">i → 8, e, 34, r,</pre><pre>
+</pre><pre class="code">i → 8, e, 34, r,</pre><pre>
+</pre><pre class="code">g → 6, d, 32, q,</pre><pre>
+</pre><pre class="code">e → 4, c, 30, p,</pre><pre>
+</pre><pre class="code">s → 18, j, 44, w,</pre><pre>
+</pre><pre class="code">s → 18, j, 44, w,</pre><pre>
+</pre><pre class="code">s → 18, j, 44, w,</pre><pre>
+</pre><pre class="code">a → 0, a, 26, n,</pre><pre>
+</pre><pre class="code">e → 4, c, 30, p,</pre><pre>
+</pre><pre class="code">m → 12, g, 38, t,</pre><pre>
+</pre><pre class="code">k → 10, f, 36, s,</pre><pre>
+
+
+Here, we see what output might correspond to a given input. There literally is no way (that I know), that can be used to obtain the exact values needed, but we can try to see what we can get from this. In order to do this, let's try to get something out:
+
+
+</pre><pre class="code"> 0   e, r &lt</pre><pre>
+</pre><pre class="code"> 1 > e, r</pre><pre>
+</pre><pre class="code"> 2 > d, q</pre><pre>
+</pre><pre class="code"> 3   c, p &lt</pre><pre>
+</pre><pre class="code"> 4   j, w &lt</pre><pre>
+</pre><pre class="code"> 5   j, w &lt</pre><pre>
+</pre><pre class="code"> 6   j, w &lt</pre><pre>
+</pre><pre class="code"> 7   a, n &lt</pre><pre>
+</pre><pre class="code"> 8 > c, p</pre><pre>
+</pre><pre class="code"> 9   g, t &lt</pre><pre>
+</pre><pre class="code">10  > f, s</pre><pre>
+
+
+the CTF this challenge was hosted in was redpwnctf, so this is one of the strings that seemed likely. If you don't find such options or don't find a string, try searching for ctf. This can be found here, starting at index 8. The next index (9) coult be g or t and the next f or s, so we could build the string ctf. The rest (redpwwwwnctf) can be found by trial and error.
+
+So the resulting key is redpwwwnctf
+
+</pre>
+            <span id="the-flag"></span>
+            <h2><a href="#the-flag">The flag</a></h2>
+            <pre>
+Having the key, we can decode the flag. In order to do this, let's first define the crypted flag and the key used to encrypt it.
+
+
+</pre><pre class="code">key = "redpwwwnctf"</pre><pre>
+</pre><pre class="code">public = "z_jjaoo_rljlhr_gauf_twv_shaqzb_ljtyut"</pre><pre>
+</pre><pre class="code">ctxt = "z_jjaoo_rljlhr_gauf_twv_shaqzb_ljtyut"</pre><pre>
+</pre><pre class="code">key = ''.join(key[i % len(key)] for i in range(len(public)+20)).lower()</pre><pre>
+
+
+The key is defined in this weird way, defining it so that it is repeated to be as long as the ciphertext:
+
+
+</pre><pre class="code">redpwwwnctfredpwwwnctfredpwwwnctfredpwwwnctfredpwwwnctfre</pre><pre>
+
+
+We can now decrypt the flag:
+
+
+</pre><pre class="code">flag = ""</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">for i in range(0, len(ctxt)):</pre><pre>
+</pre><pre class="code">    if (ctxt[i] != "_"):</pre><pre>
+</pre><pre class="code">        a = chr_to_num[ctxt[i]]</pre><pre>
+</pre><pre class="code">        b = chr_to_num[key[i]]</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">        c = a - b</pre><pre>
+</pre><pre class="code">        if c &lt 0:</pre><pre>
+</pre><pre class="code">            c = (26 + a) - b</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">        flag += num_to_chr[c]</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    else:</pre><pre>
+</pre><pre class="code">        flag += "_"</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">flag += "}"</pre><pre>
+
+
+The overall process is the same as with the key: For each character in the ciphertext, if the character is not an underscore, the values of the character at the respective indices in the ciphertext and the key are subtracted from each other, if this is less than zero, we add 26 (one modulo "round"). The result can be added to the flag string, so in the end we can print the flag:
+
+
+</pre><pre class="code">flag{i_guess_pseudo_keys_are_pseudo_secure}</pre><pre>
+
+
+Overall, you should now have a basic understanding on how this works, if stuff is still unclear, try to repeat the process step by step, writing it down and try to visualize exactly how everything is done. If that doesn't help, find help (for example me, you'll figure out a way to contact me).
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.883697s
+</body>
+</html>
+    <pre>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/blog">blog</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2020">2020</a>
+            <ul>
+                <li><a href="/blog/2021">2021/</a></li>
+                <li><a href="/blog/2022">2022/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2020/10-10-r2wars">10-10-r2wars</a>
+            <ul>
+                <li><a href="/blog/2020/09-26-nixops">09-26-nixops/</a></li>
+                <li><a href="/blog/2020/11-15-nixctf">11-15-nixctf/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="r2wars"></span>
+            <h1><a href="#r2wars">r2wars</a></h1>
+            <pre>
+<a href="#r2wars">r2wars</a>
+    <a href="#what-is-radare2">What is radare2?</a>
+    <a href="#what-is-r2wars">What is r2wars?</a>
+    <a href="#r2wars-in-detail">r2wars in detail</a>
+       <a href="#bots">Bots</a>
+       <a href="#the-arena">The Arena</a>
+       <a href="#allocating-memory-for-the-arena">Allocating memory for the Arena</a>
+       <a href="#setting-up-the-arena-and-esil">Setting up the arena and ESIL</a>
+       <a href="#generating-initial-positions-for-the-bots">Generating initial positions for the bots</a>
+       <a href="#inserting-bots-into-the-arena">Inserting bots into the arena</a>
+       <a href="#rounds">Rounds</a>
+    <a href="#executing-an-instruction">Executing an instruction</a>
+    <a href="#actually-playing-the-game">Actually playing the "game"</a>
+
+Over the last few days, I’ve played around with r2wars, a competion typically between two programs that try to survive as much time as possible in a shared memory space. A python implementation of r2wars can be found on <a href="https://github.com/radareorg/radare2-extras/tree/master/r2wars">github</a> as well as a <a href="https://github.com/radareorg/r2wars">C# Implementation</a>.
+
+</pre>
+            <span id="what-is-radare2"></span>
+            <h2><a href="#what-is-radare2">What is radare2?</a></h2>
+            <pre>
+So let's start at the beginning with a question that might help some unfamiliar people understand all of this: what <a href="https://www.radare.org/">radare2</a> actually is. According to Wikipedia,
+
+</pre><pre class="code">"Radare2 is a complete framework for reverse-engineering and analyzing binaries; composed of a set of small utilities that can be used together or independently from the command line.</pre><pre>
+
+— <a href="https://en.wikipedia.org/wiki/Radare2">Wikipedia - Radare2</a>
+
+So we can use radare to take apart binaries, but using all the tools included, we can do much more as you'll see next.
+
+</pre><pre class="code">radare2 commands tend to be not so descriptive. If you don't know what a command does, you can append a question mark to the command to get some help. If you know what you want to do, but don't know the command that might be able to do what you want to do, you can use this alias to search through all radare commands interactively:</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">"alias r2help="r2 -qq -c '?*~...' --"</pre><pre>
+
+</pre>
+            <span id="what-is-r2wars"></span>
+            <h2><a href="#what-is-r2wars">What is r2wars?</a></h2>
+            <pre>
+Over the last few days, I’ve played around with r2wars, a competion typically between two programs that try to survive as much time as possible in a shared memory space. A python implementation of r2wars can be found on github as well as a C# implementation.
+
+There exist similar forms of games such as <a href="https://en.wikipedia.org/wiki/Core_War">Core Wars</a>, but what makes r2wars different is that the bots can be built in any architecture supported by ESIL <a href="https://radare.gitbooks.io/radare2book/content/disassembling/esil.html%22">Evaluable Strings Intermediate Language</a>, more than 2 programs can run at the same time and cyclic execution cost matters for the turns.
+
+</pre>
+            <span id="r2wars-in-detail"></span>
+            <h2><a href="#r2wars-in-detail">r2wars in detail</a></h2>
+            <pre>
+So here we go, some more in detail information on how stuff works:
+
+</pre>
+            <span id="bots"></span>
+            <h3><a href="#bots">Bots</a></h3>
+            <pre>
+The "players" are bots. A bot is a piece of assembly, written in either x86, arm or mips using either 8, 16, 32, or 64 bit registers. A super simple bot doing nothing but locating itself in memory might look like this: (x86, 32 bits)
+
+
+</pre><pre class="code">call me</pre><pre>
+</pre><pre class="code">me:</pre><pre>
+</pre><pre class="code">    pop eax</pre><pre>
+
+
+Assembling such a bot can be done using rasm2, the radare2 assembler and disassembler tool, as displayed in the listing below.
+
+
+</pre><pre class="code">; rasm2 -a x86 -b 32 -f bot.asm</pre><pre>
+</pre><pre class="code">e80000000058</pre><pre>
+
+
+The bot created can be inspected, by disassembling it again using rasm2 like below.
+
+
+</pre><pre class="code">; rasm2 -D e80000000058</pre><pre>
+</pre><pre class="code">0x00000000   5      e800000000  call 5</pre><pre>
+</pre><pre class="code">0x00000005   1              58  pop eax</pre><pre>
+
+
+</pre>
+            <span id="the-arena"></span>
+            <h3><a href="#the-arena">The Arena</a></h3>
+            <pre>
+So now that you know how to assemble a bot, let's define the "arena" or the shared memory space in which the bots will battle.
+
+</pre>
+            <span id="allocating-memory-for-the-arena"></span>
+            <h3><a href="#allocating-memory-for-the-arena">Allocating memory for the Arena</a></h3>
+            <pre>
+First of all, some memory should be allocated, for two bots, 1024 bytes should be enough. Memory can be allocated by radare as displayed below:
+
+
+</pre><pre class="code">; r2 malloc://1024</pre><pre>
+</pre><pre class="code"> -- How about Global Thermonuclear War?</pre><pre>
+</pre><pre class="code">[0x00000000]></pre><pre>
+
+
+By doing this, we allocated 1024 bytes of memory. This is the shared space in which the bots will battle each other.
+
+
+</pre><pre class="code">[0x00000000]> o</pre><pre>
+</pre><pre class="code"> 3 * rwx 0x00000400 malloc://1024</pre><pre>
+
+
+As you can see, the memory allocated is mapped rwx and consists of 1024 (0x400) bytes.
+
+</pre>
+            <span id="setting-up-the-arena-and-esil"></span>
+            <h3><a href="#setting-up-the-arena-and-esil">Setting up the arena and ESIL</a></h3>
+            <pre>
+The next step to building the arena is to define the architecture and the size of the registers that should be used:
+
+
+</pre><pre class="code">[0x00000000]> e asm.arch = x86</pre><pre>
+</pre><pre class="code">[0x00000000]> e asm.bits = 32</pre><pre>
+
+
+The next step is to initialize the ESIL VM state as well as the VM stack. All radare2 command for editing the ESIL VM are prefixed with ae.
+
+
+</pre><pre class="code">[0x00000000]> aei 	# initialize ESIL VM state</pre><pre>
+</pre><pre class="code">[0x00000000]> aeim 	# initialize ESIL VM stack</pre><pre>
+
+
+</pre>
+            <span id="generating-initial-positions-for-the-bots"></span>
+            <h3><a href="#generating-initial-positions-for-the-bots">Generating initial positions for the bots</a></h3>
+            <pre>
+The arena is now set up, the next step is to insert the bots into the arena. Selecting where to insert the bots is kind of crucial, because the bots should not be inserted into each other and not to close to the end of the arena (0x400 in this case).
+
+In order to generate a random offsets where the bots can be placed, multiple addresses should be generated in the following way:
+
+
+</pre><pre class="code">genspace = [0x000, 0x3c0)</pre><pre>
+</pre><pre class="code">maxbotspace = [0x3c0, 0x400)</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">0x000                        0x340              0x400</pre><pre>
+</pre><pre class="code">+ -------------------------- + -----------------+</pre><pre>
+</pre><pre class="code">|          gen space         |  max bot space   |</pre><pre>
+
+
+The space in which the bots should be generated is defined as "gen space". This means we can generate a random address in the range [0, 0x340) in which we can (in theory) place the first bot.
+
+After placing the first bot at, for example, 0x40, the address space in which the address for the second bot is chosen from is shrunk to [0x40 + maxbotsize, 0x340] as displayed below.
+
+
+</pre><pre class="code">0x000      0x040             0x340              0x400</pre><pre>
+</pre><pre class="code">+ ---------+---------------- + -----------------+</pre><pre>
+</pre><pre class="code">| reserved |    gen space    |  max bot space   |</pre><pre>
+
+
+This might not work the first time, for example when using the default example of two bots in a memory space 1024 bytes big, each bot has (in theory) 512 bytes of memory to position itself in. Doing this for n bots in x bytes of memory results in n / x bytes per bot. This gets more problematic with a greater amount of bots in a limited memory space.
+
+</pre>
+            <span id="inserting-bots-into-the-arena"></span>
+            <h3><a href="#inserting-bots-into-the-arena">Inserting bots into the arena</a></h3>
+            <pre>
+Inserting the bot into the arena is as easy as writing it's assembled code into the shared memory space. The command below writes the assembled bot to the memory location 0x100.
+
+
+</pre><pre class="code">[0x00000000]> wx e80000000058 @ 0x100</pre><pre>
+
+
+</pre>
+            <span id="rounds"></span>
+            <h3><a href="#rounds">Rounds</a></h3>
+            <pre>
+r2wars is a round based game. This means that we need to store the state of each "player" (bot) each round, so that the others can execute their operation. When it's the players turn again, the state has to be restored, so that the player can continue execution as if nothing had happened. r2 can dump all ESIL registers using the aer command and can even print a command to set the registers, aerR.
+
+
+</pre><pre class="code">[0x00000000]> aerR</pre><pre>
+</pre><pre class="code">…</pre><pre>
+</pre><pre class="code">aer eax = 0x00000000</pre><pre>
+</pre><pre class="code">…</pre><pre>
+</pre><pre class="code">aer esp = 0x00000000</pre><pre>
+</pre><pre class="code">aer ebp = 0x00000000</pre><pre>
+</pre><pre class="code">aer eip = 0x00000000</pre><pre>
+</pre><pre class="code">…</pre><pre>
+
+
+By dumping these registers, we can easily restore the state of the bot, by replacing newline chars (\n) by semicolons (;) and executing the result with r2.
+
+</pre>
+            <span id="executing-an-instruction"></span>
+            <h2><a href="#executing-an-instruction">Executing an instruction</a></h2>
+            <pre>
+After having created an "arena" and inserted a bot into the arena, we can execute an instruction, but before doing so, we still need to set up the"Progam Counter" (PC) and the "Stack Pointer" (SP) for the bot. We can do this by using the aer command, that can be used to manipulate the ESIR registers:
+
+
+</pre><pre class="code">[0x00000000]> aer PC = 0x100</pre><pre>
+</pre><pre class="code">[0x00000000]> aer SP = SP + 0x100</pre><pre>
+
+
+After having done this, the VM is setup and the instruction pointer (Program Counter in ESIL slang) is pointing to the first instruction of our bot. In order to step into, we can use the aes command:
+
+
+</pre><pre class="code">[0x00000000]> aes</pre><pre>
+
+
+We haven't seen much of our bot yet, so let's look at what's happening. r2 can print the disassembly of the instructions at a specific offset using the pd command, so let's look at what is happening at the offset 0x100, that's where our bot is located.
+
+
+</pre><pre class="code">[0x00000105]> pd 0x4 @ 0x100</pre><pre>
+</pre><pre class="code">0x00000100  e800000000  call 0x105</pre><pre>
+</pre><pre class="code">;-- eip:</pre><pre>
+</pre><pre class="code">0x00000105  58        pop eax</pre><pre>
+</pre><pre class="code">0x00000106  0000      add byte [eax], al</pre><pre>
+</pre><pre class="code">0x00000108  0000      add byte [eax], al</pre><pre>
+
+
+What we've done above is we've printed the 0x4 instructions at the offset 0x100. As you can see, the instruction at 0x100 contains a call to 0x105, the pop eax instruction. Radare also displays the current location of the Instruction Pointer (eip) that is currently pointing to 0x105.
+
+</pre>
+            <span id="actually-playing-the-game"></span>
+            <h2><a href="#actually-playing-the-game">Actually playing the "game"</a></h2>
+            <pre>
+Well, We're at the point at which you should have understood the basics, if not, DO NOT PANIC! You can read the "original" description <a href="https://github.com/radareorg/r2wars">here</a>.
+
+If you have the desire to play around with this, you can clone my implementation from <a href="https://git.darknebu.la/r2wars/r2wars">here</a>. It is ready to go with two example bots that you can adjust to your needs.
+
+So from here on, you're on your own. Good luck.
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.161588s
+</body>
+</html>
+    <pre>

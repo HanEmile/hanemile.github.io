@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/ctf">ctf</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups">writeups</a>
+            <ul>
+                <li><a href="/ctf/hosted-events">hosted-events/</a></li>
+                <li><a href="/ctf/resources">resources/</a></li>
+                <li><a href="/ctf/teams">teams/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/pwnable.kr">pwnable.kr</a>
+            <ul>
+                <li><a href="/ctf/writeups/2019">2019/</a></li>
+                <li><a href="/ctf/writeups/2020">2020/</a></li>
+                <li><a href="/ctf/writeups/2021">2021/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/writeups/pwnable.kr/collision">collision</a>
+            <ul>
+                <li><a href="/ctf/writeups/pwnable.kr/bof">bof/</a></li>
+                <li><a href="/ctf/writeups/pwnable.kr/fd">fd/</a></li>
+                <li><a href="/ctf/writeups/pwnable.kr/flag">flag/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="collision"></span>
+            <h1><a href="#collision">collision</a></h1>
+            <pre>
+</pre><pre class="code">Daddy told me about cool MD5 hash collision today.</pre><pre>
+</pre><pre class="code">I wanna do something like that too!</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">ssh col@pwnable.kr -p2222 (pw:guest)</pre><pre>
+
+
+</pre>
+            <span id="what-is-given"></span>
+            <h2><a href="#what-is-given">What is given?</a></h2>
+            <pre>
+We get the binary col and the source it's compiled from col.c:
+
+
+</pre><pre class="code">#include &ltstdio.h></pre><pre>
+</pre><pre class="code">#include &ltstring.h></pre><pre>
+</pre><pre class="code">unsigned long hashcode = 0x21DD09EC;</pre><pre>
+</pre><pre class="code">unsigned long check_password(const char* p){</pre><pre>
+</pre><pre class="code">    int* ip = (int*)p;</pre><pre>
+</pre><pre class="code">    int i;</pre><pre>
+</pre><pre class="code">    int res=0;</pre><pre>
+</pre><pre class="code">    for(i=0; i&lt5; i++){</pre><pre>
+</pre><pre class="code">        res += ip[i];</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">    return res;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">int main(int argc, char* argv[]){</pre><pre>
+</pre><pre class="code">    if(argc&lt2){</pre><pre>
+</pre><pre class="code">        printf("usage : %s [passcode]\n", argv[0]);</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">    if(strlen(argv[1]) != 20){</pre><pre>
+</pre><pre class="code">        printf("passcode length should be 20 bytes\n");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    if(hashcode == check_password( argv[1] )){</pre><pre>
+</pre><pre class="code">        system("/bin/cat flag");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">    else</pre><pre>
+</pre><pre class="code">        printf("wrong passcode.\n");</pre><pre>
+</pre><pre class="code">    return 0;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+
+</pre>
+            <span id="understanding-the-source"></span>
+            <h2><a href="#understanding-the-source">Understanding the source</a></h2>
+            <pre>
+Let's go through this again line by line:
+
+
+</pre><pre class="code">#include &ltstdio.h></pre><pre>
+</pre><pre class="code">#include &ltstring.h></pre><pre>
+
+
+Some includes for libraries needed.
+
+
+</pre><pre class="code">unsigned long hashcode = 0x21DD09EC;</pre><pre>
+
+
+Some kind of variable, we don't know what it does at this point.
+
+
+</pre>
+            <span id="check-password-function"></span>
+            <h3><a href="#check-password-function">check password function</a></h3>
+            <pre>
+
+</pre><pre class="code">unsigned long check_password(const char* p){</pre><pre>
+</pre><pre class="code">    int* ip = (int*)p;</pre><pre>
+</pre><pre class="code">    int i;</pre><pre>
+</pre><pre class="code">    int res=0;</pre><pre>
+</pre><pre class="code">    for(i=0; i&lt5; i++){</pre><pre>
+</pre><pre class="code">        res += ip[i];</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+</pre><pre class="code">    return res;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+
+A "check_password" function, taking in a char* p (which is c slang for "String") returning some kind of result which seems to be an integer.
+
+Let's look at this a bit closer:
+
+
+</pre><pre class="code">unsigned long check_password(const char* p){</pre><pre>
+
+
+This is the function signature, simply defining the name of the function (check_password), what arguments it expects (const char* p) and what it may return (unsigned long).
+
+
+</pre><pre class="code">  int* ip = (int*)p;</pre><pre>
+
+
+This takes the given string input and casts it to an array of pointers, with the first pointer being the given value.
+
+
+</pre><pre class="code">  int i;</pre><pre>
+</pre><pre class="code">  int res=0;</pre><pre>
+
+
+Two variables are defined, i for specifying the index in the upcoming loop (more on that in the next block) and res is initialized as zero, we'll probably going to store the result of the operation here.
+
+
+</pre><pre class="code">  for(i=0; i&lt5; i++){</pre><pre>
+</pre><pre class="code">      res += ip[i];</pre><pre>
+</pre><pre class="code">  }</pre><pre>
+
+
+Now this is the actual operation, what happens here, is that for every pointer in the array of pointers (so every four bytes), the value get's added to the result. As the password consists of 20 chars, we add do this five times, once for each 4 byte block. For example, imagine you'd enter a password consisting of 20 * 'a': (AAAAAAAAAAAAAAAAAAAA). What happens is that the input is defined as an array of pointers with each entry being four bytes:
+
+
+</pre><pre class="code">[AAAA, AAAA, AAAA, AAAA, AAAA]</pre><pre>
+
+
+Each entry in this array is converted to it's hex representation:
+
+
+</pre><pre class="code">[0x41414141, 0x41414141, 0x41414141, 0x41414141, 0x41414141]</pre><pre>
+
+
+which as decimal results in:
+
+
+</pre><pre class="code">[1094795585, 1094795585, 1094795585, 1094795585, 1094795585]</pre><pre>
+
+
+Which when added together results in:
+
+
+</pre><pre class="code">5473977925</pre><pre>
+
+
+</pre><pre class="code">  return res;</pre><pre>
+
+
+And at last, we return the result.
+
+
+</pre>
+            <span id="main-function"></span>
+            <h3><a href="#main-function">main function</a></h3>
+            <pre>
+
+Now, after looking at the password function, let's look at the main function:
+
+
+</pre><pre class="code">int main(int argc, char* argv[]){</pre><pre>
+
+
+The main function signature, nothing special, simply takes the argument count and an array of arguments.
+
+
+</pre><pre class="code">    if(argc&lt2){</pre><pre>
+</pre><pre class="code">        printf("usage : %s [passcode]\n", argv[0]);</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+
+
+This simply checks if the correct amount of arguments is given.
+
+
+</pre><pre class="code">    if(strlen(argv[1]) != 20){</pre><pre>
+</pre><pre class="code">        printf("passcode length should be 20 bytes\n");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+
+
+The length of the password ist checked, it is supposed to be 40 chars long.
+
+
+</pre><pre class="code">    if(hashcode == check_password( argv[1] )){</pre><pre>
+</pre><pre class="code">        system("/bin/cat flag");</pre><pre>
+</pre><pre class="code">        return 0;</pre><pre>
+</pre><pre class="code">    }</pre><pre>
+
+
+The hashcode (defined at the top (0x21DD09EC)) is used to check if the password is correct. This means that we need to enter a password so that the check_password function described above returns this value.
+
+
+</pre><pre class="code">    else</pre><pre>
+</pre><pre class="code">        printf("wrong passcode.\n");</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">    return 0;</pre><pre>
+</pre><pre class="code">}</pre><pre>
+
+
+</pre>
+            <span id="exploiting"></span>
+            <h2><a href="#exploiting">Exploiting</a></h2>
+            <pre>
+So, we need to generate an input that when added results in 0x21DD09EC == 568134124. We can try doing this as follows:
+
+Divide the String by five:
+
+
+</pre><pre class="code">>>> 0x21DD09EC / 5</pre><pre>
+</pre><pre class="code">113626824.8</pre><pre>
+
+
+This doesn't result in an even value, which is bad, but we can try dividing it by five and finding that what is over using the % (modulo) operator:
+
+
+</pre><pre class="code">>>> 0x21DD09EC // 5</pre><pre>
+</pre><pre class="code">113626824</pre><pre>
+</pre><pre class="code">>>> 0x21DD09EC % 5</pre><pre>
+</pre><pre class="code">4</pre><pre>
+
+
+With this knowledge, we know that we need four 113626824 blocks and one block that is 113626824 + 4 = 113626828.
+
+We can check out calculation by adding them, reversing the process of generating the value:
+
+
+</pre><pre class="code">>>> hex((113626824 * 4) + 113626828)</pre><pre>
+</pre><pre class="code">'0x21dd09ec'</pre><pre>
+
+
+This is correct! This means that what is left to do, is to convert the values to their hex representation and input them as the password:
+
+
+</pre><pre class="code">>>> hex(113626824)</pre><pre>
+</pre><pre class="code">'0x6c5cec8'</pre><pre>
+</pre><pre class="code">>>> hex(113626828)</pre><pre>
+</pre><pre class="code">'0x6c5cecc'</pre><pre>
+
+
+Now inserting such hex values isn't really fun, but we can use python to help doing this. It is important to flip the bytes, and reverse the string direction, as this is stored using the little endian format, meaning the the least signigicant bits().
+
+
+</pre><pre class="code">>>> print("\xc8\xce\xc5\x06" * 4 + "\xcc\xce\xc5\x06")</pre><pre>
+</pre><pre class="code">����������</pre><pre>
+
+
+Using this, we can insert it into the first argument of the binary to get the result:
+
+
+</pre><pre class="code">col@pwnable:~$ ./col `python -c 'print("\xc8\xce\xc5\x06" * 4 + "\xcc\xce\xc5\x06")'`</pre><pre>
+</pre><pre class="code">daddy! I just managed to create a hash collision :)</pre><pre>
+
+
+(Yes, I'm using python2 here, doing this with python3 is kind of weird)
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.871513s
+</body>
+</html>
+    <pre>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/files">files</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/files/pwn-setup">pwn-setup</a>
+            <ul>
+                <li><a href="/files/ctf_beginner_pres">ctf_beginner_pres/</a></li>
+                <li><a href="/files/postgres-docker">postgres-docker/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="pwn-setup"></span>
+            <h1><a href="#pwn-setup">pwn setup</a></h1>
+            <pre>
+My setup for solving pwn challenges in CTFs consists of a docker image that is handled using some aliases that are described further down.
+
+- <a href="Dockerfile">Dockerfile</a>
+- <a href="aliases.txt">aliases.txt</a>
+- <a href="aliases_fish.txt">aliases_fish.txt</a>
+
+
+</pre><pre class="code">docker build . -t ctf:ubuntu20.10</pre><pre>
+
+
+</pre>
+            <span id="dockerfile"></span>
+            <h2><a href="#dockerfile">Dockerfile</a></h2>
+            <pre>
+
+</pre><pre class="code">FROM ubuntu:20.10</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">ENV DEBIAN_FRONTEND=noninteractive</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">RUN dpkg --add-architecture i386</pre><pre>
+</pre><pre class="code">RUN apt update -y</pre><pre>
+</pre><pre class="code">RUN apt upgrade -y</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">RUN apt install -y build-essential cmake curl dnsutils gcc gcc-multilib gdb gdb-multiarch git golang jq libc6:i386 libdb-dev libffi-dev libncurses5:i386 libpcre3-dev libssl-dev libstdc++6:i386 libxaw7-dev libxt-dev ltrace make netcat net-tools pkg-config procps python python3 python3-dev python3-pip radare2 rubygems sqlmap strace tmux upx vim wget</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">RUN pip install capstone requests r2pipe huepy</pre><pre>
+</pre><pre class="code">RUN pip3 install pwntools keystone-engine unicorn capstone ropper angr</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">RUN r2pm update</pre><pre>
+</pre><pre class="code">RUN mkdir tools && cd tools && \</pre><pre>
+</pre><pre class="code">git clone https://github.com/JonathanSalwan/ROPgadget && \</pre><pre>
+</pre><pre class="code">git clone https://github.com/radare/radare2 && cd radare2 && sys/install.sh && \</pre><pre>
+</pre><pre class="code">cd .. && git clone https://github.com/pwndbg/pwndbg && cd pwndbg && ./setup.sh</pre><pre>
+
+
+</pre>
+            <span id="bash-aliases"></span>
+            <h2><a href="#bash-aliases">bash aliases</a></h2>
+            <pre>
+These are the bash alieses you can use to create the containers.
+
+
+</pre><pre class="code"># aliases.txt</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">alias pmk='function _dockermk(){docker run -v "$(pwd):/pwn" \</pre><pre>
+</pre><pre class="code">--cap-add=SYS_PTRACE --security-opt seccomp=unconfined -d --name $1 -i \</pre><pre>
+</pre><pre class="code">ctf:ubuntu20.10;};_dockermk'</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">alias pcd='function _dockercd(){docker exec -it --workdir /pwn $1 bash;};_dockercd'</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">alias prm='function _dockerrm(){docker stop $1;};_dockerrm'</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">alias pls='function _dockerls(){docker ps -a -f ancestor=ctf:ubuntu20.10 \</pre><pre>
+</pre><pre class="code">--format "{{.Names}}";};_dockerls'</pre><pre>
+
+
+</pre>
+            <span id="fish-functions"></span>
+            <h2><a href="#fish-functions">fish functions</a></h2>
+            <pre>
+These are the fish aliases you can use to create the containers.
+
+
+</pre><pre class="code"># aliases_fish.txt</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">function pmk --argument name</pre><pre>
+</pre><pre class="code">    docker run --rm -v (pwd)':/pwn' --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -d --name $name -i ctf:ubuntu20.10</pre><pre>
+</pre><pre class="code">end</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">function pcd --argument name</pre><pre>
+</pre><pre class="code">    docker exec -it -e TERM=xterm-256color --workdir /pwn $name bash</pre><pre>
+</pre><pre class="code">end</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">function prm --argument name</pre><pre>
+</pre><pre class="code">    docker stop $name</pre><pre>
+</pre><pre class="code">end</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">function pls</pre><pre>
+</pre><pre class="code">    docker ps -a -f ancestor=ctf:ubuntu20.10 --format '{{.Names}}'</pre><pre>
+</pre><pre class="code">end</pre><pre>
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.173043s
+</body>
+</html>
+    <pre>

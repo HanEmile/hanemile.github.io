@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/blog">blog</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2021">2021</a>
+            <ul>
+                <li><a href="/blog/2020">2020/</a></li>
+                <li><a href="/blog/2022">2022/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/blog/2021/02-05-turing-bot">02-05-turing-bot</a>
+            <ul>
+                <li><a href="/blog/2021/02-04-menger-sponge">02-04-menger-sponge/</a></li>
+                <li><a href="/blog/2021/06-14-personal-websites">06-14-personal-websites/</a></li>
+                <li><a href="/blog/2021/07-12-monorepo">07-12-monorepo/</a></li>
+                <li><a href="/blog/2021/12-26-interpaleki">12-26-interpaleki/</a></li>
+                <li><a href="/blog/2021/12-26-relaunch">12-26-relaunch/</a></li>
+                <li><a href="/blog/2021/12-30-relaunch-thoughts">12-30-relaunch-thoughts/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="turing-bot"></span>
+            <h1><a href="#turing-bot">Turing bot</a></h1>
+            <pre>
+<a href="#turing-bot">Turing bot</a>
+    <a href="#data">Data</a>
+    <a href="#removing-the-bot">Removing the bot</a>
+    <a href="#learnings">Learnings</a>
+    <a href="#reactions">Reactions</a>
+    <a href="#code">Code</a>
+
+I've played around a bit with Markov Chains and have found them to be a fun and simple way to generate sentences from existing data. A problem I've had was to actually aquire such data for generating the markov chain. I've used The Entire Bee Movie Script and the updated version of the Gutenberg dataset as an input, but none of there really satisfied me. The sentences end up just being weird and don't really make sense in context.
+
+</pre>
+            <span id="data"></span>
+            <h2><a href="#data">Data</a></h2>
+            <pre>
+That was the moment I realized I needed data, lots of data and it hat to be somehow realistic. The end goal was to build a chatbot you could chat with and get okish responses. Obtaining data is hard, due to throwing all moral understanding overboard being bad habit. The data we need ist the data produced in private chats, so I tried inserting my telegram history into the markov chain, but the result was kind of underwhelming. I didn't really find the right settings for the sentences to be appropriate and it just isn't enough data.
+
+</pre>
+            <span id="removing-the-bot"></span>
+            <h2><a href="#removing-the-bot">Removing the bot</a></h2>
+            <pre>
+Then I had the idea of building a bot people could talk to and use that conversation as data for the markov chain. Problem: this presupposes that such a bot already exists: a contradiction. We can solve this problem by completly eliminating the bot:
+
+I built a small bot that just functions as a gateway connecting two people. The people think that they are talking to a bot, but in the end, they're talking to each other. This led to really interesting conversations and I kind of felt as if I was watching a turing test (I was, but it was kind of surreal).
+
+</pre>
+            <span id="learnings"></span>
+            <h2><a href="#learnings">Learnings</a></h2>
+            <pre>
+There were more learnings than "writing a telegram bot is fairly easy": Watching how people talk with each other and unknowingly try to test the limits of bots is super interesting and entertaining at the same time.
+
+</pre>
+            <span id="reactions"></span>
+            <h2><a href="#reactions">Reactions</a></h2>
+            <pre>
+</pre><pre class="code">"Ja und bin überrascht wie gut. Mache hauptsächlich Definitionsfragen und kann mir vorstellen, dass da paar klügere Search-Engine-Queries hinterhängen, aber ich konnte auf Englisch wechseln".</pre><pre>
+
+</pre><pre class="code">"Yes and I'm surprised how good. I'm mostly asking definition questions and can imagine there are some smarter search engine queries in the backend, but I was able to switch to English"</pre><pre>
+
+</pre>
+            <span id="code"></span>
+            <h2><a href="#code">Code</a></h2>
+            <pre>
+The complete code is a bit more than 100 lines of pure code, I've added a lot of comments for making it easier to understand, even for beginners.
+
+Beware: this code was written down in a matter of minutes, there are a lot of things wrong with it (such as everything being in the main function), but it works for a minimal prototype which was the goal of all of this.
+
+
+</pre><pre class="code">package main</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">import (</pre><pre>
+</pre><pre class="code">	"fmt"</pre><pre>
+</pre><pre class="code">	"log"</pre><pre>
+</pre><pre class="code">	"os"</pre><pre>
+</pre><pre class="code">	"time"</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"</pre><pre>
+</pre><pre class="code">)</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">// Connections is a map storing connections between people</pre><pre>
+</pre><pre class="code">var Connections map[int64]int64</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">// ChatIDPerson maps a chatID to a username</pre><pre>
+</pre><pre class="code">var ChatIDPerson map[int64]string</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">func main() {</pre><pre>
+</pre><pre class="code">	// define the bot</pre><pre>
+</pre><pre class="code">	bot, err := tgbotapi.NewBotAPI("REDACTED")</pre><pre>
+</pre><pre class="code">	if err != nil {</pre><pre>
+</pre><pre class="code">		log.Panic(err)</pre><pre>
+</pre><pre class="code">		return</pre><pre>
+</pre><pre class="code">	}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">	u := tgbotapi.NewUpdate(0)</pre><pre>
+</pre><pre class="code">	u.Timeout = 60</pre><pre>
+</pre><pre class="code">	updates, err := bot.GetUpdatesChan(u)</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">	// initialize the connections and the chatidperson map</pre><pre>
+</pre><pre class="code">	Connections = make(map[int64]int64)</pre><pre>
+</pre><pre class="code">	ChatIDPerson = make(map[int64]string)</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">	// insert the "admin" chatid for recieving notifications when the bot</pre><pre>
+</pre><pre class="code">	// starts and getting all the messages</pre><pre>
+</pre><pre class="code">	var emile int64 = "REDACTED"</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">	// create a file to log the messages for inserting them into the markov</pre><pre>
+</pre><pre class="code">	// chain</pre><pre>
+</pre><pre class="code">	f, err := os.Create(fmt.Sprintf("%d.txt", time.Now().UnixNano()))</pre><pre>
+</pre><pre class="code">	if err != nil {</pre><pre>
+</pre><pre class="code">		log.Panic(err)</pre><pre>
+</pre><pre class="code">		return</pre><pre>
+</pre><pre class="code">	}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">	// Intialilize known connections here:</pre><pre>
+</pre><pre class="code">	// var alice int64 = 123456</pre><pre>
+</pre><pre class="code">	// var bob int64 = 654321</pre><pre>
+</pre><pre class="code">	// Connections[alice] = bob</pre><pre>
+</pre><pre class="code">	// Connections[bob] = alice</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">	// send the "admin" a message that the bot has started</pre><pre>
+</pre><pre class="code">	msg := tgbotapi.NewMessage(emile, "Bot started")</pre><pre>
+</pre><pre class="code">	bot.Send(msg)</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">	// print all existing connections and send them to the admin</pre><pre>
+</pre><pre class="code">	for sender, reciever := range Connections {</pre><pre>
+</pre><pre class="code">		connection := fmt.Sprintf("%s: %s\n", ChatIDPerson[sender], ChatIDPerson[reciever])</pre><pre>
+</pre><pre class="code">		fmt.Printf("%s", connection)</pre><pre>
+</pre><pre class="code">		msg1 := tgbotapi.NewMessage(emile, connection)</pre><pre>
+</pre><pre class="code">		bot.Send(msg1)</pre><pre>
+</pre><pre class="code">	}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">	// this is the "main" loop, we can handle message updates (aka. incomming</pre><pre>
+</pre><pre class="code">	// messages) in here</pre><pre>
+</pre><pre class="code">	for update := range updates {</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">		// ignore any non-Message Updates</pre><pre>
+</pre><pre class="code">		if update.Message == nil {</pre><pre>
+</pre><pre class="code">			continue</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// define shorthands for the chat id the current message is from and</pre><pre>
+</pre><pre class="code">		// the message text</pre><pre>
+</pre><pre class="code">		chatID := update.Message.Chat.ID</pre><pre>
+</pre><pre class="code">		message := update.Message.Text</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// don't handle anything except for text messages</pre><pre>
+</pre><pre class="code">		if update.Message.Audio != nil || update.Message.Document != nil || update.Message.Photo != nil || update.Message.Sticker != nil || update.Message.Video != nil || update.Message.Voice != nil || update.Message.Contact != nil || update.Message.Location != nil || update.Message.Sticker != nil {</pre><pre>
+</pre><pre class="code">			msg1 := tgbotapi.NewMessage(chatID, "ERROR")</pre><pre>
+</pre><pre class="code">			bot.Send(msg1)</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// if the user enters /start, tell them to enter /connect to get connected to another user </pre><pre>
+</pre><pre class="code">		if message == "/start" {</pre><pre>
+</pre><pre class="code">			msg1 := tgbotapi.NewMessage(chatID, "Enter /connect to connect to a bot to talk to.")</pre><pre>
+</pre><pre class="code">			bot.Send(msg1)</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// if the users enters /connect, try establishing a connection with</pre><pre>
+</pre><pre class="code">		// another user. If no other user is available, wait until another</pre><pre>
+</pre><pre class="code">		// user enters /connect to get connected</pre><pre>
+</pre><pre class="code">		if message == "/connect" {</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">			// null the own connection, this deletes the connection if the user</pre><pre>
+</pre><pre class="code">			// is already connected to another user</pre><pre>
+</pre><pre class="code">			partnerID := Connections[chatID]</pre><pre>
+</pre><pre class="code">			if Connections[chatID] != 0 {</pre><pre>
+</pre><pre class="code">				Connections[partnerID] = 0</pre><pre>
+</pre><pre class="code">				msg := tgbotapi.NewMessage(partnerID, "You have been disconnected, enter /connect to talk with another bot.")</pre><pre>
+</pre><pre class="code">				bot.Send(msg)</pre><pre>
+</pre><pre class="code">			}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">			// this loop iterates over all connections searching for a person</pre><pre>
+</pre><pre class="code">			// that currently has not connection partner, </pre><pre>
+</pre><pre class="code">			var randomChatID int64 = 0</pre><pre>
+</pre><pre class="code">			for a, b := range Connections {</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">				// make sure that people don't get connected with themselves or</pre><pre>
+</pre><pre class="code">				// their previous connection partner</pre><pre>
+</pre><pre class="code">				if a != chatID && a != partnerID && b == 0 {</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">					// if a person is found, inform the user and the connection</pre><pre>
+</pre><pre class="code">					// partner that they've been connected</pre><pre>
+</pre><pre class="code">					randomChatID = a</pre><pre>
+</pre><pre class="code">					msg1 := tgbotapi.NewMessage(randomChatID, "You are now connected to a bot, write something!")</pre><pre>
+</pre><pre class="code">					bot.Send(msg1)</pre><pre>
+</pre><pre class="code">					msg2 := tgbotapi.NewMessage(chatID, "You are now connected to a bot, write something!")</pre><pre>
+</pre><pre class="code">					bot.Send(msg2)</pre><pre>
+</pre><pre class="code">				}</pre><pre>
+</pre><pre class="code">			}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">			// if no person was found, the user has to wait until another</pre><pre>
+</pre><pre class="code">			// person enters /connect, inform them that this might take a while</pre><pre>
+</pre><pre class="code">			if randomChatID == 0 {</pre><pre>
+</pre><pre class="code">				msg := tgbotapi.NewMessage(chatID, "I'll notify you as soon as I've got a bot that can talk to you *warteschlangenmusik*.")</pre><pre>
+</pre><pre class="code">				bot.Send(msg)</pre><pre>
+</pre><pre class="code">			}</pre><pre>
+</pre><pre class="code"></pre><pre>
+</pre><pre class="code">			// establish the connection between the user and the connection</pre><pre>
+</pre><pre class="code">			// partner</pre><pre>
+</pre><pre class="code">			Connect(chatID, randomChatID)</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// if the user has no connection partner and doesn't enter /connect,</pre><pre>
+</pre><pre class="code">		// inform them that they can enter /connect in order to be connected</pre><pre>
+</pre><pre class="code">		if Connections[chatID] == 0 && message != "/connect" {</pre><pre>
+</pre><pre class="code">			msg1 := tgbotapi.NewMessage(chatID, "Enter /connect to connect to a bot to talk to.")</pre><pre>
+</pre><pre class="code">			bot.Send(msg1)</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// if the user has got a connection partner, send their messages there</pre><pre>
+</pre><pre class="code">		if Connections[chatID] != 0 && message[0] != '/' {</pre><pre>
+</pre><pre class="code">			msg := tgbotapi.NewMessage(Connections[chatID], message)</pre><pre>
+</pre><pre class="code">			bot.Send(msg)</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// also send all messages to the admin, this ist for "moderation", as</pre><pre>
+</pre><pre class="code">		// we don't want this to end bad, for more information on the</pre><pre>
+</pre><pre class="code">		// problems arising with this, see the "problems" section in the</pre><pre>
+</pre><pre class="code">		// blogpost below</pre><pre>
+</pre><pre class="code">		formattedMessage := fmt.Sprintf("&lt%s> %s", update.Message.From.FirstName, message)</pre><pre>
+</pre><pre class="code">		msg := tgbotapi.NewMessage(emile, formattedMessage)</pre><pre>
+</pre><pre class="code">		bot.Send(msg)</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// add the firstname of the person to the mapping from chatid to name</pre><pre>
+</pre><pre class="code">		ChatIDPerson[chatID] = update.Message.From.FirstName</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// log the messages sent</pre><pre>
+</pre><pre class="code">		log.Printf("&lt%d> [%s]→[%s] %s", update.Message.Chat.ID, update.Message.From.FirstName, ChatIDPerson[Connections[chatID]], update.Message.Text)</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// print all connections</pre><pre>
+</pre><pre class="code">		for sender, reciever := range Connections {</pre><pre>
+</pre><pre class="code">			fmt.Printf("%s: %s\n", ChatIDPerson[sender], ChatIDPerson[reciever])</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">		// write the messages to the logfile</pre><pre>
+</pre><pre class="code">		_, err := f.WriteString(message + "\n")</pre><pre>
+</pre><pre class="code">		if err != nil {</pre><pre>
+</pre><pre class="code">			log.Panic(err)</pre><pre>
+</pre><pre class="code">			return</pre><pre>
+</pre><pre class="code">		}</pre><pre>
+</pre><pre class="code">	}</pre><pre>
+</pre><pre class="code">	f.Close()</pre><pre>
+</pre><pre class="code">}</pre><pre>
+</pre><pre class="code"> </pre><pre>
+</pre><pre class="code">// Connect a chat to another</pre><pre>
+</pre><pre class="code">func Connect(chatID int64, otherChatID int64) {</pre><pre>
+</pre><pre class="code">	Connections[chatID] = otherChatID</pre><pre>
+</pre><pre class="code">	Connections[otherChatID] = chatID</pre><pre>
+</pre><pre class="code">}</pre><pre>
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.159118s
+</body>
+</html>
+    <pre>

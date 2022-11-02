@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/events">events</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/events/2022">2022</a>
+            <ul>
+                <li><a href="/events/2000">2000/</a></li>
+                <li><a href="/events/2001">2001/</a></li>
+                <li><a href="/events/2002">2002/</a></li>
+                <li><a href="/events/2003">2003/</a></li>
+                <li><a href="/events/2004">2004/</a></li>
+                <li><a href="/events/2005">2005/</a></li>
+                <li><a href="/events/2006">2006/</a></li>
+                <li><a href="/events/2007">2007/</a></li>
+                <li><a href="/events/2008">2008/</a></li>
+                <li><a href="/events/2009">2009/</a></li>
+                <li><a href="/events/2010">2010/</a></li>
+                <li><a href="/events/2011">2011/</a></li>
+                <li><a href="/events/2012">2012/</a></li>
+                <li><a href="/events/2013">2013/</a></li>
+                <li><a href="/events/2014">2014/</a></li>
+                <li><a href="/events/2015">2015/</a></li>
+                <li><a href="/events/2016">2016/</a></li>
+                <li><a href="/events/2017">2017/</a></li>
+                <li><a href="/events/2018">2018/</a></li>
+                <li><a href="/events/2019">2019/</a></li>
+                <li><a href="/events/2020">2020/</a></li>
+                <li><a href="/events/2021">2021/</a></li>
+                <li><a href="/events/2022-plan">2022-plan/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/events/2022/01-ski-fiss-ladis">01-ski-fiss-ladis</a>
+            <ul>
+                <li><a href="/events/2022/03-04_bouldern_superblock">03-04_bouldern_superblock/</a></li>
+                <li><a href="/events/2022/03-06_alles_ev_foundation">03-06_alles_ev_foundation/</a></li>
+                <li><a href="/events/2022/04-03_kart">04-03_kart/</a></li>
+                <li><a href="/events/2022/04-27_sushi_maki_maki_cologne">04-27_sushi_maki_maki_cologne/</a></li>
+                <li><a href="/events/2022/04-28_bountyconedu_madrid">04-28_bountyconedu_madrid/</a></li>
+                <li><a href="/events/2022/05-19-gpn20-karlsruhe">05-19-gpn20-karlsruhe/</a></li>
+                <li><a href="/events/2022/05-20-heidelberg">05-20-heidelberg/</a></li>
+                <li><a href="/events/2022/05-28-chaotikum-lübeck">05-28-chaotikum-lübeck/</a></li>
+                <li><a href="/events/2022/05-28-jufo-bundeswettbewerb-lübeck">05-28-jufo-bundeswettbewerb-lübeck/</a></li>
+                <li><a href="/events/2022/06-02-emf-camp-eastnor">06-02-emf-camp-eastnor/</a></li>
+                <li><a href="/events/2022/06-11-docklands-münster">06-11-docklands-münster/</a></li>
+                <li><a href="/events/2022/06-11-warpzone-münster">06-11-warpzone-münster/</a></li>
+                <li><a href="/events/2022/06-29-troopers-heidelberg">06-29-troopers-heidelberg/</a></li>
+                <li><a href="/events/2022/07-22-mch-zeewolde">07-22-mch-zeewolde/</a></li>
+                <li><a href="/events/2022/08-01-windsurf-portugal-viana-do-castelo">08-01-windsurf-portugal-viana-do-castelo/</a></li>
+                <li><a href="/events/2022/08-08-blackhat-las-vegas">08-08-blackhat-las-vegas/</a></li>
+                <li><a href="/events/2022/08-11-defcon-30-las-vegas">08-11-defcon-30-las-vegas/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="2022-01-ski-fiss-ladis"></span>
+            <h1><a href="#2022-01-ski-fiss-ladis">2022-01 Ski Fiss Ladis</a></h1>
+            <pre>
+<a href="#2022-01-ski-fiss-ladis">2022-01 Ski Fiss Ladis</a>
+    <a href="#day-1-2022-01-02-sun">Day 1 (2022-01-02 (sun))</a>
+    <a href="#day-2-2022-01-03-mon">Day 2 (2022-01-03 (mon))</a>
+    <a href="#day-3-2022-01-04-tue">Day 3 (2022-01-04 (tue))</a>
+    <a href="#day-4-2022-01-05-wed">Day 4 (2022-01-05 (wed))</a>
+    <a href="#day-5-2022-01-06-thu">Day 5 (2022-01-06 (thu))</a>
+    <a href="#day-6-2022-01-07-fri">Day 6 (2022-01-07 (fri))</a>
+
+total
+vertical  down: 61.445km  up: 60.759km      total: 122.205km 
+distance  down: 334.6km   up: 222.8km       total: 557.4km
+
+</pre>
+            <span id="day-1-2022-01-02-sun"></span>
+            <h2><a href="#day-1-2022-01-02-sun">Day 1 (2022-01-02 (sun))</a></h2>
+            <pre>
+<img loading="lazy" src="./IMG_20220102_084023_mini.jpg">
+<a href="./IMG_20220102_084023.jpg">full-res-image (8 MB)</a>
+
+speed     min: 0.0 km/h   max: 101.1 km/h   avg: 11.5 km/h
+altitude  min: 1264m      max: 2869m        avg: 2126m
+vertical  down: 8204m     up: 7838m         total: 16043m
+distance  down: 44.2km    up: 28.0km        total: 72.2km
+misc.     runs: 19        min slope: 12.1°  max slope: 38°
+
+<details>
+Super nice weather, although it got really warm in the afternoon (8°C).
+</details>
+<a href="./sportler_track_1-2-22_09-588262521426935870635.gpx">gpx track</a>
+
+</pre>
+            <span id="day-2-2022-01-03-mon"></span>
+            <h2><a href="#day-2-2022-01-03-mon">Day 2 (2022-01-03 (mon))</a></h2>
+            <pre>
+<img loading="lazy" src="./IMG_20220103_120424_mini.jpg">
+<a href="./IMG_20220103_120424.jpg">full-res-image (1.9 MB)</a>
+
+speed     min: 0.0 km/h   max: 91.4 km/h    avg: 11.8 km/h
+altitude  min: 1269m      max: 2878m        avg: 2028m
+vertical  down: 8133m     up: 8152m         total: 16285m
+distance  down: 47.2km    up: 31.0km        total: 78.0km
+misc.     runs: 20        min slope: 8.4°   max slope: 16.8°
+
+<details>
+Nice in the morning, some snow and clouds around the mid of the day and icy conditions at the end.
+</details>
+<a href="./sportler_track_1-3-22_09-202728502098809034503.gpx">gpx track</a>
+
+</pre>
+            <span id="day-3-2022-01-04-tue"></span>
+            <h2><a href="#day-3-2022-01-04-tue">Day 3 (2022-01-04 (tue))</a></h2>
+            <pre>
+<img loading="lazy" src="./IMG_20220104_123448_mini.jpg">
+<a href="./IMG_20220104_123448.jpg">full-res-image (2.7 MB)</a>
+
+speed     min: 0.0 km/h   max: 86.9 km/h    avg: 12.5 km/h
+altitude  min: 1275m      max: 2862m        avg: 2075m
+vertical  down: 9051m     up: 9034m         total: 18085m
+distance  down: 52.0km    up: 35.1km        total: 87.1km
+misc.     runs: 21        min slope: 10.7°  max slope: 26.0°
+
+<details>
+Really full in the morning, got better in the afternoon. Weather wise ok, got kind of dark in the afternoon.
+</details>
+<a href="./sportler_track_1-4-22_09-217234164266262352192.gpx">gpx track</a>
+
+</pre>
+            <span id="day-4-2022-01-05-wed"></span>
+            <h2><a href="#day-4-2022-01-05-wed">Day 4 (2022-01-05 (wed))</a></h2>
+            <pre>
+<img loading="lazy" src="./IMG_20220105_080027_mini.jpg">
+<a href="./IMG_20220105_080027.jpg">full-res-image (3.8 MB)</a>
+
+speed     min: 0.0 km/h   max: 75.0 km/h    avg: 14.2 km/h
+altitude  min: 1274m      max: 2549m        avg: 2070m
+vertical  down: 9958m     up: 9709m         total: 19667m
+distance  down: 55.0km    up: 36.8km        total: 91.8km
+misc.     runs: 22        min slope: 11.6°  max slope: 47.5°
+
+<details>
+New snow, resulting in really bad viewing conditions with perfect riding conditions. Stayed like that all day long.
+</details>
+<a href="./sportler_track_1-5-22_09-279105235435107604284.gpx">gpx track</a>
+
+</pre>
+            <span id="day-5-2022-01-06-thu"></span>
+            <h2><a href="#day-5-2022-01-06-thu">Day 5 (2022-01-06 (thu))</a></h2>
+            <pre>
+<img loading="lazy" src="./IMG_20220106_124442_mini.jpg">
+<a href="./IMG_20220106_124442.jpg">full-res-image (2.1 MB)</a>
+<img loading="lazy" src="./IMG_20220106_135737.jpg">
+<a href="./IMG_20220106_135737.jpg">full-res-image (2.2 MB)</a>
+
+speed     min: 0.0 km/h   max: 85.4 km/h    avg: 15.7 km/h
+altitude  min: 1258m      max: 2798m        avg: 2028m
+vertical  down: 12114m    up: 12238m        total: 24352m
+distance  down: 64.7km    up: 44.6km        total: 109.3km
+misc.     runs: 24        min slope: 9.1°   max slope: 13.4°
+
+<details>
+It got colder. The viewing conditions weren't ideal and yet the snow was great.
+</details>
+<a href="./sportler_track_1-6-22_09-066127438439762856324.gpx">gpx track</a>
+
+</pre>
+            <span id="day-6-2022-01-07-fri"></span>
+            <h2><a href="#day-6-2022-01-07-fri">Day 6 (2022-01-07 (fri))</a></h2>
+            <pre>
+<img loading="lazy" src="./IMG_20220107_125406_mini.jpg">
+<a href="./IMG_20220107_125406.jpg">full-res-image (2.3 MB)</a>
+
+speed     min: 0.0 km/h   max: 106.0 km/h   avg: 17.3 km/h
+altitude  min: 1333m      max: 2868m        avg: 2118m
+vertical  down: 13985m    up: 13788m        total: 27773m
+distance  down: 71.5km    up: 47.3km        total: 118.7km
+misc.     runs: 27        min slope: 12.2°  max slope: 61.9°
+
+<details>
+The conditions were perfect in the morning, grippy snow and no ice. Until around 14:30, there were almost no clouds and a lot of sun, then the weather got cloudier and the contrast dropped.
+</details>
+<a href="./sportler_track_1-7-22_09-142230253560393793682.gpx">gpx track</a>
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.210098s
+</body>
+</html>
+    <pre>

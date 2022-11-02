@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>source.emile.space</title>
+
+  <style>
+
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+:root {
+  --width: 100ex;
+  --black: #000;
+  --white: #fff;
+}
+
+/* colorscheme variables */
+@media (prefers-color-scheme: light) {
+  :root {
+    --fg: #000;
+    --mg: #eee;
+    --mg_hover: #ddd;
+    --bg: #fff;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #fff;
+    --mg: #fff;
+    --bg: #000;
+  }
+}
+
+th { text-align: left }
+td { 
+    /*border: 1px solid;*/
+    padding: 0px 3px; 
+}
+tr:nth-child(odd) {background-color: var(--bg);}
+tr:nth-child(even) {background-color: var(--mg);}
+tr:hover { background-color: var(--mg_hover)}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: var(--width); max-height: 400px; }
+
+html { background: var(--bg); color: var(--fg); }
+body { margin: 1ex; width: var(--width); }
+
+a { color: var(--fg); background: var(--bg); text-decoration: none;}
+
+/* display local links using [] and external links using {} */
+body pre a::before { content: "["; }
+body pre a::after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"])::before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"])::after {
+  content: '}';
+}
+
+a:hover, a:active { color: var(--bg); background: var(--fg) }
+nav a:hover, a:active { color: var(--fg); background: var(--bg) }
+
+/* navigation bar magic */
+nav * { color: var(--black); }
+nav { margin: 1ex 0; background: var(--mg); }
+nav a { display:block; background: var(--mg); }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid var(--black); background: var(--white); }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: var(--mg)}
+h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: var(--mg)}
+h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: var(--mg)*/}
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+.code { border-left: 1px solid var(--fg); padding-left: 1ex; }
+  </style>
+</head>
+    
+<body>
+  <header>
+      <a href="https://source.emile.space">source.</a><a href="https://emile.space">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/projects/bodula">bodula</a>
+            <ul>
+                <li><a href="/projects/vokobe">vokobe/</a></li>
+                <li><a href="/projects/xilero">xilero/</a></li>
+                <li><a href="/projects/nanobe">nanobe/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/projects/bodula/code">code</a>
+            <ul>
+                <li><a href="/projects/bodula/home">home/</a></li>
+                <li><a href="/projects/bodula/issues">issues/</a></li>
+                <li><a href="/projects/bodula/merge-requests">merge requests/</a></li>
+                <li><a href="/projects/bodula/wiki">wiki/</a></li>
+                <li><a href="/projects/bodula/activities">activity/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="bodula"></span>
+            <h1><a href="#bodula">bodula code</a></h1>
+            <pre>
+bodula code
+
+<table>
+  <tr>
+    <th>date</th>
+    <th>time</th>
+    <th>file</th>
+  </tr>
+  <tr>
+    <td>Jun 22</td> <td>09:22</td> <td><a href="build.sh">build.sh</a></td>
+  </tr>
+  <tr>
+    <td>Feb 12</td> <td>17:00</td> <td><a href="#">host.sh</a></td>
+  </tr>
+  <tr>
+    <td>Jun 15</td> <td>18:08</td> <td><a href="">in/</a></td>
+  </tr>
+  <tr>
+    <td>Feb 12</td> <td>16:59</td> <td><a href="">local.sh</a></td>
+  </tr>
+  <tr>
+    <td>Jun 22</td> <td>09:30</td> <td><a href="">out</a></td>
+  </tr>
+  <tr>
+    <td>Feb 12</td> <td>17:00</td> <td><a href="">publish.sh</a></td>
+  </tr>
+  <tr>
+    <td>Feb 12</td> <td>17:00</td> <td><a href="">sync.sh</a></td>
+  </tr>
+</table>
+
+</table>
+</table>
+
+<br>
+    <br>
+    <br>
+———
+emile - 1655834893.344887s
+</body>
+</html>
+    <pre>

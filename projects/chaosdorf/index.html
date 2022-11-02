@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/projects">projects</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/projects/chaosdorf">chaosdorf</a>
+            <ul>
+                <li><a href="/projects/astrophotography">astrophotography/</a></li>
+                <li><a href="/projects/bodula">bodula/</a></li>
+                <li><a href="/projects/charon">charon/</a></li>
+                <li><a href="/projects/circus">circus/</a></li>
+                <li><a href="/projects/cocktails">cocktails/</a></li>
+                <li><a href="/projects/games">games/</a></li>
+                <li><a href="/projects/giff">giff/</a></li>
+                <li><a href="/projects/hackspace-events-by-weekday">hackspace-events-by-weekday/</a></li>
+                <li><a href="/projects/honeysuite">honeysuite/</a></li>
+                <li><a href="/projects/http-servers">http-servers/</a></li>
+                <li><a href="/projects/input-devices">input-devices/</a></li>
+                <li><a href="/projects/interesting-sites">interesting-sites/</a></li>
+                <li><a href="/projects/jufo">jufo/</a></li>
+                <li><a href="/projects/kosali">kosali/</a></li>
+                <li><a href="/projects/lapce">lapce/</a></li>
+                <li><a href="/projects/led-cube">led-cube/</a></li>
+                <li><a href="/projects/lumipa">lumipa/</a></li>
+                <li><a href="/projects/luno">luno/</a></li>
+                <li><a href="/projects/matrix">matrix/</a></li>
+                <li><a href="/projects/miboma">miboma/</a></li>
+                <li><a href="/projects/mobesi">mobesi/</a></li>
+                <li><a href="/projects/monorepo">monorepo/</a></li>
+                <li><a href="/projects/navoge">navoge/</a></li>
+                <li><a href="/projects/paged-out">paged-out/</a></li>
+                <li><a href="/projects/paleki">paleki/</a></li>
+                <li><a href="/projects/pixeltsunami">pixeltsunami/</a></li>
+                <li><a href="/projects/plan9">plan9/</a></li>
+                <li><a href="/projects/quad">quad/</a></li>
+                <li><a href="/projects/riscyemu">riscyemu/</a></li>
+                <li><a href="/projects/ruelps">ruelps/</a></li>
+                <li><a href="/projects/stdin-to-tcp">stdin-to-tcp/</a></li>
+                <li><a href="/projects/toki-pona">toki-pona/</a></li>
+                <li><a href="/projects/trike">trike/</a></li>
+                <li><a href="/projects/vokobe">vokobe/</a></li>
+                <li><a href="/projects/weather-scraper">weather-scraper/</a></li>
+                <li><a href="/projects/xika">xika/</a></li>
+                <li><a href="/projects/xilero">xilero/</a></li>
+                <li><a href="/projects/yonilu">yonilu/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+    <li><a href="/projects/chaosdorf/cave">cave/</a></li>
+    <li><a href="/projects/chaosdorf/e-lab">e-lab/</a></li>
+    <li><a href="/projects/chaosdorf/garden">garden/</a></li>
+    <li><a href="/projects/chaosdorf/hackcenter">hackcenter/</a></li>
+    <li><a href="/projects/chaosdorf/kitchen">kitchen/</a></li>
+    <li><a href="/projects/chaosdorf/lounge">lounge/</a></li>
+    <li><a href="/projects/chaosdorf/seminar">seminar/</a></li>
+    <li><a href="/projects/chaosdorf/wetlab">wetlab/</a></li>
+    <li><a href="/projects/chaosdorf/workshop">workshop/</a></li>
+  </ul><pre></pre>
+            <span id="chaosdorf"></span>
+            <h1><a href="#chaosdorf">chaosdorf</a></h1>
+            <pre>
+Hackspace in Düsseldorf.
+
+Goals for 2022: increase the amount of security communication, meaning that there should be a lot more security talks, workshops, foos and other kinds of events.
+
+</pre>
+<div style="width: 100%" align=center>
+    <img src="chaosdorf.png" style="width: 75%"></img>
+</div>
+<div style="width: 100%" align=center>
+    <img src="elab.png" style="width: 75%"></img>
+</div>
+</pre>
+<p style="clear: both"></p>
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.721026s
+</body>
+</html>
+    <pre>

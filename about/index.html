@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/about">about</a>
+            <ul>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="about"></span>
+            <h1><a href="#about">about</a></h1>
+            <pre>
+<a href="#about">about</a>
+    <a href="#contact">Contact</a>
+    <a href="#doings">Doings</a>
+    <a href="#cv-like-foo">CV like foo</a>
+       <a href="#internships">internships</a>
+       <a href="#university">university</a>
+       <a href="#work">work</a>
+       <a href="#associations">associations</a>
+       <a href="#languages">languages</a>
+
+I'm Emile.
+
+You can find me in all parts of the internet under the name "hanemile" with the following image as my avatar:
+
+<img src="./profile_pixel.png">
+(A high quality version of the image obove can be found <a href="/events/2018/05_egypt/">here</a> (printed versions cost extra!))
+
+</pre>
+            <span id="contact"></span>
+            <h2><a href="#contact">Contact</a></h2>
+            <pre>
+I'm reachable using the nickname @hanemile on most platforms. From a social media perspective, I occasionally look into the following platforms:
+
+- <a href="https://twitter.com/hanemile">twitter</a>
+- <a href="https://chaos.social/@hanemile">chaos.social (mastodon)</a>
+- @hanemile
+
+Another way to reach me is by email:
+
+- <a href="mailto:hanemile@emile.space">mail@emile.space</a>
+- <a href="mailto:hanemile@chaosdorf.de">hanemile@chaosdorf.de</a>
+
+I won't distribute my pgp public-key anymore. If you really need to contact me in an encypted way, use my <a href="/ssh.keys">ssh public-keys</a> and the <a href="https://github.com/FiloSottile/age">age</a> project as <a href="https://github.com/FiloSottile/age#ssh-keys">described here</a>.
+
+</pre><pre class="code">curl https://emile.space/ssh.keys | age -R - plaintext.txt > crypted.txt.age</pre><pre>
+
+</pre>
+            <span id="doings"></span>
+            <h2><a href="#doings">Doings</a></h2>
+            <pre>
+A lot.
+
+People always ask "what programming language" and in the end, it's kind of irrelevant, but if you really want to know: mostly <a href="https://www.rust-lang.org">Rust</a>, <a href="https://go.dev">Go</a>, <a href="https://www.python.org">Python</a>, <a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>, <a href="https://lisp-lang.org">Common-Lisp</a> and others sprinkled in.
+
+</pre>
+            <span id="cv-like-foo"></span>
+            <h2><a href="#cv-like-foo">CV like foo</a></h2>
+            <pre>
+people do this a lot, let's give it a shot:
+
+</pre>
+            <span id="internships"></span>
+            <h3><a href="#internships">internships</a></h3>
+            <pre>
+<a href="https://www.physi.uni-heidelberg.de">Astronomisches Recheninstitut Universität Heidelberg</a>
+  - 2017-07 (2 week)
+    - worked on visualizing galaxies
+
+<a href="https://www.wassersportcenter-heiligenhafen.de">Wassersportcenter Heiligenhafen</a>
+  - 2017-07 - 2017-08 (4 week)
+    - worked as a windsurf instructor
+
+<a href="https://sogeti.de">Sogeti Deutschland GmbH</a>
+  - 2019-09 - 2019-12 (3 months)
+    - worked as an IT-Security consultant
+
+</pre>
+            <span id="university"></span>
+            <h3><a href="#university">university</a></h3>
+            <pre>
+Computer Science at the <a href="https://hhu.de">University of Düsseldorf</a>
+  - 2018-10 - 2021-10
+
+Computer Science at <a href="https://www.fernuni-hagen.de">Fern Universität Hagen</a>
+  - 2021-10 - now
+
+</pre>
+            <span id="work"></span>
+            <h3><a href="#work">work</a></h3>
+            <pre>
+<a href="https://www.mint-duesseldorf.de/zdi-in-duesseldorf/">ZDI Düsseldorf</a>
+  - 2019-02-23 - 2019-07-05
+    - worked as a mentor giving workshops teaching students <a href="https://blender.org">blender</a>
+
+<a href="https://www.sogeti.de">Sogeti</a> <a href="https://www.sogeti.de/dienstleistungen/cybersecurity/">Cybersecurity</a>
+  - 2019-10-01 - 2019-12-31   "Intern"
+  - 2020-01-01 - 2021-12-31   "Werksstudent"
+  - 2022-01-01 - now          "Consultant"
+
+</pre>
+            <span id="associations"></span>
+            <h3><a href="#associations">associations</a></h3>
+            <pre>
+<a href="https://chaosdorf.de">chaosdorf e.V.</a>
+  - 2017-03-11          first time there
+  - 2021-11-09 - now:   2. Vorsitzender
+
+<a href="https://darknebu.la">darknebu.la e.V. i.G.</a>
+  - 2017-10 - now          "Gründungsmitglied" (Founding member)
+
+<a href="https://github.com/allesctf">ALLES! e.V.</a>
+  - 2022-03 - now          "Gründungsmitglied" (Founding member)
+
+</pre>
+            <span id="languages"></span>
+            <h3><a href="#languages">languages</a></h3>
+            <pre>
+              Read      Write     Speak
+<a href="https://en.wikipedia.org/wiki/German_language">German</a>      100%      100%      100%
+<a href="https://en.wikipedia.org/wiki/English_language">English</a>     100%      100%      100%
+<a href="https://en.wikipedia.org/wiki/French_language">French</a>       75%       25%       75%
+<a href="/projects/toki-pona/">Toki Pona</a>    10%       10%       10%
+<a href="https://en.wikipedia.org/wiki/Spanish_language">Spanish</a>       5%        5%        5%
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.102821s
+</body>
+</html>
+    <pre>

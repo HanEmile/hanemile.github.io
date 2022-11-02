@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/projects">projects</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/projects/hackspace-events-by-weekday">hackspace-events-by-weekday</a>
+            <ul>
+                <li><a href="/projects/astrophotography">astrophotography/</a></li>
+                <li><a href="/projects/bodula">bodula/</a></li>
+                <li><a href="/projects/chaosdorf">chaosdorf/</a></li>
+                <li><a href="/projects/charon">charon/</a></li>
+                <li><a href="/projects/circus">circus/</a></li>
+                <li><a href="/projects/cocktails">cocktails/</a></li>
+                <li><a href="/projects/games">games/</a></li>
+                <li><a href="/projects/giff">giff/</a></li>
+                <li><a href="/projects/honeysuite">honeysuite/</a></li>
+                <li><a href="/projects/http-servers">http-servers/</a></li>
+                <li><a href="/projects/input-devices">input-devices/</a></li>
+                <li><a href="/projects/interesting-sites">interesting-sites/</a></li>
+                <li><a href="/projects/jufo">jufo/</a></li>
+                <li><a href="/projects/kosali">kosali/</a></li>
+                <li><a href="/projects/lapce">lapce/</a></li>
+                <li><a href="/projects/led-cube">led-cube/</a></li>
+                <li><a href="/projects/lumipa">lumipa/</a></li>
+                <li><a href="/projects/luno">luno/</a></li>
+                <li><a href="/projects/matrix">matrix/</a></li>
+                <li><a href="/projects/miboma">miboma/</a></li>
+                <li><a href="/projects/mobesi">mobesi/</a></li>
+                <li><a href="/projects/monorepo">monorepo/</a></li>
+                <li><a href="/projects/navoge">navoge/</a></li>
+                <li><a href="/projects/paged-out">paged-out/</a></li>
+                <li><a href="/projects/paleki">paleki/</a></li>
+                <li><a href="/projects/pixeltsunami">pixeltsunami/</a></li>
+                <li><a href="/projects/plan9">plan9/</a></li>
+                <li><a href="/projects/quad">quad/</a></li>
+                <li><a href="/projects/riscyemu">riscyemu/</a></li>
+                <li><a href="/projects/ruelps">ruelps/</a></li>
+                <li><a href="/projects/stdin-to-tcp">stdin-to-tcp/</a></li>
+                <li><a href="/projects/toki-pona">toki-pona/</a></li>
+                <li><a href="/projects/trike">trike/</a></li>
+                <li><a href="/projects/vokobe">vokobe/</a></li>
+                <li><a href="/projects/weather-scraper">weather-scraper/</a></li>
+                <li><a href="/projects/xika">xika/</a></li>
+                <li><a href="/projects/xilero">xilero/</a></li>
+                <li><a href="/projects/yonilu">yonilu/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="hackspace-events-sorted-by-weekday"></span>
+            <h1><a href="#hackspace-events-sorted-by-weekday">Hackspace events sorted by weekday</a></h1>
+            <pre>
+If you find an event that...
+
+- is not listed by should be
+- is listed but should not
+
+... <a href="/about#contact">contact</a> me!
+
+</pre>
+            <span id="monday"></span>
+            <h2><a href="#monday">monday</a></h2>
+            <pre>
+</pre>
+            <span id="1900"></span>
+            <h3><a href="#1900">19:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Bayreuth">Bayreuth</a> <a href="http://imaginaerraum.de/">mumble</a>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Chemnitz">Chemnitz</a> <a href="https://jitsi-01.csn.tu-chemnitz.de/chch">jitsi</a>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Darmstadt">Darmstadt</a> "FINT* Stammtisch" <a href="https://www.chaos-darmstadt.de/2020/are-you-still-there.html">online-infos</a>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Z%C3%BCrich-CH">Zürich (CCCZH)</a> <a href="https://jitsi.ff3l.net/ccczh">jitsi</a>
+
+</pre>
+            <span id="2000"></span>
+            <h3><a href="#2000">20:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Düsseldorf">Düsseldorf</a> Infrafoo <a href="https://wiki.chaosdorf.de/Infrafoo">infos</a> <a href="https://virtual.chaosdorf.space/Lounge">Lounge</a> <a href="https://virtual.chaosdorf.space/Hackcenter">Hackcenter</a>
+
+
+
+</pre>
+            <span id="tuesday"></span>
+            <h2><a href="#tuesday">tuesday</a></h2>
+            <pre>
+</pre>
+            <span id="1530"></span>
+            <h3><a href="#1530">15:30</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Siegen" target="_blank" rel="noopener">Siegen</a> (bis 18:00) “Junges Chaos / Coding” (<a href="https://meet.hasi.it/junges-chaos" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="1800"></span>
+            <h3><a href="#1800">18:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Hilpoltstein" target="_blank" rel="noopener">Hilpoltstein</a> (in ungeraden Kalenderwochen) (<a href="https://bbb.hip3.de/b/ste-msj-9uo-jdl" target="_blank" rel="noopener">BBB</a>)
+- <a href="https://bbb.nerd.re/b/mar-jeb-eos-dfn" target="_blank" rel="noopener">LUG Marl</a> 18-21Uhr
+
+</pre>
+            <span id="1830"></span>
+            <h3><a href="#1830">18:30</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Z%C3%BCrich-CH" target="_blank" rel="noopener">Zürich (Debian.ch)</a> (1. Dienstag im Monat) “Debian” (<a href="https://jitsi.debian.social/Switzerland" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="1900"></span>
+            <h3><a href="#1900">19:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Bamberg" target="_blank" rel="noopener">Bamberg</a> (<a href="http://mumble.bckspc.de/" target="_blank" rel="noopener">mumble</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Darmstadt" target="_blank" rel="noopener">Darmstadt</a> “Offenes Chaos” (<a href="https://www.chaos-darmstadt.de/2020/are-you-still-there.html" target="_blank" rel="noopener">online-infos</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Halle-Saale" target="_blank" rel="noopener">Halle (Saale)</a> (<a href="https://meet.datenautobahnmeisterei.de/Balkon" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Wien" target="_blank" rel="noopener">Wien (C3W)</a> “Virtuelles Chaos Communication Caffeine, C3W Monatstreffen” (<a href="https://c3w.at/events/" target="_blank" rel="noopener">event page</a>, <a href="mumble://mumble.uber.space:48980" target="_blank" rel="noopener">mumble</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Waldshut-Tiengen" target="_blank" rel="noopener">Waldshut-Tiengen</a> “Telehacking” (<a href="https://meet.reaktor23.org/chat" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="1930"></span>
+            <h3><a href="#1930">19:30</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Basel" target="_blank" rel="noopener">Basel</a> (<a href="http://mumble.kabelsalat.ch/" target="_blank" rel="noopener">mumble</a>, <a href="https://ccc-basel.ch/pages/termine.html" target="_blank" rel="noopener">termine</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Kassel" target="_blank" rel="noopener">Kassel (Flipdot)</a> (<a href="mumble://mumble.flipdot.org" target="_blank" rel="noopener">mumble</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Koblenz" target="_blank" rel="noopener">Koblenz Freifunk</a> (1. Dienstag im Monat) “Virtuelles Freifunk-Treffen” (<a href="https://freifunk-myk.de/" target="_blank" rel="noopener">infos</a>, <a href="mumble://mumble.westwoodlabs.de" target="_blank" rel="noopener">mumble</a>)
+
+</pre>
+            <span id="1942"></span>
+            <h3><a href="#1942">19:42</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Hamburg" target="_blank" rel="noopener">Hamburg (CCCHH)</a> (<a href="http://mumble.hamburg.ccc.de/" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="2000"></span>
+            <h3><a href="#2000">20:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Aschaffenburg" target="_blank" rel="noopener">Aschaffenburg</a> (<a href="http://mumble.schaffenburg.org/" target="_blank" rel="noopener">mumble</a>, <a href="http://meet.schaffenburg.org/" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Bremen" target="_blank" rel="noopener">Bremen</a> (<a href="https://meeten.statt-drosseln.de/b/inj-2ec-4na" target="_blank" rel="noopener">BBB</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#D%C3%BCsseldorf" target="_blank" rel="noopener">Düsseldorf</a> “Plenum” (<a href="https://wiki.chaosdorf.de/Teleplenum" target="_blank" rel="noopener">Infos</a>, <a href="https://virtual.chaosdorf.space/Lounge" target="_blank" rel="noopener">Lounge</a>, <a href="https://virtual.chaosdorf.space/Hackcenter" target="_blank" rel="noopener">Hackcenter</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Freiburg" target="_blank" rel="noopener">Freiburg</a>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Jena" target="_blank" rel="noopener">Jena (Krautspace)</a> “Chaostreff” (<a href="https://kraut.space/chaostreff" target="_blank" rel="noopener">Jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#OffenburgOrtenau" target="_blank" rel="noopener">Offenburg/Ortenau</a> (1. 3. und ggf. 5. Dienstag im Monat) “Offener Chaostreff” (<a href="https://meet.section77.de/section77" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Stuttgart" target="_blank" rel="noopener">Stuttgart</a> (1. Dienstag im Monat) “Virtueller Stammtisch” (<a href="https://www.cccs.de/about/stammtisch/" target="_blank" rel="noopener">infos</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Weimar" target="_blank" rel="noopener">Weimar</a> “Freifunk für alle” (<a href="https://meet.weimarnetz.de/ImMaschinenraum" target="_blank" rel="noopener">jitsi</a>)
+
+
+
+</pre>
+            <span id="wednesday"></span>
+            <h2><a href="#wednesday">wednesday</a></h2>
+            <pre>
+</pre>
+            <span id="1900"></span>
+            <h3><a href="#1900">19:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#D%C3%BCsseldorf" target="_blank" rel="noopener">Düsseldorf</a> <a href="https://wiki.chaosdorf.de/VirtualSpace/gamedev" target="_blank" rel="noopener">“GameDev”</a> (1. und 2. Mittwoch im Monat) (<a href="https://wiki.chaosdorf.de/Teleplenum" target="_blank" rel="noopener">Infos</a>, <a href="https://virtual.chaosdorf.space/Lounge" target="_blank" rel="noopener">Lounge</a>, <a href="https://virtual.chaosdorf.space/Hackcenter" target="_blank" rel="noopener">Hackcenter</a>)</p>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Recklinghausen" target="_blank" rel="noopener">Recklinghausen (c3RE)</a> (<a href="https://meet.nerd.re/hackerhuette" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Darmstadt" target="_blank" rel="noopener">Darmstadt</a> “WizardsOfDos Treffen” (<a href="https://www.chaos-darmstadt.de/2020/are-you-still-there.html" target="_blank" rel="noopener">online-infos</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Essen" target="_blank" rel="noopener">Essen</a> (<a href="mumble://mumble.chaospott.de:64738" target="_blank" rel="noopener">mumble</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Gie%C3%9Fen" target="_blank" rel="noopener">Gießen</a>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Paderborn" target="_blank" rel="noopener">Paderborn</a> “Chaostreff” (<a href="mumble://mumble.c3pb.de" target="_blank" rel="noopener">mumble</a>, Raum c3pb-virtuell])
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Ilmenau" target="_blank" rel="noopener">Ilmenau (SPACE)</a> (<a href="https://jitsi.fem.tu-ilmenau.de/SPACE_Meeting" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://wak-lab.org" target="_blank" rel="noopener">Eisenach</a> WAK-Lab (<a href="https://talk.kabi.tk/Waklab" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="2000"></span>
+            <h3><a href="#2000">20:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#D%C3%BCsseldorf" target="_blank" rel="noopener">Düsseldorf</a> <a href="https://wiki.chaosdorf.de/VirtualSpace/CarGOcult" target="_blank" rel="noopener">“CarGOcult”</a> (3. Mittwoch im Monat) (<a href="https://wiki.chaosdorf.de/Teleplenum" target="_blank" rel="noopener">Infos</a>, <a href="https://virtual.chaosdorf.space/Lounge" target="_blank" rel="noopener">Lounge</a>, <a href="https://virtual.chaosdorf.space/Hackcenter" target="_blank" rel="noopener">Hackcenter</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Stuttgart" target="_blank" rel="noopener">Stuttgart</a> (3. Mittwoch im Monat) “Virtueller Stammtisch” (<a href="https://www.cccs.de/about/stammtisch/" target="_blank" rel="noopener">infos</a>)
+- <a href="https://www.warpzone.ms/perma/virtuelles-treffen/2436/" target="_blank" rel="noopener">Münster (Warpzone e.V.)</a>  “Offener Abend” (<a href="https://jitsi.dorf-post.de/chaos-lounge" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="2100"></span>
+            <h3><a href="#2100">21:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Hamburg" target="_blank" rel="noopener">Hamburg (WTF eG)</a> (<a href="https://vebit.xyz/bbb" target="_blank" rel="noopener">BBB</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#N%C3%BCrnberg" target="_blank" rel="noopener">Nürnberg</a> “Offener Abend” (<a href="mumble://mumble.nerdropolis.de" target="_blank" rel="noopener">mumble</a>)
+
+
+
+</pre>
+            <span id="thursday"></span>
+            <h2><a href="#thursday">thursday</a></h2>
+            <pre>
+</pre>
+            <span id="1730"></span>
+            <h3><a href="#1730">17:30</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Bingen-am-Rhein" target="_blank" rel="noopener">Bingen am Rhein</a>
+
+</pre>
+            <span id="1800"></span>
+            <h3><a href="#1800">18:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#D%C3%BCsseldorf" target="_blank" rel="noopener">Düsseldorf</a> “Pythonfoo” (<a href="https://wiki.chaosdorf.de/Teleplenum" target="_blank" rel="noopener">Infos</a>, <a href="https://virtual.chaosdorf.space/Lounge" target="_blank" rel="noopener">Lounge</a>, <a href="https://virtual.chaosdorf.space/Hackcenter" target="_blank" rel="noopener">Hackcenter</a>)
+
+</pre>
+            <span id="1900"></span>
+            <h3><a href="#1900">19:00</a></h3>
+            <pre>
+- <a href="http://trolug.de/" target="_blank" rel="noopener">TroLUG</a> 1. Donnerstag im Monat “Monatliches Treffen mit Thema” (<a href="http://trolug.de/termine.html" target="_blank" rel="noopener">Vergangene Termine</a>)
+- <a href="https://blog.attraktor.org/" target="_blank" rel="noopener">Attraktor Hamburg</a> “Wöchendlicher Basteldonnerstag”(<a href="https://basteldonnerstag.makerspace.hamburg/" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Dornbirn" target="_blank" rel="noopener">Dornbirn</a>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Osnabr%C3%BCck" target="_blank" rel="noopener">Osnabrück</a> “Offener Abend” (<a href="https://meet.osna.social/chaos" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Unna" target="_blank" rel="noopener">Unna</a> “Chaostreff” (<a href="https://bbb.un-hack-bar.de/b/sma-k3q-7av" target="_blank" rel="noopener">BBB</a>)
+- <a href="https://ccc-ffm.de/treffen/" target="_blank" rel="noopener">Frankfurt</a> “offenes Chaos” (<a href="https://ccchessen.de" target="_blank" rel="noopener">BBB</a>)
+- <a href="https://play.kraut.world/_/global/moorhexa.github.io/club.cyberyoga.org/maps/1st/map.json" target="_blank" rel="noopener">CyberYoga WorkAdventure</a> “Weekly Python Workshop (jeder ist Willkommen, wir versuchen auch anfänger die noch nichts mit Programmieren zu tun haben mit einzubeziehen)” (<a href="https://talk.kabi.tk/Cyberyogaworkshop" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="1930"></span>
+            <h3><a href="#1930">19:30</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#K%C3%B6ln" target="_blank" rel="noopener">Köln (C4)</a> “Offener Abend” (<a href="https://koeln.ccc.de/updates/2020-03-25_Offene_Abende_Online.xml" target="_blank" rel="noopener">infos</a>, <a href="https://bbb.jitsi.world/b/nec-r44-dha" target="_blank" rel="noopener">bbb</a>)
+
+</pre>
+            <span id="19002000"></span>
+            <h3><a href="#19002000">19:00/20:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Bielefeld" target="_blank" rel="noopener">Bielefeld</a> (<a href="https://conference.space.bi/hsb" target="_blank" rel="noopener">jitsi</a>)
+
+</pre>
+            <span id="2030"></span>
+            <h3><a href="#2030">20:30</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Berlin" target="_blank" rel="noopener">Berlin (c-Base)</a> (<a href="https://jitsi.c-base.org/mainhall" target="_blank" rel="noopener">jitsi</a>, <a href="https://logbuch.c-base.org/archives/4977" target="_blank" rel="noopener">mehr infos</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Ilmenau" target="_blank" rel="noopener">Ilmenau</a> (in ungeraden Kalenderwochen) (<a href="http://mumble.fem.tu-ilmenau.de/" target="_blank" rel="noopener">mumble</a>, <a href="http://jitsi.fem.tu-ilmenau.de/" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?view#Jena" target="_blank" rel="noopener">Jena (Krautspace)</a> “LUG” (<a href="https://kraut.space/lug" target="_blank" rel="noopener">Jitsi</a>, Leute treffen nach und nach ein, mehr Besetzung ab ca. 21 Uhr)
+
+
+
+</pre>
+            <span id="friday"></span>
+            <h2><a href="#friday">friday</a></h2>
+            <pre>
+</pre>
+            <span id="1800"></span>
+            <h3><a href="#1800">18:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Darmstadt" target="_blank" rel="noopener">Darmstadt</a> “Chaotischer Start ins Wochenende” (<a href="https://www.chaos-darmstadt.de/2020/are-you-still-there.html" target="_blank" rel="noopener">online-infos</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#D%C3%BCsseldorf" target="_blank" rel="noopener">Düsseldorf</a> “Freitagsfoo” (<a href="https://wiki.chaosdorf.de/Teleplenum" target="_blank" rel="noopener">Infos</a>, <a href="https://virtual.chaosdorf.space/Lounge" target="_blank" rel="noopener">Lounge</a>, <a href="https://virtual.chaosdorf.space/Hackcenter" target="_blank" rel="noopener">Hackcenter</a>)
+
+</pre>
+            <span id="2000"></span>
+            <h3><a href="#2000">20:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#M%C3%BCnchen" target="_blank" rel="noopener">München</a> “Hackfriday” (<a href="https://wiki.muc.ccc.de/hackfriday" target="_blank" rel="noopener">infos</a>, <a href="https://webex.muc.ccc.de/hackfriday" target="_blank" rel="noopener">jitsi</a>)
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen#Nemesis-MUD-Treff" target="_blank" rel="noopener">Nemesis MUD Treff</a>
+  - Was: Gemeinsames Erkunden der Welt von Nemesis
+  - <a href="https://www.nemesis.de/" target="_blank" rel="noopener">https://www.nemesis.de/</a>
+  - Wo: telnet <a href="http://mud.nemesis.de" target="_blank" rel="noopener">mud.nemesis.de</a> 2000
+  - Im Nemesis Information Centre (östlich der Kirche) Oder per “tell Venty”
+  - Begleitender Sprachchat auf <a href="https://jitsi.ff3l.net/Nemesis" target="_blank" rel="noopener">https://jitsi.ff3l.net/Nemesis</a>
+
+
+
+</pre>
+            <span id="saturday"></span>
+            <h2><a href="#saturday">saturday</a></h2>
+            <pre>
+</pre>
+            <span id="1123"></span>
+            <h3><a href="#1123">11:23</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Karlsruhe" target="_blank" rel="noopener">Karlruhe</a> “Hacker*innenfryhstyck” <a href="https://meet.entropia.de/hackerfryhstyck" target="_blank" rel="noopener">jitsi</a>
+- <a href="https://chaosdorf.de">Chaosdorf</a> ctf-foo <a href="https://wiki.chaosdorf.de/ctf-foo">wikipage with all infos</a> <a href="https://virtual.chaosdorf.space/Hackcenter">Hackcenter</a>
+  - Alle 2 Wochen, siehe wiki Seite
+
+</pre>
+            <span id="1900"></span>
+            <h3><a href="#1900">19:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Chemnitz" target="_blank" rel="noopener">Chemnitz</a> <a href="https://jitsi-01.csn.tu-chemnitz.de/chch" target="_blank" rel="noopener">jitsi</a>
+
+</pre>
+            <span id="1930"></span>
+            <h3><a href="#1930">19:30</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Koblenz" target="_blank" rel="noopener">Koblenz</a> (3. Samstag im Monat) “Linux User Group Mayen-Koblenz”
+
+
+
+</pre>
+            <span id="sunday"></span>
+            <h2><a href="#sunday">sunday</a></h2>
+            <pre>
+</pre>
+            <span id="0800"></span>
+            <h3><a href="#0800">08:00</a></h3>
+            <pre>
+- <a href="https://n.jo-so.de/gecyberte-hackspace-treffen?both#Wien" target="_blank" rel="noopener">Wien (Metalab)</a> (Bis 13:00) “Virtueller Brunch” (<a href="https://metalab.at/wiki/MetaBrunch" target="_blank" rel="noopener">event seite</a>)
+  - am 6.12.2020 um 12:00 war keiner da
+  - am 28.02.2021 um 11:30 Uhr auch nicht. Findet wohl nicht mehr statt.
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.629115s
+</body>
+</html>
+    <pre>

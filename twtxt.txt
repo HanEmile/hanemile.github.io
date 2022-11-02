@@ -1,0 +1,26 @@
+# | |___      _| |___  _| |_
+# | __\ \ /\ / / __\ \/ / __|
+# | |_ \ V  V /| |_ >  <| |_
+#  \__| \_/\_/  \__/_/\_\\__|
+#
+# Twtxt is an open, distributed
+# microblogging platform that
+# uses human-readable text files,
+# common transport protocols, and
+# free software.
+#
+# Learn more about twtxt at
+#   https://github.com/buckket/twtxt
+#
+# ------------------------------------------
+#
+#    nick = hanemile
+#     url = https://emile.space/twtxt.txt
+#    lang = en
+
+2022-06-15T18:08:17 Well let's give this another go
+2022-09-12T19:12:24 So I've started building a small twtxt client...
+2022-09-27T21:43:12 I'm not using the twtxt client: going to integrate it into my matrix bot
+2022-09-29T02:12:13 It work's: sleeping now.
+2022-10-17T21:51:20 Realized that the twtxt file is not being synced, fixed
+2022-10-20T22:20:40 So I've played around with dithering images and it's amazing!

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/ctf">ctf</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/events">events/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/resources">resources</a>
+            <ul>
+                <li><a href="/ctf/hosted-events">hosted-events/</a></li>
+                <li><a href="/ctf/teams">teams/</a></li>
+                <li><a href="/ctf/writeups">writeups/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/ctf/resources/heap">heap</a>
+            <ul>
+                <li><a href="/ctf/resources/assembly-basics">assembly-basics/</a></li>
+                <li><a href="/ctf/resources/automated-program-analysis">automated-program-analysis/</a></li>
+                <li><a href="/ctf/resources/format-strings">format-strings/</a></li>
+                <li><a href="/ctf/resources/fuzzing">fuzzing/</a></li>
+                <li><a href="/ctf/resources/infoleak">infoleak/</a></li>
+                <li><a href="/ctf/resources/integer-overflow">integer-overflow/</a></li>
+                <li><a href="/ctf/resources/jump-tables">jump-tables/</a></li>
+                <li><a href="/ctf/resources/kernel">kernel/</a></li>
+                <li><a href="/ctf/resources/linux">linux/</a></li>
+                <li><a href="/ctf/resources/mitigations">mitigations/</a></li>
+                <li><a href="/ctf/resources/overflow">overflow/</a></li>
+                <li><a href="/ctf/resources/pwntools">pwntools/</a></li>
+                <li><a href="/ctf/resources/race-conditions">race-conditions/</a></li>
+                <li><a href="/ctf/resources/reversing">reversing/</a></li>
+                <li><a href="/ctf/resources/rop">rop/</a></li>
+                <li><a href="/ctf/resources/shellcode">shellcode/</a></li>
+                <li><a href="/ctf/resources/symbolic-execution">symbolic-execution/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="heap"></span>
+            <h1><a href="#heap">heap</a></h1>
+            <pre>
+<a href="#heap">heap</a>
+    <a href="#basics">basics</a>
+       <a href="#the-heap-itself">the heap itself</a>
+       <a href="#arenas">arenas</a>
+       <a href="#chunks">chunks</a>
+       <a href="#bins">bins</a>
+       <a href="#freelists">freelists</a>
+       <a href="#tcache">tcache</a>
+    <a href="#techniques">techniques</a>
+       <a href="#house-of-spirit">house of spirit</a>
+       <a href="#house-of-lore">house of lore</a>
+       <a href="#house-of-force">house of force</a>
+       <a href="#house-of-einherjar">house of einherjar</a>
+       <a href="#house-of-orange">house of orange</a>
+       <a href="#house-of-roman">house of roman</a>
+       <a href="#house-of-spirit">house of spirit</a>
+       <a href="#house-of-botcake">house of botcake</a>
+       <a href="#house-of-mind">house of mind</a>
+       <a href="#house-of-prime">house of prime</a>
+    <a href="#resources">resources</a>
+       <a href="#phrack">Phrack</a>
+       <a href="#azeria-labs">Azeria Labs</a>
+       <a href="#shellphish">shellphish</a>
+
+</pre>
+            <span id="basics"></span>
+            <h2><a href="#basics">basics</a></h2>
+            <pre>
+</pre>
+            <span id="the-heap-itself"></span>
+            <h3><a href="#the-heap-itself">the heap itself</a></h3>
+            <pre>
+</pre>
+            <span id="arenas"></span>
+            <h3><a href="#arenas">arenas</a></h3>
+            <pre>
+</pre>
+            <span id="chunks"></span>
+            <h3><a href="#chunks">chunks</a></h3>
+            <pre>
+- Free / Allocated / Top
+
+</pre>
+            <span id="bins"></span>
+            <h3><a href="#bins">bins</a></h3>
+            <pre>
+- Fast / Unsorted / Small / Large
+
+</pre>
+            <span id="freelists"></span>
+            <h3><a href="#freelists">freelists</a></h3>
+            <pre>
+</pre>
+            <span id="tcache"></span>
+            <h3><a href="#tcache">tcache</a></h3>
+            <pre>
+
+
+</pre>
+            <span id="techniques"></span>
+            <h2><a href="#techniques">techniques</a></h2>
+            <pre>
+</pre>
+            <span id="house-of-spirit"></span>
+            <h3><a href="#house-of-spirit">house of spirit</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-lore"></span>
+            <h3><a href="#house-of-lore">house of lore</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-force"></span>
+            <h3><a href="#house-of-force">house of force</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-einherjar"></span>
+            <h3><a href="#house-of-einherjar">house of einherjar</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-orange"></span>
+            <h3><a href="#house-of-orange">house of orange</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-roman"></span>
+            <h3><a href="#house-of-roman">house of roman</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-spirit"></span>
+            <h3><a href="#house-of-spirit">house of spirit</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-botcake"></span>
+            <h3><a href="#house-of-botcake">house of botcake</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-mind"></span>
+            <h3><a href="#house-of-mind">house of mind</a></h3>
+            <pre>
+</pre>
+            <span id="house-of-prime"></span>
+            <h3><a href="#house-of-prime">house of prime</a></h3>
+            <pre>
+
+
+</pre>
+            <span id="resources"></span>
+            <h2><a href="#resources">resources</a></h2>
+            <pre>
+</pre>
+            <span id="phrack"></span>
+            <h3><a href="#phrack">Phrack</a></h3>
+            <pre>
+- <a href="http://phrack.org/issues/57/8.html#article">Vudo malloc tricks</a>
+- <a href="http://phrack.org/issues/57/9.html#article">Once upon a free()</a>
+- <a href="http://phrack.org/issues/66/10.html#article">Malloc Des-Maleficarum</a>
+- <a href="http://phrack.org/issues/66/15.html#article">Linux Kernel Heap Tampering Detection</a>
+- <a href="http://phrack.org/issues/63/5.html#article">OSX heap exploitation techniques</a>
+
+</pre>
+            <span id="azeria-labs"></span>
+            <h3><a href="#azeria-labs">Azeria Labs</a></h3>
+            <pre>
+- Arm Heap Exploitation
+  - <a href="https://azeria-labs.com/heap-exploitation-part-1-understanding-the-glibc-heap-implementation/">PART 1: UNDERSTANDING THE GLIBC HEAP IMPLEMENTATION</a>
+  - <a href="https://azeria-labs.com/heap-exploitation-part-2-glibc-heap-free-bins/">PART 2: UNDERSTANDING THE GLIBC HEAP IMPLEMENTATION</a>
+- <a href="https://azeria-labs.com/heap-exploit-development-part-1/">HEAP EXPLOIT DEVELOPMENT – CASE STUDY FROM AN IN-THE-WILD IOS 0-DAY</a>
+- <a href="https://azeria-labs.com/heap-overflows-and-the-ios-kernel-heap/">HEAP OVERFLOWS AND THE IOS KERNEL HEAP</a>
+- <a href="https://azeria-labs.com/grooming-the-ios-kernel-heap/">GROOMING THE IOS KERNEL HEAP</a>
+
+</pre>
+            <span id="shellphish"></span>
+            <h3><a href="#shellphish">shellphish</a></h3>
+            <pre>
+- <a href="https://github.com/shellphish/how2heap">how2heap</a>
+  - lot's of small examples
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082414.941461s
+</body>
+</html>
+    <pre>

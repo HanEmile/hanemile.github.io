@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>emile.space</title>
+
+  <style>
+  * { word-wrap:break-word !important; font-family: monospace;
+  margin: 0; padding: 0; }
+
+/* light/darktheme specific foo */
+@media (prefers-color-scheme: light) {
+    html { background: #fff; color: #000; }
+    a { color: #000; background: #fff; text-decoration: none;}
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #fff; background: #000 }
+    nav a:hover, a:active { color: #000; background: #fff }
+    nav { margin: 1ex 0; background: #eee; }
+    nav a { display:block; background: #eee; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #eee}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #eee}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #eee*/}
+    .code { border-left: 1px solid #000; padding-left: 1ex; }
+}
+@media (prefers-color-scheme: dark) {
+    html { background: #000; color: #fff; }
+    a { color: #fff; background: #000; text-decoration: none; }
+    a:not([href*="webring.xxiivv.com"]):hover, a:active { color: #000; background: #fff }
+    nav a:hover, a:active { color: #fff; background: #000 }
+    nav { margin: 1ex 0; background: #fff; }
+    nav a { display:block; background: #fff; }
+    h1 { margin: 3ex 0 1ex 0; width: 100%; background-color: #fff}
+    h2 { margin: 2ex 0 1ex 0; width: 100%; background-color: #fff}
+    h3 { margin: 1ex 0 1ex 0; width: 100%; /*background-color: #fff*/}
+    .code { border-left: 1px solid #fff; padding-left: 1ex; }
+    .webring { -webkit-filter: invert(100%); filter: invert(100%); }
+}
+
+/* settings for mobile devices*/
+@media only screen and (max-width: 768px) {
+  body { margin: 1ex; width: calc(100% - 2ex) !important; }
+  img { max-width: 100% !important; max-height: 400px; }
+}
+img { max-width: 100ex; max-height: 400px; }
+
+body { margin-left: auto; margin-right: auto; margin-top: 1ex; margin-bottom: 1ex; width: 100ex; }
+
+
+.webring { align: right; }
+a .webring { float: right; }
+
+/* display local links using [] and external links using {} */
+body pre a:not([href*="webring.xxiivv.com"]):before { content: "["; }
+body pre a:not([href*="webring.xxiivv.com"]):after { content: "]"; }
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):before {
+  content: '{';
+}
+a[href*="//"]:not([href*="emile.space"]):not([class*="icon"]):after {
+  content: '}';
+}
+
+
+ul { list-style-type: none; }
+
+/* navigation bar magic */
+nav * { color: #000; }
+nav ul { list-style: none; position: relative; display: inline-block; }
+nav ul li { display:inline-block; }
+nav ul ul { display: none; position: absolute; border: 1px solid #000; background-color: #ff0; }
+nav ul ul li { width: 100%; padding-right: 1ex; float:none; display:list-item; position: relative; }
+nav + ul li { display: inline-block;}
+
+/* only display the hover dropdown on non-mobile devices */
+@media only screen and (min-width: 768px) {
+  nav ul li:hover a + ul { display: inherit; white-space: nowrap; }
+}
+
+/* nav bar spacing char */
+nav ul li > a::after { content: " /"; }
+nav ul li > a:only-child::after { content: ""; }
+nav ul li:last-of-type a::after { content: ""; }
+
+h1 a, h2 a, h3 a { padding-right: 1ex; }
+
+pre { white-space: pre-wrap; }
+
+/* display the list of folders in the current one as a vertical list, if the
+ * .vert class is present */
+nav + ul.vert li { display: block; }
+
+.w-100 { width: 100%; }
+
+
+  </style>
+</head>
+    
+<body>
+  <header>
+    <a href="/">emile.space</a>
+  </header>
+  <nav>
+    <ul>
+        <li>
+            <a href="/events">events</a>
+            <ul>
+                <li><a href="/about">about/</a></li>
+                <li><a href="/blog">blog/</a></li>
+                <li><a href="/ctf">ctf/</a></li>
+                <li><a href="/files">files/</a></li>
+                <li><a href="/projects">projects/</a></li>
+                <li><a href="/publications">publications/</a></li>
+                <li><a href="/sport">sport/</a></li>
+                <li><a href="/talks">talks/</a></li>
+                <li><a href="/workshops">workshops/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/events/2019">2019</a>
+            <ul>
+                <li><a href="/events/2000">2000/</a></li>
+                <li><a href="/events/2001">2001/</a></li>
+                <li><a href="/events/2002">2002/</a></li>
+                <li><a href="/events/2003">2003/</a></li>
+                <li><a href="/events/2004">2004/</a></li>
+                <li><a href="/events/2005">2005/</a></li>
+                <li><a href="/events/2006">2006/</a></li>
+                <li><a href="/events/2007">2007/</a></li>
+                <li><a href="/events/2008">2008/</a></li>
+                <li><a href="/events/2009">2009/</a></li>
+                <li><a href="/events/2010">2010/</a></li>
+                <li><a href="/events/2011">2011/</a></li>
+                <li><a href="/events/2012">2012/</a></li>
+                <li><a href="/events/2013">2013/</a></li>
+                <li><a href="/events/2014">2014/</a></li>
+                <li><a href="/events/2015">2015/</a></li>
+                <li><a href="/events/2016">2016/</a></li>
+                <li><a href="/events/2017">2017/</a></li>
+                <li><a href="/events/2018">2018/</a></li>
+                <li><a href="/events/2020">2020/</a></li>
+                <li><a href="/events/2021">2021/</a></li>
+                <li><a href="/events/2022">2022/</a></li>
+                <li><a href="/events/2022-plan">2022-plan/</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/events/2019/08_cccamp19_mildenberg">08_cccamp19_mildenberg</a>
+            <ul>
+                <li><a href="/events/2019/05_gpn19_karlsruhe">05_gpn19_karlsruhe/</a></li>
+                <li><a href="/events/2019/05_jufo_bundeswettbewerb_chemnitz">05_jufo_bundeswettbewerb_chemnitz/</a></li>
+                <li><a href="/events/2019/07_ich_und_wir_projekt">07_ich_und_wir_projekt/</a></li>
+                <li><a href="/events/2019/11_labortage_bochum">11_labortage_bochum/</a></li>
+                <li><a href="/events/2019/12_36c3_leipzig">12_36c3_leipzig/</a></li>
+                <li><a href="/events/2019/12_ski_st_anton">12_ski_st_anton/</a></li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+  <ul>
+  </ul><pre></pre>
+            <span id="cccamp19"></span>
+            <h1><a href="#cccamp19">CCCamp19</a></h1>
+            <pre>
+The first open air event I attended. 10/10 would do again.
+
+</pre>
+<div style="width: 100%" align=center>
+    <img src="camp.jpg" style="width: 75%"></img>
+</div>
+</pre>
+<p style="clear: both"></p>
+
+</pre>
+            <span id="ticket-location-place"></span>
+            <h2><a href="#ticket-location-place">Ticket, Location, Place</a></h2>
+            <pre>
+I wasn't sure if I could attend the event, as it collided with a University event which was planned to take place every second day of the month of August for the full month. As you can imagine, this didn't align with the camp schedule, as I couldn't simply skip 4 of those days (2 actual days) in order to attend the camp, due to all of the days being mandatory (sidenote from 2022-01-01, this was one of the things that really annoyed me at the HHU). Now doing such a course every second day for a whole month just didn't really sound intriguing, so I looked into if there would be better options, and found out that I could also do it every day for two weeks (they described it as hard, altough I've got to say that the whole thing was kind of a joke). Doing this for two weeks before the month of August made it a lot nicer, as I then had 2 weeks of free time to do stuff (for example attend the camp). Now the problem was: due to me not knowing if I would have time or not while the camp tickers were sold, I didn't buy a ticket.
+
+On the day before the camp, I was sitting in the local hackspace realizing that nobody was there, due to all the people being at the camp, and I started asking myself why I wasn't attending the camp. by reading the paragraph of text above, you now know, so I was bummered and started looking if I could attend it nevertheless. 
+
+Turns out: you can, although it is quite weird.
+
+I went on and bought a ticket from the ticket-swap in the camp wiki from a person who couldn't attend the camp. Now the only stuff needed to do as with every event was to plan how to get there and where to stay. Getting there was "fairly" simple:
+
+- U79     | to DUS HBF
+- RE      | DUS HBF to Hagen HBF
+- IC      | Hagen HBF to Berlin HBF
+- S-Bahn  | Berlin HBF to Mildenberg 
+- Car     | Mildenberg to Camp
+
+Finding a place to stay at a camp is a lot easier than with other events, as you only need to setup a tent. Luckily, I was able to find someone (dodo) who was kind enough letting me sleep in his tent, so the only thing I had to bring was a sleeping bag and a inflatable mattress (I can highly recommend the ones from Decathlon which are about 20cm thick when inflated and amazing, although don't forget to bring a pump, as I didn't and had to learn the hard way that inflating it using your lungs is possible, but not nice).
+
+Getting back was another thing: I just drove with dodo and some other people who also wanted to get back to DUS.
+
+</pre>
+            <span id="the-event-itself"></span>
+            <h2><a href="#the-event-itself">The event itself</a></h2>
+            <pre>
+Amazing.
+
+Like really: it was a superb event. The location was amazing, the weather was great, the people were even better, the whole setting was just perfect.
+
+I'd highly recommend attending such an event if you've got the opportunity to
+
+As I arived at about 01:00 on day 1, the whole camp was pretty much built up and I stumbled around trying to get to know the place. Now relative to other events which take place indoors, the camp is gigantic, so it took a lot of time and just wandering around interacting with other people and the things they did just never got boring.
+
+After ariving, I quickly found the "Eat Sleep Dragon Sector Pwn Repeat" tent, a tent setup by the "Eat Sleep Pwn Repeat" and "Dragon Sector" CTF team. In there, I quickly got into a nice chat with some people from the "Los Fuzzys" CTF Team from Graz and we talked along until about 05:00 in the morning (It did get cold).
+
+</pre>
+<div style="width: 100%" align=center>
+    <img src="discoball_forrest.jpg" style="width: 75%"></img>
+    <a href="https://flic.kr/p/2h8deTX">https://flic.kr/p/2h8deTX</a>
+</div>
+</pre>
+<p style="clear: both"></p>
+
+<br>
+    <br>
+    <br>
+    </pre>
+<a href="https://lieu.cblgh.org/" target="_blank" rel="noopener" class="icon"><img class="webring" src="/lieu.svg" alt="lieu webring search engine" height="32px"/></a>
+<a href="https://webring.xxiivv.com/#emile" target="_blank" rel="noopener" class="icon"><img class="webring" src="/webring.svg" alt="XXIIVV webring" height="32px"/></a>
+    <pre>
+emile - 1667082415.372177s
+</body>
+</html>
+    <pre>
